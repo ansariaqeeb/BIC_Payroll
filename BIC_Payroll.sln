@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIC_Payroll", "BIC_Payroll\BIC_Payroll.csproj", "{46A94F8F-5DE1-43DC-83C5-733856489973}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46A94F8F-5DE1-43DC-83C5-733856489973}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A94F8F-5DE1-43DC-83C5-733856489973}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A94F8F-5DE1-43DC-83C5-733856489973}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A94F8F-5DE1-43DC-83C5-733856489973}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
