@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIC_Payroll", "BIC_Payroll\BIC_Payroll.csproj", "{46A94F8F-5DE1-43DC-83C5-733856489973}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{16047FDB-4890-4012-930A-5FE87D805E14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataModel", "DataModel\DataModel.csproj", "{ADF9DA98-B028-49C7-8FD6-56F2148D4781}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{46A94F8F-5DE1-43DC-83C5-733856489973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A94F8F-5DE1-43DC-83C5-733856489973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46A94F8F-5DE1-43DC-83C5-733856489973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16047FDB-4890-4012-930A-5FE87D805E14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16047FDB-4890-4012-930A-5FE87D805E14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16047FDB-4890-4012-930A-5FE87D805E14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16047FDB-4890-4012-930A-5FE87D805E14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF9DA98-B028-49C7-8FD6-56F2148D4781}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF9DA98-B028-49C7-8FD6-56F2148D4781}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF9DA98-B028-49C7-8FD6-56F2148D4781}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF9DA98-B028-49C7-8FD6-56F2148D4781}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
