@@ -1,90 +1,76 @@
-﻿using System;
+﻿using DataAccess;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace DataModel
 {
-    public class userMaster
+    public class userMaster:Result.Result
     {
         #region properties
-        int _userId;
-        string _loginId;
-        int _uTypeId;
-        bool _isActive;
-        string _email;
-        string _mobileNo;
-        string _password;
-        string _userName;
-        string _fName;
-        string _mName;
-        string _lName;
-        DateTime _dob;
-        string _address;
-
-        public int UserId
+        XDocument xdoc;
+        int _USERID;
+        string _LOGINID;
+        string _Email;
+        string _MobileNo;
+        bool _MobileVerify;
+        bool _EmailVerify;
+        string _FNAME;
+        string _MNAME;
+        string _LNAME;
+        DateTime _DOB;
+        string _ADDRESS;
+        string _PASSWORD;
+        string _CONFIRMPASSWORD;
+        string _SVRKEY;
+        DateTime _SVRDATE;
+        string _SecondaryEmailID;
+        bool _ISACTIVE;
+        bool _ISADMIN;
+        string _IFLAG;
+        public int USERID
         {
             get
             {
-                return _userId;
+                return _USERID;
             }
 
             set
             {
-                _userId = value;
+                _USERID = value;
             }
         }
-
-        public string LoginId
+        [Required(ErrorMessage = "Please Enter Username")]
+        [StringLength(15, MinimumLength = 6, ErrorMessage = "Minimum 6 characters required")]
+        public string LOGINID
         {
             get
             {
-                return _loginId;
+                return _LOGINID;
             }
 
             set
             {
-                _loginId = value;
+                _LOGINID = value;
             }
         }
-
-        public int UTypeId
-        {
-            get
-            {
-                return _uTypeId;
-            }
-
-            set
-            {
-                _uTypeId = value;
-            }
-        }
-
-        public bool IsActive
-        {
-            get
-            {
-                return _isActive;
-            }
-
-            set
-            {
-                _isActive = value;
-            }
-        }
-
+        [Required(ErrorMessage = "Please Enter Email Address")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email
         {
             get
             {
-                return _email;
+                return _Email;
             }
 
             set
             {
-                _email = value;
+                _Email = value;
             }
         }
 
@@ -92,107 +78,274 @@ namespace DataModel
         {
             get
             {
-                return _mobileNo;
+                return _MobileNo;
             }
 
             set
             {
-                _mobileNo = value;
+                _MobileNo = value;
             }
         }
 
-        public string Password
+        public bool MobileVerify
         {
             get
             {
-                return _password;
+                return _MobileVerify;
             }
 
             set
             {
-                _password = value;
+                _MobileVerify = value;
             }
         }
 
-        public string UserName
+        public bool EmailVerify
         {
             get
             {
-                return _userName;
+                return _EmailVerify;
             }
 
             set
             {
-                _userName = value;
+                _EmailVerify = value;
             }
         }
-
-        public string FName
+        [Required(ErrorMessage = "Please Enter First Name")]
+        public string FNAME
         {
             get
             {
-                return _fName;
+                return _FNAME;
             }
 
             set
             {
-                _fName = value;
+                _FNAME = value;
             }
         }
 
-        public string MName
+        public string MNAME
         {
             get
             {
-                return _mName;
+                return _MNAME;
             }
 
             set
             {
-                _mName = value;
+                _MNAME = value;
             }
         }
-
-        public string LName
+        [Required(ErrorMessage = "Please Enter Last Name")]
+        public string LNAME
         {
             get
             {
-                return _lName;
+                return _LNAME;
             }
 
             set
             {
-                _lName = value;
+                _LNAME = value;
             }
         }
 
-        public DateTime Dob
+        public DateTime DOB
         {
             get
             {
-                return _dob;
+                return _DOB;
             }
 
             set
             {
-                _dob = value;
+                _DOB = value;
             }
         }
 
-        public string Address
+        public string ADDRESS
         {
             get
             {
-                return _address;
+                return _ADDRESS;
             }
 
             set
             {
-                _address = value;
+                _ADDRESS = value;
+            }
+        }
+        [DataType(DataType.Password)]
+        [StringLength(15, MinimumLength = 6, ErrorMessage = "Minimum 6 characters required")]
+        [Required(ErrorMessage = "Please Enter Password")]
+        public string PASSWORD
+        {
+            get
+            {
+                return _PASSWORD;
+            }
+
+            set
+            {
+                _PASSWORD = value;
             }
         }
 
+        public string SVRKEY
+        {
+            get
+            {
+                return _SVRKEY;
+            }
 
+            set
+            {
+                _SVRKEY = value;
+            }
+        }
+
+        public DateTime SVRDATE
+        {
+            get
+            {
+                return _SVRDATE;
+            }
+
+            set
+            {
+                _SVRDATE = value;
+            }
+        }
+
+        public string SecondaryEmailID
+        {
+            get
+            {
+                return _SecondaryEmailID;
+            }
+
+            set
+            {
+                _SecondaryEmailID = value;
+            }
+        }
+
+        public bool ISACTIVE
+        {
+            get
+            {
+                return _ISACTIVE;
+            }
+
+            set
+            {
+                _ISACTIVE = value;
+            }
+        }
+
+        public bool ISADMIN
+        {
+            get
+            {
+                return _ISADMIN;
+            }
+
+            set
+            {
+                _ISADMIN = value;
+            }
+        }
+
+        public string IFLAG
+        {
+            get
+            {
+                return _IFLAG;
+            }
+
+            set
+            {
+                _IFLAG = value;
+            }
+        }
+        [DataType(DataType.Password)]
+        [StringLength(15, MinimumLength = 6, ErrorMessage = "Minimum 6 characters required")]
+        [Required(ErrorMessage = "Please Enter confirm Password")]
+        [CompareAttribute("PASSWORD", ErrorMessage = "Password doesn't match.")]
+
+        public string CONFIRMPASSWORD
+        {
+            get
+            {
+                return _CONFIRMPASSWORD;
+            }
+
+            set
+            {
+                _CONFIRMPASSWORD = value;
+            }
+        }
+        #endregion
+        #region Methods
+        public userMaster()
+        {
+        }
+
+        public Result.Result Save(userMaster obj, XElement LOGXML = null)
+        {
+            try
+            {
+                xdoc = DBXML.userMaster_C(obj.IFLAG, obj.USERID, obj.LOGINID, obj.Email, obj.MobileNo, obj.MobileVerify, obj.EmailVerify, obj.FNAME == null ? "" : obj.FNAME,
+                    obj.MNAME==null?"":obj.MNAME,obj.LNAME==null ?"":obj.LNAME,obj.DOB,obj.ADDRESS==null?"":obj.ADDRESS,obj.PASSWORD,obj.SVRKEY,obj.SVRDATE,
+                    obj.SecondaryEmailID==null ?"":obj.SecondaryEmailID, obj.ISACTIVE,obj.ISADMIN, LOGXML);
+                return ReadBIErrors(Convert.ToString(SqlExe.GetXml(xdoc)));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public List<userMaster> getUserList(int USERID,string LoginId,string DESC, XElement LOGXML = null)
+        {
+            try
+            {
+                xdoc = DBXML.UserMaster_g(0,USERID,LoginId,DESC, LOGXML);
+                DataTable dt = SqlExe.GetDT(xdoc);
+                List<userMaster> dbresult = dt != null ?
+                    (from s in dt.AsEnumerable()
+                     select new userMaster
+                     {
+                         USERID = s.Field<int>("USERID"),
+                         LOGINID = s.Field<string>("LOGINID"),
+                         Email = s.Field<string>("Email"),
+                         MobileNo = s.Field<string>("MobileNo"),
+                         MobileVerify = s.Field<bool>("MobileVerify"),
+                         EmailVerify = s.Field<bool>("EmailVerify"),
+                         FNAME = s.Field<string>("FNAME"),
+                         MNAME = s.Field<string>("MNAME"),
+                         LNAME = s.Field<string>("LNAME"),
+                         DOB = s.Field<DateTime>("DOB"),
+                         ADDRESS = s.Field<string>("ADDRESS"),
+                         PASSWORD = s.Field<string>("PASSWORD"),
+                         SVRKEY = s.Field<string>("SVRKEY"),
+                         SVRDATE = s.Field<DateTime>("SVRDATE"),
+                         SecondaryEmailID = s.Field<string>("SecondaryEmailID"),
+                         ISACTIVE = s.Field<bool>("ISACTIVE"),
+                         ISADMIN = s.Field<bool>("ISADMIN")
+                     }).ToList() : null;
+
+                return dbresult;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        
         #endregion
     }
 }

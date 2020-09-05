@@ -437,28 +437,32 @@ namespace DataModel
             return CreateXml;
         }
 
-        static public XDocument petMaster_C(string flag, int Id, int branchId, string code, string custCode, string petName, string registrationNo, DateTime dob, string sex, string species, string breed,string remark,string expiredRemark, bool isSterilized, bool isActive, int userId, XElement LOGXML)
+        static public XDocument userMaster_C(string FLAG, int USERID, string LOGINID, string Email, string MobileNo, bool MobileVerify, 
+            bool EmailVerify,string FNAME,string MNAME,string LNAME, DateTime DOB, string ADDRESS, string PASSWORD, string SVRKEY, DateTime SVRDATE, 
+            string SecondaryEmailID, bool ISACTIVE, bool ISADMIN, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("Id", Id),
-           new XAttribute("branchId", branchId),
-           new XAttribute("code", code),
-           new XAttribute("custCode", custCode),
-           new XAttribute("petName", petName),
-           new XAttribute("registrationNo", registrationNo),
-           new XAttribute("dob", dob),
-           new XAttribute("sex", sex),
-           new XAttribute("species", species),
-           new XAttribute("breed", breed),
-           new XAttribute("isActive", isActive),
-           new XAttribute("remark", remark),
-           new XAttribute("expiredRemark", expiredRemark),
-           new XAttribute("isSterilized", isSterilized),
-           new XAttribute("USERID", userId)
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("USERID", USERID),
+           new XAttribute("LOGINID", LOGINID),
+           new XAttribute("Email", Email),
+           new XAttribute("MobileNo", MobileNo),
+           new XAttribute("MobileVerify", MobileVerify),
+           new XAttribute("EmailVerify", EmailVerify),
+           new XAttribute("FNAME", FNAME),
+           new XAttribute("MNAME", MNAME),
+           new XAttribute("LNAME", LNAME),
+           new XAttribute("DOB", DOB),
+           new XAttribute("ADDRESS", ADDRESS),
+           new XAttribute("PASSWORD", PASSWORD),
+           new XAttribute("SVRKEY", SVRKEY),
+           new XAttribute("SVRDATE", SVRDATE),
+           new XAttribute("SecondaryEmailID", SecondaryEmailID),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("ISADMIN", ISADMIN)
            ));
-            XDocument CreateXml = CommonXML("petMaster_C", MAINXML, LOGXML);
+            XDocument CreateXml = CommonXML("userMaster_C", MAINXML, LOGXML);
             return CreateXml;
         }
 
@@ -466,40 +470,7 @@ namespace DataModel
 
 
         #region G Saction
-        static public XDocument userMaster_g(int userId, string loginId, string password, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("userId", userId),
-           new XAttribute("loginId", loginId),
-           new XAttribute("password", password)
-           ));
-            XDocument CreateXml = CommonXML("userMaster_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument dbConfig_g(int dbConfigId, string dbName, int userId, int flag, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("dbConfigId", dbConfigId),
-           new XAttribute("flag", flag),
-           new XAttribute("dbName", dbName),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("dbConfig_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument serviceConfig_g(int serviceId, string serviceName, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("serviceId", serviceId),
-           new XAttribute("serviceName", serviceName),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("serviceConfig_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
+        
         static public XDocument STATUSMASTER_h(int TYPEID, int STATUSID, string DESC, int Flag, XElement LOGXML, string CONDITION)
         {
             XElement MAINXML = new XElement("SPXML",
@@ -512,232 +483,20 @@ namespace DataModel
             XDocument CreateXml = CommonXML("STATUSMASTER_h", MAINXML, LOGXML);//NO
             return CreateXml;
         }
-        static public XDocument ST_SYSCONTROLENO_h(int CONTROLNO, string DESC, int FLAG, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-            new XElement("SPDETAILS",
-            new XAttribute("CONTROLNO", CONTROLNO),
-            new XAttribute("DESC", DESC),
-            new XAttribute("FLAG", FLAG)));
-            XDocument CreateXml = CommonXML("ST_SYSCONTROLENO_h", MAINXML, LOGXML);
-            return CreateXml;
-        }
-
-        static public XDocument ST_GetLookupData(int MENUID, int flag, int USERID, int PAGENO, XElement FILTERXML, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-            new XElement("SPDETAILS",
-            new XAttribute("MENUID", MENUID),
-            new XAttribute("flag", flag),
-            new XAttribute("USERID", USERID),
-            new XAttribute("PAGENO", PAGENO)));
-            MAINXML.Add(FILTERXML);
-            XDocument CreateXml = CommonXML("ST_GetLookupData", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument petMaster_g(int flag, int id, string name, string code, string custCode, int branchId, int userId, XElement LOGXML)
+        
+        static public XDocument UserMaster_g(int FLAG, int USERID, string LOGINID,string DESC, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("id", id),
-           new XAttribute("name", name),
-           new XAttribute("code", code),
-           new XAttribute("custCode", custCode),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("USERID", USERID),
+           new XAttribute("LOGINID", LOGINID),
+           new XAttribute("DESC", DESC)
            ));
-            XDocument CreateXml = CommonXML("petMaster_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument Species_g(int flag, int id, string desc, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("id", id),
-           new XAttribute("Species", desc),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("Species_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-
-        static public XDocument Breed_g(int flag, int id,int rid, string desc, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("id", id),
-           new XAttribute("RId", rid),
-           new XAttribute("BreedName", desc),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("Breed_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument transferDetails_g(int flag, int Mid, string fromCustCode, string toCustCode, string petCode, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("mId", Mid),
-           new XAttribute("fromCustCode", fromCustCode),
-           new XAttribute("toCustCode", toCustCode),
-           new XAttribute("petCode", petCode),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("transferDetails_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-
-        static public XDocument transferDoc_g(int flag,int Id,int Mid, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("Id", Id),
-           new XAttribute("mId", Mid),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("transferDoc_g", MAINXML, LOGXML);
+            XDocument CreateXml = CommonXML("UserMaster_g", MAINXML, LOGXML);
             return CreateXml;
         }
         
-        static public XDocument getServiceDetailsForPosting_g(int flag, int Mid, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("mId", Mid),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("getServiceDetailsForPosting_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument bookAppointment_g(int flag, int Mid, string bookingNo, string custCode, string docCode, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("mId", Mid),
-           new XAttribute("bookingNo", bookingNo),
-           new XAttribute("custCode", custCode),
-           new XAttribute("docCode", docCode),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("bookAppointment_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument bookAppointmentTrans_g(int flag, int Mid, int Tid, string petCode, string petName, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("mId", Mid),
-           new XAttribute("tId", Tid),
-           new XAttribute("petCode", petCode),
-           new XAttribute("petName", petName),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("bookAppointmentTrans_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument TreatmentKit_g(int flag, int Tid, string code, string desc, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("Tid", Tid),
-           new XAttribute("code", code),
-           new XAttribute("description", desc),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("TreatmentKit_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument TreatmentKitTrans_g(int flag, int RTid, int Rid, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("RTid", RTid),
-           new XAttribute("Rid", Rid),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("TreatmentKitTrans_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        
-
-        static public XDocument DiagnosisDtl_g(int flag, int Rid, int RTid, int RMid, int ItemId, string ItemDesc, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("Rid", Rid),
-           new XAttribute("RTid", RTid),
-           new XAttribute("RMid", RMid),
-           new XAttribute("ItemId", ItemId),
-           new XAttribute("ItemDesc", ItemDesc),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("DiagnosisDtl_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument treatmentService_g(int flag, int Rid, int RTid, int RMid, int serviceItemId, string serviceItem, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("Rid", Rid),
-           new XAttribute("RTid", RTid),
-           new XAttribute("RMid", RMid),
-           new XAttribute("serviceItemId", serviceItemId),
-           new XAttribute("serviceItem", serviceItem),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("treatmentService_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-        static public XDocument treatmentServiceForCal_g(int flag, int RTid, int RMid,int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("RTid", RTid),
-           new XAttribute("RMid", RMid),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("treatmentServiceForCal_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
-
-        static public XDocument PrescriptionService_g(int flag, int Pid, int RTid, int RMid, int serviceItemId, string serviceItem, int branchId, int userId, XElement LOGXML)
-        {
-            XElement MAINXML = new XElement("SPXML",
-           new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("Pid", Pid),
-           new XAttribute("RTid", RTid),
-           new XAttribute("RMid", RMid),
-           new XAttribute("serviceItemId", serviceItemId),
-           new XAttribute("serviceItem", serviceItem),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            XDocument CreateXml = CommonXML("PrescriptionService_g", MAINXML, LOGXML);
-            return CreateXml;
-        }
         #endregion
 
     }

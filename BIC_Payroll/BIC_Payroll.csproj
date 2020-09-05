@@ -740,6 +740,7 @@
     <Content Include="js\plugin\x-editable\jquery.mockjax.min.js" />
     <Content Include="js\plugin\x-editable\moment.min.js" />
     <Content Include="js\plugin\x-editable\x-editable.min.js" />
+    <Content Include="js\ProjectCommon.js" />
     <Content Include="js\smart-chat-ui\smart.chat.manager.min.js" />
     <Content Include="js\smart-chat-ui\smart.chat.ui.min.js" />
     <Content Include="js\smartwidgets\jarvis.widget.min.js" />
@@ -752,6 +753,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />

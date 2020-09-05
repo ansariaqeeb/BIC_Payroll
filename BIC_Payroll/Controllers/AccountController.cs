@@ -7,6 +7,8 @@ using System.Web.Security;
 using System.Net.Sockets;
 using System.Net;
 using DataModel.CommonModel;
+using DataModel;
+using DataModel.Result;
 
 namespace BIC_Payroll.Controllers
 {
@@ -14,16 +16,15 @@ namespace BIC_Payroll.Controllers
     {
         LoginModels objLog = new LoginModels();
         LoginSessionDetails SessLogObj = new LoginSessionDetails();
-
-        public object AddressFamily { get; private set; }
-
+        Result objRes = new Result();
         public ActionResult Index()
         {
             return View();
         }
         //Login page for all users
+        [HttpGet]
         public ActionResult Login()
-        { 
+        {
 
             object UserSession = Session["SessionInformation"];
 
@@ -59,7 +60,7 @@ namespace BIC_Payroll.Controllers
                 {
                     var userdecrypt = objLog.Decryptdata(this.HttpContext.Request.Cookies["rem_user"].Value);
                     string[] strTemp = userdecrypt.Split(',');
-                    objLog.userName = strTemp[0];
+                    objLog.UserName = strTemp[0];
                     objLog.password = strTemp[1];
                     string[] user;
                     if (Request.LogonUserIdentity.Name.Contains("\\"))
@@ -92,7 +93,7 @@ namespace BIC_Payroll.Controllers
 
                     bool ISDomain = false;
                     string emailaddress = "";
-                    string[] aduname = objLog.userName.Split('\\');
+                    string[] aduname = objLog.UserName.Split('\\');
                     if (aduname.Length > 1)
                     {
                         var userdata = objLog.ADIsValid(aduname[0], aduname[1], objLog.password);
@@ -130,17 +131,17 @@ namespace BIC_Payroll.Controllers
 
         //Login Post action for getting authenticating user and maintaining its session
         [HttpPost]
-        public ActionResult Login(LoginModels objLogin, string returnUrl)
+        public ActionResult Login(LoginModels objLogin)
         {
 
             bool vLicenseExpired = false;
 
-            returnUrl = (returnUrl == "/Account/Login" ? "" : returnUrl);
+            string returnUrl = "";
 
             Response.Cookies["RememberMe"].Value = objLogin.RememberMe.ToString();
             if (objLogin.RememberMe)
             {
-                var userencrypt = string.Join(",", objLogin.userName, objLogin.password, objLogin.RememberMe);
+                var userencrypt = string.Join(",", objLogin.UserName, objLogin.password, objLogin.RememberMe);
                 Response.Cookies["rem_user"].Expires = DateTime.Now.AddDays(30);
                 Response.Cookies["rem_user"].Value = objLogin.Encryptdata(userencrypt);
 
@@ -189,7 +190,7 @@ namespace BIC_Payroll.Controllers
 
                     bool ISDomain = false;
                     string emailaddress = "";
-                    string[] aduname = objLogin.userName.Split('\\');
+                    string[] aduname = objLogin.UserName.Split('\\');
                     if (aduname.Length > 1)
                     {
                         var userdata = objLogin.ADIsValid(aduname[0], aduname[1], objLogin.password);
@@ -272,5 +273,28 @@ namespace BIC_Payroll.Controllers
             return View(objLogin);
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(userMaster obj)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    SessLogObj = (LoginSessionDetails)HttpContext.Session["SessionInformation"];
+                    objRes = obj.Save(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return View(obj);
+        }
     }
 }
