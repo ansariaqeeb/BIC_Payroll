@@ -61,7 +61,9 @@
     <Compile Include="Result\Result.cs" />
     <Compile Include="Service\Service.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{16047fdb-4890-4012-930a-5fe87d805e14}</Project>

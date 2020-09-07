@@ -367,31 +367,31 @@ namespace DataModel.Service
         #endregion
 
         #region Methods
-        public List<Service> getServiceList(int serviceId,string serviceName, int userId)
-        {
-            try
-            {
-                XElement logXMl = null;
-                xdoc = DBXML.serviceConfig_g(serviceId,serviceName, userId, logXMl);
-                dt = SqlExe.GetDT(xdoc);
-                List<Service> lst = dt!=null && dt.Rows.Count>0?  dt.AsEnumerable().Select(s => new Service
-                {
-                    ServiceName = s.Field<string>("ServiceName"),
-                    serviceId = s.Field<int>("serviceId"),
-                    dbConStr = s.Field<string>("dbConStr"),
-                    dbCommonConStr = s.Field<string>("dbCommonConStr"),
-                    serialNumber = s.Field<string>("serialNumber"),
-                    authCode = s.Field<string>("authCode")
-                }).ToList(): null;
-                return lst;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+        //public List<Service> getServiceList(int serviceId,string serviceName, int userId)
+        //{
+        //    try
+        //    {
+        //        XElement logXMl = null;
+        //        xdoc = DBXML.serviceConfig_g(serviceId,serviceName, userId, logXMl);
+        //        dt = SqlExe.GetDT(xdoc);
+        //        List<Service> lst = dt!=null && dt.Rows.Count>0?  dt.AsEnumerable().Select(s => new Service
+        //        {
+        //            ServiceName = s.Field<string>("ServiceName"),
+        //            serviceId = s.Field<int>("serviceId"),
+        //            dbConStr = s.Field<string>("dbConStr"),
+        //            dbCommonConStr = s.Field<string>("dbCommonConStr"),
+        //            serialNumber = s.Field<string>("serialNumber"),
+        //            authCode = s.Field<string>("authCode")
+        //        }).ToList(): null;
+        //        return lst;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
 
 
-        }
+        //}
         #endregion
 
     }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.DirectoryServices.AccountManagement;
 using System.Text;
-using System.Xml.Linq; 
+using System.Xml.Linq;
 using System.Configuration;
 using DataAccess;
 using System.Collections.Generic;
@@ -15,21 +15,10 @@ namespace DataModel.LoginModel
     {
         XDocument xdoc;
         DataModel.Result.Result err = new DataModel.Result.Result();
-          
-
-        #region properties 
-        public int controlNo { get; set; }
-        public int plantId { get; set; }
-        public int compId { get; set; }
-
-        int dbConfigId;
-        bool isAdmin;
-        int branchId;
-        string branchCode;
-        string branchDesc;
+        #region properties   
         [Required(ErrorMessage = "Please Enter User ID")]
         [Display(Name = "User name")]
-        public string userName { get; set; }
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Please Enter Password")]
         [DataType(DataType.Password)]
@@ -37,107 +26,7 @@ namespace DataModel.LoginModel
         public string password { get; set; }
 
         [Display(Name = "Remember me?")]
-        public bool rememberMe { get; set; }
-
-        public bool IsAdmin
-        {
-            get
-            {
-                return isAdmin;
-            }
-
-            set
-            {
-                isAdmin = value;
-            }
-        }
-
-        public string LoginId
-        {
-            get
-            {
-                return loginId;
-            }
-
-            set
-            {
-                loginId = value;
-            }
-        }
-        [Required(ErrorMessage = "Please Select Database")]
-        [Display(Name = "Database")]
-        public int DbConfigId
-        {
-            get
-            {
-                return dbConfigId;
-            }
-
-            set
-            {
-                dbConfigId = value;
-            }
-        }
-
-        public int UserId
-        {
-            get
-            {
-                return userId;
-            }
-
-            set
-            {
-                userId = value;
-            }
-        }
-        [Required(ErrorMessage = "Please Select Branch")]
-        [Display(Name = "Branch")]
-        public int BranchId
-        {
-            get
-            {
-                return branchId;
-            }
-
-            set
-            {
-                branchId = value;
-            }
-        }
-
-        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
-
-
-        public string BranchCode
-        {
-            get
-            {
-                return branchCode;
-            }
-
-            set
-            {
-                branchCode = value;
-            }
-        }
-
-        public string BranchDesc
-        {
-            get
-            {
-                return branchDesc;
-            }
-
-            set
-            {
-                branchDesc = value;
-            }
-        }
-
-        string loginId;
-        int userId;
         #endregion
         //    #region Methods 
         //Method for checking login authentication and getting user information
@@ -146,23 +35,29 @@ namespace DataModel.LoginModel
             try
             {
                 XElement LOGXML = null;
-                xdoc = DBXML.userMaster_g(0, objLogOnModel.userName.Trim(), objLogOnModel.password.Trim(), LOGXML);
+                xdoc = DBXML.USERMAST_g(0, objLogOnModel.UserName.Trim(), objLogOnModel.password.Trim(), LOGXML);
 
                 DataTable dt = SqlExe.GetDT(xdoc);
                 LoginSessionDetails lst = new LoginSessionDetails();
-                //    dt != null && dt.Rows.Count > 0 ? dt.AsEnumerable().Select(s => new LoginModels
-                //{
-                //    UserId = s.Field<int>("userId"),
-                //    userName = s.Field<string>("userName"),
-                //    loginId= s.Field<string>("loginId"),
-                //    IsAdmin = s.Field<bool>("isAdmin")
-                //}).ToList().FirstOrDefault() : null;
+                lst = dt != null && dt.Rows.Count > 0 ?
+                    dt.AsEnumerable().Select(s => new LoginSessionDetails
+                    {
+                        USERID = s.Field<Int64>("USERID"),
+                        LOGINID = s.Field<string>("LOGINID"),
+                        Email = s.Field<string>("Email"),
+                        FNAME = s.Field<string>("FNAME"),
+                        MNAME = s.Field<string>("MNAME"),
+                        LNAME = s.Field<string>("LNAME"),
+                        SVRKEY = s.Field<string>("SVRKEY"),
+                        SVRDATE = s.Field<DateTime>("SVRDATE"),
+                        ISADMIN = Convert.ToInt32(s.Field<bool>("ISADMIN")) == 1 ? true : false 
+                    }).ToList().FirstOrDefault() : null;
                 return lst;
             }
             catch (Exception ex)
             {
 
-                throw ex; 
+                throw ex;
             }
 
 
