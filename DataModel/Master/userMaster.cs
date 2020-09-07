@@ -297,8 +297,9 @@ namespace DataModel
         {
             try
             {
-                xdoc = DBXML.userMaster_C(obj.IFLAG, obj.USERID, obj.LOGINID, obj.Email, obj.MobileNo, obj.MobileVerify, obj.EmailVerify, obj.FNAME == null ? "" : obj.FNAME,
-                    obj.MNAME==null?"":obj.MNAME,obj.LNAME==null ?"":obj.LNAME,obj.DOB,obj.ADDRESS==null?"":obj.ADDRESS,obj.PASSWORD,obj.SVRKEY,obj.SVRDATE,
+                xdoc = DBXML.USERMAST_c(obj.IFLAG, obj.USERID, obj.LOGINID, obj.Email, obj.MobileNo==null?"":obj.MobileNo, obj.MobileVerify,
+                    obj.EmailVerify, obj.FNAME == null ? "" : obj.FNAME,obj.MNAME==null?"":obj.MNAME,obj.LNAME==null ?"":obj.LNAME,obj.DOB,
+                    obj.ADDRESS==null?"":obj.ADDRESS,obj.PASSWORD,obj.SVRKEY==null?"":obj.SVRKEY,obj.SVRDATE,
                     obj.SecondaryEmailID==null ?"":obj.SecondaryEmailID, obj.ISACTIVE,obj.ISADMIN, LOGXML);
                 return ReadBIErrors(Convert.ToString(SqlExe.GetXml(xdoc)));
             }
@@ -312,7 +313,7 @@ namespace DataModel
         {
             try
             {
-                xdoc = DBXML.UserMaster_g(0,USERID,LoginId,DESC, LOGXML);
+                xdoc = DBXML.USERMAST_g(0,LoginId,DESC, LOGXML);
                 DataTable dt = SqlExe.GetDT(xdoc);
                 List<userMaster> dbresult = dt != null ?
                     (from s in dt.AsEnumerable()

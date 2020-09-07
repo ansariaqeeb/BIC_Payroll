@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.DirectoryServices.AccountManagement;
 using System.Text;
-using System.Xml.Linq; 
+using System.Xml.Linq;
 using System.Configuration;
 using DataAccess;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace DataModel.LoginModel
     public class LoginModels
     {
         XDocument xdoc;
-        DataModel.Result.Result err = new DataModel.Result.Result(); 
+        DataModel.Result.Result err = new DataModel.Result.Result();
         #region properties   
         [Required(ErrorMessage = "Please Enter User ID")]
         [Display(Name = "User name")]
@@ -23,10 +23,10 @@ namespace DataModel.LoginModel
         [Required(ErrorMessage = "Please Enter Password")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        public string password { get; set; }  
+        public string password { get; set; }
 
         [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }  
+        public bool RememberMe { get; set; }
         #endregion
         //    #region Methods 
         //Method for checking login authentication and getting user information
@@ -35,23 +35,29 @@ namespace DataModel.LoginModel
             try
             {
                 XElement LOGXML = null;
-                //xdoc = DBXML.userMaster_g(0, objLogOnModel.UserName.Trim(), objLogOnModel.password.Trim(), LOGXML);
+                xdoc = DBXML.USERMAST_g(0, objLogOnModel.UserName.Trim(), objLogOnModel.password.Trim(), LOGXML);
 
                 DataTable dt = SqlExe.GetDT(xdoc);
                 LoginSessionDetails lst = new LoginSessionDetails();
-                //    dt != null && dt.Rows.Count > 0 ? dt.AsEnumerable().Select(s => new LoginModels
-                //{
-                //    UserId = s.Field<int>("userId"),
-                //    userName = s.Field<string>("userName"),
-                //    loginId= s.Field<string>("loginId"),
-                //    IsAdmin = s.Field<bool>("isAdmin")
-                //}).ToList().FirstOrDefault() : null;
+                lst = dt != null && dt.Rows.Count > 0 ?
+                    dt.AsEnumerable().Select(s => new LoginSessionDetails
+                    {
+                        USERID = s.Field<Int64>("USERID"),
+                        LOGINID = s.Field<string>("LOGINID"),
+                        Email = s.Field<string>("Email"),
+                        FNAME = s.Field<string>("FNAME"),
+                        MNAME = s.Field<string>("MNAME"),
+                        LNAME = s.Field<string>("LNAME"),
+                        SVRKEY = s.Field<string>("SVRKEY"),
+                        SVRDATE = s.Field<DateTime>("SVRDATE"),
+                        ISADMIN = Convert.ToInt32(s.Field<bool>("ISADMIN")) == 1 ? true : false 
+                    }).ToList().FirstOrDefault() : null;
                 return lst;
             }
             catch (Exception ex)
             {
 
-                throw ex; 
+                throw ex;
             }
 
 

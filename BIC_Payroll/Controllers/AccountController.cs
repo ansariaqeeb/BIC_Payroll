@@ -28,7 +28,7 @@ namespace BIC_Payroll.Controllers
 
             object UserSession = Session["SessionInformation"];
 
-            if (UserSession != null && ((LoginSessionDetails)UserSession).UserId != 0)
+            if (UserSession != null && ((LoginSessionDetails)UserSession).USERID != 0)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -40,7 +40,7 @@ namespace BIC_Payroll.Controllers
                     HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
                     LoginSessionDetails serializeModel = JsonConvert.DeserializeObject<LoginSessionDetails>(authTicket.UserData);
-                    if (serializeModel.UserId > 0)
+                    if (serializeModel.USERID > 0)
                     {
                         Session["SessionInformation"] = serializeModel;
                         return RedirectToAction("Index", "Home");
@@ -112,7 +112,7 @@ namespace BIC_Payroll.Controllers
                     Response.Cookies.Add(faCookie);
 
 
-                    if (objLogSession.UserId != 0)
+                    if (objLogSession.USERID != 0)
                     {
                         Session["SessionInformation"] = objLogSession;
                         string time = DateTime.Now.AddMinutes(1).ToString("mm.ss");
@@ -178,16 +178,7 @@ namespace BIC_Payroll.Controllers
                     string bVer = Request.Browser.Version;
                     /*GET IP*/
                     string localIP = "";
-                    //IPHostEntry host = host = Dns.GetHostEntry(Dns.GetHostName());
-                    //foreach (IPAddress ip in host.AddressList)
-                    //{
-                    //    if (ip.AddressFamily == AddressFamily.InterNetwork)
-                    //    {
-                    //        localIP = ip.ToString();
-                    //        break;
-                    //    }
-                    //}
-
+                    
                     bool ISDomain = false;
                     string emailaddress = "";
                     string[] aduname = objLogin.UserName.Split('\\');
@@ -208,22 +199,22 @@ namespace BIC_Payroll.Controllers
                     //-------------------------------------------------------------------
                     // License Validation
                     //-------------------------------------------------------------------
-                    if (objLogSession.UserId != 0)
-                    {
-                        string vDecryptString = "";
-                        vDecryptString = CommonMethods.Decrypt(objLogSession.SVRKEY, "ERPWEB");
+                    //if (objLogSession.USERID != 0)
+                    //{
+                    //    string vDecryptString = "";
+                    //    vDecryptString = CommonMethods.Decrypt(objLogSession.SVRKEY, "ERPWEB");
 
-                        if (vDecryptString.Trim() == "")
-                        {
-                            objLogSession.UserId = 0;
-                            vLicenseExpired = true;
-                        }
-                        else if (Convert.ToDateTime(vDecryptString) < objLogSession.SVRDATE)
-                        {
-                            objLogSession.UserId = 0;
-                            vLicenseExpired = true;
-                        }
-                    }
+                    //    if (vDecryptString.Trim() == "")
+                    //    {
+                    //        objLogSession.USERID = 0;
+                    //        vLicenseExpired = true;
+                    //    }
+                    //    else if (Convert.ToDateTime(vDecryptString) < objLogSession.SVRDATE)
+                    //    {
+                    //        objLogSession.USERID = 0;
+                    //        vLicenseExpired = true;
+                    //    }
+                    //}
                     //-------------------------------------------------------------------
 
 
@@ -235,7 +226,7 @@ namespace BIC_Payroll.Controllers
                     //faCookie.Expires = authTicket.Expiration; // comment for use as non persistence cookie
                     Response.Cookies.Add(faCookie);
 
-                    if (objLogSession.UserId != 0)
+                    if (objLogSession.USERID != 0)
                     {
                         Session["SessionInformation"] = objLogSession;
                         string time = DateTime.Now.AddMinutes(1).ToString("mm.ss");
@@ -286,8 +277,19 @@ namespace BIC_Payroll.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    SessLogObj = (LoginSessionDetails)HttpContext.Session["SessionInformation"];
+                    //string vPassword = CommonMethods.Encrypt(obj.PASSWORD);
+                    //string vSvrKey = CommonMethods.Encrypt(DateTime.Now.Date.ToString(), "BICPRO");
+                    //obj.PASSWORD = vPassword;
+                    obj.SVRKEY = "abcd";
                     objRes = obj.Save(obj);
+                    if (objRes.ResultId>0)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("ErrorMgr", objRes.Message);
+                    }
                 }
             }
             catch (Exception ex)
@@ -295,6 +297,43 @@ namespace BIC_Payroll.Controllers
                 throw ex;
             }
             return View(obj);
+        }
+
+        public ActionResult LogOff()
+        {
+            SessLogObj = (LoginSessionDetails)HttpContext.Session["SessionInformation"];
+            this.Response.Cookies["rem_user"].Expires = DateTime.Now.AddDays(-1);
+            this.Response.Cookies["RememberMe"].Expires = DateTime.Now.AddDays(-1);
+            this.Response.Cookies["RememberMe"].Value = "False";
+            this.Response.Cookies["rem_user"].Value = "False";
+            this.Response.Cookies.Remove("rem_user");
+            this.Response.Cookies.Remove("RememberMe");
+
+
+            if (Request.Cookies["RememberMe"] != null)
+            {
+                var c = new HttpCookie("RememberMe");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+
+            if (Request.Cookies["rem_user"] != null)
+            {
+                var c = new HttpCookie("rem_user");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+
+            if (Request.Cookies["ASP.NET_SessionId"] != null)
+            {
+                var c = new HttpCookie("ASP.NET_SessionId");
+                c.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(c);
+            }
+
+            Session.RemoveAll();
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

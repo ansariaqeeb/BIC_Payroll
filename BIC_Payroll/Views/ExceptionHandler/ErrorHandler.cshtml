@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = null; //ViewBag.RequestType == true ? null : "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .well {
+        margin-bottom: 13px;
+        margin-top: 13px;
+        padding: 13px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="well">
+    <h3 class="error red">
+        <span class="red bigger-110">
+            <i class="ace-icon fa fa-random"></i>
+        </span>
+        &nbsp;
+        An error occurred while processing your request.
+        <h3 class="error">Error.</h3>
+        <h5 class="error">@ViewBag.Exception.</h5>
+        <span class="grey bigger-125 pull-right" style="cursor:pointer;">
+            <i id="iconError_Expand" class="ace-icon fa fa-angle-double-down"></i>
+            <i id="iconError_Collapse" class="ace-icon fa fa-angle-double-up hide"></i>
+        </span>
+    </h3>
+    <div id="divError_Description" style="max-height:200px;overflow:auto;display:none;">
+        <hgroup class="title">
+            <h3 class="error">Error.</h3>
+            <h5 class="error">@ViewBag.Exception.</h5>
+        </hgroup>
+    </div>
+
+</div>
+ 
+<script type="text/javascript">
+    $(function () {
+        $('#iconError_Expand').click(function () {
+            $('#divError_Description').toggle();
+            $('#iconError_Collapse').removeClass('hide');
+            $('#iconError_Expand').addClass('hide');
+        });
+
+        $('#iconError_Collapse').click(function () {
+            $('#divError_Description').toggle();
+            $('#iconError_Expand').removeClass('hide');
+            $('#iconError_Collapse').addClass('hide');
+        });
+
+        $('#divError_Description').hover(function()
+        {
+            $(this).css({ 'overflow': 'auto' });
+        }, function()
+        {
+            $(this).css({'overflow': 'hidden'});
+        });
+    });
+</script>

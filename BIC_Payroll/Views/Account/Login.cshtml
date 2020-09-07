@@ -137,17 +137,20 @@
                                         <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b>
                                         <span id="errorFile" style="color: Red;">@Html.ValidationMessageFor(model => model.password)</span>
                                     </label>
-                                    <div class="note">
+                                    @*<div class="note">
                                         <a href="~/forgotpassword.html">Forgot password?</a>
-                                    </div>
+                                    </div>*@
                                 </section>
 
-                                <section>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="RememberMe" checked="">
-                                        <i></i>Stay signed in
-                                    </label>
-                                </section>
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-12">
+                                            <div style="color: Red;">
+                                                <span id="errorvalidFile">@Html.ValidationMessage("ErrorMgr")</span>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </fieldset>
                             </fieldset>
                             <footer>
                                 <button type="submit" class="btn btn-primary">
@@ -181,7 +184,7 @@
 
     <!--================================================== -->
     <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-    <script src="~/js/plugin/pace/pace.min.js"></script>
+    @*<script src="~/js/plugin/pace/pace.min.js"></script>*@
 
     <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
