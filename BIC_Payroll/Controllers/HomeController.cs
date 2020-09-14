@@ -14,8 +14,21 @@ namespace BIC_Payroll.Controllers
         LoginSessionDetails SessLogObj = new LoginSessionDetails();
      
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int Id)
         {
+            SessLogObj = (LoginSessionDetails)HttpContext.Session["SessionInformation"];
+            try
+            {
+                DataModel.Company.Company obj = new DataModel.Company.Company();
+                List<DataModel.Company.Company> objList = obj.getCompany(Id, "", "", "", Convert.ToInt32(SessLogObj.USERID));
+                SessLogObj.objComp = objList != null ? objList.FirstOrDefault() : null;
+                Session["SessionInformation"] = SessLogObj;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
             return View();
         }
     }

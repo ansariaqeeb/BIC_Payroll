@@ -79,32 +79,152 @@ namespace DataModel
 
         #region C section
 
-        static public XDocument bookAppointment_C(string flag, int mid, string bookingNo, string perBookingNo, string custCode, string custName, string docCode,
-            string docName, string petCode, DateTime bookDateTime, string duration, string rerequestedService, string bookingStatus,
-            int branchId, int userId, XElement TRANSXML, XElement LOGXML)
+        static public XDocument COMPANY_c(string FLAG, int COMPID, string COMPCODE, string COMPNAME, string ADDR1COMPLEXNAME, string ADDR1STREETNO, 
+            string ADDR1STREETNAME, string ADDR1POSTALCODE, string ADDR1COUNTRYNAME, string ADDR1STATENAME, string ADDR1CITYNAME, bool ADDR2SAMEASADDR1,
+            string ADDR2COMPLEXNAME, string ADDR2STREETNO, string ADDR2STREETNAME, string ADDR2POSTALCODE, string ADDR2COUNTRYNAME, string ADDR2STATENAME,
+            string ADDR2CITYNAME, string PRIMARYPHONE, string SECONDARYPHONE, string FAX, string EMAILID, string WEBSITE,DateTime ESTABLISHEDIN,
+            int MANPOWERWORKING,string REGNO,bool ISACTIVE, int USERID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
-           new XAttribute("flag", flag),
-           new XAttribute("mId", mid),
-           new XAttribute("bookingNo", bookingNo),
-           new XAttribute("perBookingNo", perBookingNo),
-           new XAttribute("custCode", custCode),
-           new XAttribute("custName", custName),
-           new XAttribute("docCode", docCode),
-           new XAttribute("docName", docName),
-           new XAttribute("petCode", petCode),
-           new XAttribute("bookDateTime", bookDateTime),
-           new XAttribute("duration", duration),
-           new XAttribute("requestedService", rerequestedService),
-           new XAttribute("bookingStatus", bookingStatus),
-           new XAttribute("branchId", branchId),
-           new XAttribute("userId", userId)
-           ));
-            MAINXML.Add(TRANSXML);
-            XDocument CreateXml = CommonXML("bookAppointment_C", MAINXML, LOGXML);
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("COMPCODE", COMPCODE),
+           new XAttribute("COMPNAME", COMPNAME),
+           new XAttribute("ADDR1COMPLEXNAME", ADDR1COMPLEXNAME),
+           new XAttribute("ADDR1STREETNO", ADDR1STREETNO),
+           new XAttribute("ADDR1STREETNAME", ADDR1STREETNAME),
+           new XAttribute("ADDR1POSTALCODE", ADDR1POSTALCODE),
+           new XAttribute("ADDR1COUNTRYNAME", ADDR1COUNTRYNAME),
+           new XAttribute("ADDR1STATENAME", ADDR1STATENAME),
+           new XAttribute("ADDR1CITYNAME", ADDR1CITYNAME),
+           new XAttribute("ADDR2SAMEASADDR1", ADDR2SAMEASADDR1),
+           new XAttribute("ADDR2COMPLEXNAME", ADDR2COMPLEXNAME),
+           new XAttribute("ADDR2STREETNO", ADDR2STREETNO),
+           new XAttribute("ADDR2STREETNAME", ADDR2STREETNAME),
+           new XAttribute("ADDR2POSTALCODE", ADDR2POSTALCODE),
+           new XAttribute("ADDR2COUNTRYNAME", ADDR2COUNTRYNAME),
+           new XAttribute("ADDR2STATENAME", ADDR2STATENAME),
+           new XAttribute("ADDR2CITYNAME", ADDR2CITYNAME),
+           new XAttribute("PRIMARYPHONE", PRIMARYPHONE),
+           new XAttribute("SECONDARYPHONE", SECONDARYPHONE),
+           new XAttribute("FAX", FAX),
+           new XAttribute("EMAILID", EMAILID),
+           new XAttribute("WEBSITE", WEBSITE),
+           new XAttribute("ESTABLISHEDIN", ESTABLISHEDIN),
+           new XAttribute("REGNO", REGNO),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("USERID", USERID)  
+           )); 
+            XDocument CreateXml = CommonXML("COMPANY_c", MAINXML, LOGXML);
             return CreateXml;
-        }   
+        }
+
+        static public XDocument EMPLOYEE_c(string FLAG,int EMPID,string EMPCODE, string TITLE ,string FIRSTNAME,string MIDDLENAME ,string LASTNAME,string NICKNAME,
+                    DateTime STARTDATE, DateTime DOB,string NATIONALID,string PASSPORTNO,string COUNTRYOFISSUE ,string GENDER,string MARITALSTATUS,string DEPENDENT,
+                    string YEARSOFSERVICE,string ADDR1COMPLEXNAME,string ADDR1STREETNO ,string ADDR1STREETNAME,string ADDR1POSTALCODE,string ADDR1COUNTRYNAME ,
+                    string ADDR1STATENAME,string ADDR1CITYNAME,bool ADDR2SAMEASADDR1,string ADDR2COMPLEXNAME,string ADDR2STREETNO ,string ADDR2STREETNAME,
+                    string ADDR2POSTALCODE ,string ADDR2COUNTRYNAME,string ADDR2STATENAME ,string ADDR2CITYNAME ,string WORKPHONE ,string HOMEPHONE,string CELLNO ,
+                    string FAXNO ,string SPOUSENAME ,string SPOUSENO,string EMAILID, decimal DAILYRATE,decimal WEEKLYRATE,decimal MONTHLYRATE,decimal HOURLYRATE,
+                    decimal PREVIUSYEARLYPAY,DateTime LASTINCREAMENTDATE,DateTime TERMINATIONDATE,decimal AVGHOURPERDAY, decimal HOURPERWEEK,decimal DAYSPERMONTH,
+                    string WEEKDAYS,decimal ANNUALSTANDARDLEAVE, decimal ANNUALSICKLEAVE,decimal ANNUALOPTIONALLEAVE,int COMPID,bool ISACTIVE,int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("EMPID", EMPID),
+           new XAttribute("EMPCODE", EMPCODE),
+           new XAttribute("TITLE", TITLE),
+           new XAttribute("FIRSTNAME", FIRSTNAME),
+           new XAttribute("MIDDLENAME", MIDDLENAME),
+           new XAttribute("MIDDLENAME", MIDDLENAME),
+           new XAttribute("LASTNAME", LASTNAME),
+           new XAttribute("NICKNAME", NICKNAME),
+           new XAttribute("STARTDATE", STARTDATE),
+           new XAttribute("DOB", DOB),
+           new XAttribute("NATIONALID", NATIONALID),
+           new XAttribute("PASSPORTNO", PASSPORTNO),
+           new XAttribute("COUNTRYOFISSUE", COUNTRYOFISSUE),
+           new XAttribute("GENDER", GENDER),
+           new XAttribute("MARITALSTATUS", MARITALSTATUS),
+           new XAttribute("DEPENDENT", DEPENDENT),
+           new XAttribute("YEARSOFSERVICE", YEARSOFSERVICE),
+           new XAttribute("ADDR1COMPLEXNAME", ADDR1COMPLEXNAME),
+           new XAttribute("ADDR1STREETNO", ADDR1STREETNO),
+           new XAttribute("ADDR1STREETNAME", ADDR1STREETNAME),
+           new XAttribute("ADDR1POSTALCODE", ADDR1POSTALCODE),
+           new XAttribute("ADDR1COUNTRYNAME", ADDR1COUNTRYNAME),
+           new XAttribute("ADDR1STATENAME", ADDR1STATENAME),
+           new XAttribute("ADDR1CITYNAME", ADDR1CITYNAME),
+           new XAttribute("ADDR2SAMEASADDR1", ADDR2SAMEASADDR1),
+           new XAttribute("ADDR2COMPLEXNAME", ADDR2COMPLEXNAME),
+           new XAttribute("ADDR2STREETNO", ADDR2STREETNO),
+           new XAttribute("ADDR2STREETNAME", ADDR2STREETNAME),
+           new XAttribute("ADDR2POSTALCODE", ADDR2POSTALCODE),
+           new XAttribute("ADDR2STATENAME", ADDR2STATENAME),
+           new XAttribute("ADDR2CITYNAME", ADDR2CITYNAME),
+           new XAttribute("WORKPHONE", WORKPHONE),
+           new XAttribute("HOMEPHONE", HOMEPHONE),
+           new XAttribute("CELLNO", CELLNO),
+           new XAttribute("FAXNO", FAXNO),
+
+           new XAttribute("SPOUSENAME", SPOUSENAME),
+           new XAttribute("SPOUSENO", SPOUSENO),
+           new XAttribute("EMAILID", EMAILID),
+           new XAttribute("DAILYRATE", DAILYRATE),
+           new XAttribute("WEEKLYRATE", WEEKLYRATE),
+           new XAttribute("MONTHLYRATE", MONTHLYRATE),
+           new XAttribute("HOURLYRATE", HOURLYRATE),
+           new XAttribute("PREVIUSYEARLYPAY", PREVIUSYEARLYPAY),
+           new XAttribute("LASTINCREAMENTDATE", LASTINCREAMENTDATE),
+           new XAttribute("TERMINATIONDATE", TERMINATIONDATE),
+           new XAttribute("AVGHOURPERDAY", AVGHOURPERDAY),
+           new XAttribute("HOURPERWEEK", HOURPERWEEK),
+           new XAttribute("DAYSPERMONTH", DAYSPERMONTH),
+           new XAttribute("WEEKDAYS", WEEKDAYS),
+           new XAttribute("ANNUALSTANDARDLEAVE", ANNUALSTANDARDLEAVE),
+           new XAttribute("ANNUALSICKLEAVE", ANNUALSICKLEAVE),
+           new XAttribute("ANNUALOPTIONALLEAVE", ANNUALOPTIONALLEAVE),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("EMPLOYEE_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument COUNTRYMAST_c(string FLAG, int COUNTRYID, string COUNTRYCODE, string SHORTNAME, string COUNTRYNAME,bool ISACTIVE, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("COUNTRYID", COUNTRYID),
+           new XAttribute("COUNTRYCODE", COUNTRYCODE),
+           new XAttribute("SHORTNAME", SHORTNAME),
+           new XAttribute("COUNTRYNAME", COUNTRYNAME), 
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("COUNTRYMAST_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument STATEMAST_c(string FLAG, int STATEID, string STATECODE, string SHORTNAME, string STATENAME,int COUNTRYID, bool ISACTIVE, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("STATEID", STATEID),
+           new XAttribute("COUNTRYID", COUNTRYID),
+           new XAttribute("STATECODE", STATECODE),
+           new XAttribute("SHORTNAME", SHORTNAME),
+           new XAttribute("STATENAME", STATENAME),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("STATEMAST_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
 
         static public XDocument FilesMaster_c(string flag, int Id, int RMid, string NameFile, string DisplayName,string contentType, string Extension, string FileSize, int userId)
         {
@@ -195,7 +315,7 @@ namespace DataModel
 
         static public XDocument USERMAST_c(string FLAG, int USERID, string LOGINID, string Email, string MobileNo, bool MobileVerify, 
             bool EmailVerify,string FNAME,string MNAME,string LNAME, DateTime DOB, string ADDRESS, string PASSWORD, string SVRKEY, DateTime SVRDATE, 
-            string SecondaryEmailID, bool ISACTIVE, bool ISADMIN, XElement LOGXML)
+            string SecondaryEmailID, bool ISACTIVE, bool ISADMIN,int COUNTRYID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
@@ -216,7 +336,8 @@ namespace DataModel
            new XAttribute("SVRDATE", SVRDATE),
            new XAttribute("SecondaryEmailID", SecondaryEmailID),
            new XAttribute("ISACTIVE", ISACTIVE),
-           new XAttribute("ISADMIN", ISADMIN)
+           new XAttribute("ISADMIN", ISADMIN),
+           new XAttribute("COUNTRYID", COUNTRYID)
            ));
             XDocument CreateXml = CommonXML("USERMAST_c", MAINXML, LOGXML);
             return CreateXml;
@@ -251,7 +372,63 @@ namespace DataModel
             XDocument CreateXml = CommonXML("USERMAST_g", MAINXML, LOGXML);
             return CreateXml;
         }
-        
+
+        static public XDocument COMPANY_g(int COMPID, string COMPCODE, string COMPNAME,string DESC,int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("COMPCODE", COMPCODE),
+           new XAttribute("COMPNAME", COMPNAME),
+           new XAttribute("DESC", DESC),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("COMPANY_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument EMPLOYEE_g(int EMPID, string EMPCODE,int COMPID, string DESC, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("EMPID", EMPID),
+           new XAttribute("EMPCODE", EMPCODE),
+           new XAttribute("DESC", DESC),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("EMPLOYEE_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument COUNTRYMAST_g(int COUNTRYID, string COUNTRYNAME, string COUNTRYCODE, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("COUNTRYID", COUNTRYID),
+           new XAttribute("COUNTRYNAME", COUNTRYNAME),
+           new XAttribute("COUNTRYCODE", COUNTRYCODE), 
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("COUNTRYMAST_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+
+        static public XDocument STATEMAST_g(int STATEID,int COUNTRYID, string STATEYNAME, string STATECODE, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("STATEID", STATEID),
+           new XAttribute("COUNTRYID", COUNTRYID),
+           new XAttribute("STATEYNAME", STATEYNAME),
+           new XAttribute("STATECODE", STATECODE),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("STATEMAST_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
         #endregion
 
     }

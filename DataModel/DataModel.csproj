@@ -48,13 +48,16 @@
     <Compile Include="AuthURLModel\AuthURL.cs" />
     <Compile Include="CommonModel\CommonLibrary.cs" />
     <Compile Include="CommonModel\CommonMethods.cs" />
+    <Compile Include="Company\Company.cs" />
     <Compile Include="DBXML.cs" />
     <Compile Include="LoginModel\LoginModels.cs" />
     <Compile Include="LoginModel\LoginSessionDetails.cs" />
     <Compile Include="Master\Account.cs" />
     <Compile Include="Master\CacheHelper.cs" />
-    <Compile Include="Master\CompanyMaster.cs" />
+    <Compile Include="Master\COUNTRYMAST.cs" />
+    <Compile Include="Master\Employee.cs" />
     <Compile Include="Master\Login.cs" />
+    <Compile Include="Master\StateMaster.cs" />
     <Compile Include="Master\TokenServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Master\userMaster.cs" />
