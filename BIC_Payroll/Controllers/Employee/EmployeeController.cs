@@ -31,7 +31,8 @@ namespace BIC_Payroll.Controllers.Employee
             }
         }
 
-        [Route("Employee/Add")]
+         
+        [HttpGet]
         public ActionResult AddEmployee()
         {
             return PartialView();
@@ -53,7 +54,7 @@ namespace BIC_Payroll.Controllers.Employee
         }
 
         [Route("Employee/Edit/{id}")]
-        public ActionResult Edit(int Id)
+        public ActionResult EditEmployee(int Id)
         {
             try
             {

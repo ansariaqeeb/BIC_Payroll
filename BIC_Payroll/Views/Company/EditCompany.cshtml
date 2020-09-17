@@ -1,6 +1,6 @@
-﻿
+﻿@model DataModel.Company.Company
 @{
-    ViewBag.Title = "Add Company";
+    ViewBag.Title = "Edit Company";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
@@ -28,78 +28,78 @@
                     <div class="tab-pane fade in active" id="hr1">
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
                             <fieldset>
+                                <legend>Company Details</legend>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Company Code <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input type="hidden" name="IFLAG" value="I" />
-                                        <input type="hidden" name="COMPID" id="COMPID">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Company Code" type="text" name="COMPCODE" id="COMPCODE">
+                                        <input type="hidden" name="IFLAG" value="E" />
+                                        <input type="hidden" name="COMPID" id="COMPID" value="@Model.COMPID">
+                                        <input class="form-control clsreq" autocomplete="off" value="@Model.COMPCODE" placeholder="Enter Company Code" type="text" name="COMPCODE" id="COMPCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Company Name <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Company Name" type="text" name="COMPNAME" id="COMPNAME">
+                                        <input class="form-control clsreq" autocomplete="off" value="@Model.COMPNAME" placeholder="Enter Company Name" type="text" name="COMPNAME" id="COMPNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Primary Phone No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Primary Phone No." type="text" name="PRIMARYPHONE" id="PRIMARYPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Primary Phone No." value="@Model.PRIMARYPHONE" type="text" name="PRIMARYPHONE" id="PRIMARYPHONE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Secondary Phone No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Secondary Phone No." type="text" name="SECONDARYPHONE" id="SECONDARYPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Secondary No." type="text" value="@Model.SECONDARYPHONE" name="SECONDARYPHONE" id="SECONDARYPHONE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Fax No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Fax No." type="text" name="FAX" id="FAX" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Fax No." type="text" value="@Model.FAX" name="FAX" id="FAX">
                                     </div>
                                 </div>
                             </fieldset>
                         </article>
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
-                            <fieldset> 
+                            <fieldset>
+                                <legend>Company Details</legend>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Email Address</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" name="EMAILID" id="EMAILID" onblur="return $.c9Validateinput(event, this, 'Email');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" value="@Model.EMAILID" name="EMAILID" id="EMAILID">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Website</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Website" type="text" name="WEBSITE" id="WEBSITE" onblur="return $.c9Validateinput(event, this, 'Website');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Website" type="text" value="@Model.WEBSITE" name="WEBSITE" id="WEBSITE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Established In</label>
-                                    @*<div class="col-md-8">
-                                        <label class="input">
-                                                <i class="icon-append fa fa-calendar"></i>
-                                                <input type="text" name="ESTABLISHEDIN" id="ESTABLISHEDIN" placeholder="Enter Established In">
-                                            </label>
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Esyablished In" type="text" name="ESTABLISHEDIN" id="ESTABLISHEDIN">
-                                    </div>*@
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Established In" type="text" name="ESTABLISHEDIN" id="ESTABLISHEDIN">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Manpower Working</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Manpower Working" type="text" name="MANPOWERWORKING" id="MANPOWERWORKING" maxlength="4" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Manpower Working" value="@Model.MANPOWERWORKING" type="text" name="MANPOWERWORKING" id="MANPOWERWORKING">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Registration No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Registration No." type="text" name="REGNO" id="REGNO">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Registration No." type="text" value="@Model.REGNO" name="REGNO" id="REGNO">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Is Active.</label>
+                                    <div class="col-md-8">
+                                        <input role="checkbox" type="checkbox" id="ISACTIVE" class="cbox" name="ISACTIVE" value="@Model.ISACTIVE" checked="@Model.ISACTIVE">
                                     </div>
                                 </div>
                             </fieldset>
@@ -107,58 +107,60 @@
                     </div>
                     <div class="tab-pane fade" id="hr2">
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
-                            <fieldset> 
+                            <fieldset>
+                                <legend>Company Address</legend>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left text-left">Complex Name </label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Complex Name" type="text" name="ADDR1COMPLEXNAME" id="ADDR1COMPLEXNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Complex Name" type="text" value="@Model.ADDR1COMPLEXNAME" name="ADDR1COMPLEXNAME" id="ADDR1COMPLEXNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street No</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Street No" type="text" name="ADDR1STREETNO" id="ADDR1STREETNO">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Street No" type="text" value="@Model.ADDR1STREETNO" name="ADDR1STREETNO" id="ADDR1STREETNO">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street Name</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Street Name" type="text" name="ADDR1STREETNAME" id="ADDR1STREETNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Street Name" type="text" value="@Model.ADDR1STREETNAME" name="ADDR1STREETNAME" id="ADDR1STREETNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Postal Code</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Postal Code" type="text" name="ADDR1POSTALCODE" id="ADDR1POSTALCODE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Postal Code" value="@Model.ADDR1POSTALCODE" type="text" name="ADDR1POSTALCODE" id="ADDR1POSTALCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Country</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Country" type="text" name="ADDR1COUNTRYNAME" id="ADDR1COUNTRYNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Country" type="text" value="@Model.ADDR1COUNTRYNAME" name="ADDR1COUNTRYNAME" id="ADDR1COUNTRYNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">State</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter State" type="text" name="ADDR1STATENAME" id="ADDR1STATENAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter State" type="text" value="@Model.ADDR1STATENAME" name="ADDR1STATENAME" id="ADDR1STATENAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">City</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter City" type="text" name="ADDR1CITYNAME" id="ADDR1CITYNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter City" type="text" value="@Model.ADDR1CITYNAME" name="ADDR1CITYNAME" id="ADDR1CITYNAME">
                                     </div>
                                 </div>
                             </fieldset>
                         </article>
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
-                            <fieldset> 
+                            <fieldset>
+                                <legend>Company Postal Address</legend>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left"> </label>
                                     <div class="col-md-8">
                                         <label class="checkbox">
-                                            <input type="checkbox" name="ADDR2SAMEASADDR1" id="ADDR2SAMEASADDR1">
+                                            <input type="checkbox" name="ADDR2SAMEASADDR1" value="@Model.ADDR2SAMEASADDR1" id="ADDR2SAMEASADDR1">
                                             <i></i>Postal Address Same As Company Address
                                         </label>
                                     </div>
@@ -166,43 +168,43 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Complex Name </label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Complex Name" type="text" name="ADDR2COMPLEXNAME" id="ADDR2COMPLEXNAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Complex Name" type="text" value="@Model.ADDR2COMPLEXNAME" name="ADDR2COMPLEXNAME" id="ADDR2COMPLEXNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street No</label>
                                     <div class="col-md-8">
-                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street No" type="text" name="ADDR2STREETNO" id="ADDR2STREETNO">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Street No" type="text" value="@Model.ADDR2STREETNO" name="ADDR2STREETNO" id="ADDR2STREETNO">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street Name</label>
                                     <div class="col-md-8">
-                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street Name" type="text" name="ADDR2STREETNAME" id="ADDR2STREETNAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Street Name" type="text" value="@Model.ADDR2STREETNAME" name="ADDR2STREETNAME" id="ADDR2STREETNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Postal Code</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Postal Code" type="text" name="ADDR2POSTALCODE" id="ADDR2POSTALCODE">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Postal Code" type="text" value="@Model.ADDR2POSTALCODE" name="ADDR2POSTALCODE" id="ADDR2POSTALCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Country</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Country" type="text" name="ADDR2COUNTRYNAME" id="ADDR2COUNTRYNAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Country" type="text" value="@Model.ADDR2COUNTRYNAME" name="ADDR2COUNTRYNAME" id="ADDR2COUNTRYNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">State</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter State" type="text" name="ADDR2STATENAME" id="ADDR2STATENAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter State" type="text" value="@Model.ADDR2STATENAME" name="ADDR2STATENAME" id="ADDR2STATENAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">City</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter City" type="text" name="ADDR2CITYNAME" id="ADDR2CITYNAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter City" type="text" value="@Model.ADDR2CITYNAME" name="ADDR2CITYNAME" id="ADDR2CITYNAME">
                                     </div>
                                 </div>
                             </fieldset>
@@ -210,7 +212,8 @@
                     </div>
                     <div class="tab-pane fade" id="hr3">
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
-                            <fieldset> 
+                            <fieldset>
+                                <legend>Contact Person Details</legend>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Contact Person Name </label>
                                     <div class="col-md-8">
@@ -244,8 +247,8 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Starting Month </label>
                                     @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Starting Month" type="text" name="STARTMONTH" id="STARTMONTH">
-                                    </div>*@
+                            <input class="form-control" autocomplete="off" placeholder="Enter Starting Month" type="text" name="STARTMONTH" id="STARTMONTH">
+                        </div>*@
                                     <div class="col-md-8">
                                         <input type="text" name="mydate" placeholder="Select a date"
                                                class="form-control datepicker" data-dateformat="dd/mm/yy">
@@ -280,25 +283,39 @@
             Submit
         </button>
     </div>
-</form> 
-  
-<script src="~/js/libs/jquery-2.1.1.min.js"></script> 
+</form>
+
+<script src="~/js/libs/jquery-2.1.1.min.js"></script>
 <script src="~/js/libs/jquery-ui-1.10.3.min.js"></script> 
 <script type="text/javascript">
-   
+
     (function ($) {
 
-        $(".breadcrumb").html('<li id="breadcrumb1">Add Company</li>');
+        $(".breadcrumb").html('<li id="breadcrumb1">Edit Company</li>');
+        var curValue = $('#ADDR2SAMEASADDR1').is(':checked');
+
+        if (curValue) {
+            $('.addr2').val('');
+            $('.addr2').attr('readonly', 'readonly');
+        } else {
+            $('.addr2').removeAttr('readonly', 'readonly');
+        }
+
         $('#ADDR2SAMEASADDR1').on('click', function () {
-            var curValue = $(this).is(':checked'); 
+            var curValue = $(this).is(':checked');
             $(this).val(curValue);
             if (curValue) {
                 $('.addr2').val('');
-                $('.addr2').attr('readonly','readonly');
+                $('.addr2').attr('readonly', 'readonly');
             } else {
                 $('.addr2').removeAttr('readonly', 'readonly');
             }
-        }); 
+        });
+
+        $('#ISACTIVE').on('click', function () {
+            var isvalue = $(this).is(':checked');
+            $(this).val(isvalue);
+        });
     }(jQuery));
 
     function onCompanySave() {
@@ -358,13 +375,12 @@
 
             var serializedData = $("#" + FORMID).serialize();
             var url = "/" + Controller + "/" + Action + "/";
-            $.post(url, serializedData, function (res) { 
+            $.post(url, serializedData, function (res) {
                 var errid = res.ResultId;
                 var errmsg = res.Message;
                 var TITLE = res.Title;
                 var TYPE = res.Type;
                 if (errid > 0) {
-                   
                     $.c9Message(errmsg, TITLE, TYPE);
                     window.location = $('#btnCancelCom').attr('href');
                 } else {
@@ -374,5 +390,5 @@
             });
         }
     }
-     
 </script>
+

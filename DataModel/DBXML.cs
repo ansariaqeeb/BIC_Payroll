@@ -313,9 +313,9 @@ namespace DataModel
         }
         
 
-        static public XDocument USERMAST_c(string FLAG, int USERID, string LOGINID, string Email, string MobileNo, bool MobileVerify, 
+        static public XDocument USERMAST_c(string FLAG, Int64 USERID, string LOGINID, string Email, string MobileNo, bool MobileVerify, 
             bool EmailVerify,string FNAME,string MNAME,string LNAME, DateTime DOB, string ADDRESS, string PASSWORD, string SVRKEY, DateTime SVRDATE, 
-            string SecondaryEmailID, bool ISACTIVE, bool ISADMIN,int COUNTRYID, XElement LOGXML)
+            string SecondaryEmailID, bool ISACTIVE, bool ISADMIN,string COUNTRYNAME,int CREATEDBYID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
@@ -337,7 +337,8 @@ namespace DataModel
            new XAttribute("SecondaryEmailID", SecondaryEmailID),
            new XAttribute("ISACTIVE", ISACTIVE),
            new XAttribute("ISADMIN", ISADMIN),
-           new XAttribute("COUNTRYID", COUNTRYID)
+           new XAttribute("COUNTRYNAME", COUNTRYNAME),
+           new XAttribute("CREATEDBYID", CREATEDBYID)
            ));
             XDocument CreateXml = CommonXML("USERMAST_c", MAINXML, LOGXML);
             return CreateXml;
@@ -361,15 +362,26 @@ namespace DataModel
             return CreateXml;
         }
         
-        static public XDocument USERMAST_g(int FLAG,string LOGINID,string PASSWORD, XElement LOGXML)
+        static public XDocument USERMAST_g(int FLAG,string LOGINID,string PASSWORD,int USERID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
            new XAttribute("FLAG", FLAG), 
            new XAttribute("LOGINID", LOGINID),
-           new XAttribute("PASSWORD", PASSWORD)
+           new XAttribute("PASSWORD", PASSWORD),
+           new XAttribute("USERID", USERID)
            ));
             XDocument CreateXml = CommonXML("USERMAST_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument LK_USERMAST_g(int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("USERID", USERID) 
+           ));
+            XDocument CreateXml = CommonXML("LK_USERMAST_g", MAINXML, LOGXML);
             return CreateXml;
         }
 

@@ -1,10 +1,10 @@
 ﻿@model DataModel.Master.Employee
 @{
     ViewBag.Title = "Add Employee";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml"; ;
 }
 <form id="frmAddEmployee" class="form-horizontal">
-    <div class="jarviswidget jarviswidget-sortable" id="wid-id-11" >
+    <div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
         <header role="heading">
             <ul id="widget-tab-1" class="nav nav-tabs">
                 <li class="active">
@@ -33,39 +33,39 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Employee Code <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input type="hidden" name="IFLAG" value="I" />
-                                        <input type="hidden" name="EMPID" id="EMPID">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Employee Code" type="text" name="EMPCODE" id="EMPCODE">
+                                        <input type="hidden" name="IFLAG" value="E" />
+                                        <input type="hidden" name="EMPID" id="EMPID" value="@Model.EMPID">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Employee Code" type="text" value="@Model.EMPCODE" name="EMPCODE" id="EMPCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">First Name <span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8"> 
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter First Name" type="text" name="FIRSTNAME" id="FIRSTNAME">
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter First Name" type="text" value="@Model.FIRSTNAME" name="FIRSTNAME" id="FIRSTNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Middle Name <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Middle Name" type="text" name="MIDDLENAME" id="MIDDLENAME">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Middle Name" type="text" value="@Model.MIDDLENAME" name="MIDDLENAME" id="MIDDLENAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Last Name <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Last Name" type="text" name="LASTNAME" id="LASTNAME">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Last Name" type="text" value="@Model.LASTNAME" name="LASTNAME" id="LASTNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Nick Name</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Nick Name" type="text" name="NICKNAME" id="NICKNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Nick Name" type="text" value="@Model.NICKNAME" name="NICKNAME" id="NICKNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Start Date</label>
                                     @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Start Date" type="text" name="STARTDATE" id="STARTDATE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Start Date" type="text" value="@Model.STARTDATE" name="STARTDATE" id="STARTDATE">
                                     </div>*@
                                     <div class="col-md-8">
                                         <input type="text" name="mydate" placeholder="Select a date"
@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">DOB</label>
                                     @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Date Of Birth" type="text" name="DOB" id="DOB">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Date Of Birth" type="text" value="@Model.DOB" name="DOB" id="DOB">
                                     </div>*@
                                     <div class="col-md-8">
                                         <input type="text" name="mydate" placeholder="Select a date"
@@ -84,8 +84,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">National Id</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter National Id" type="text" name="NATIONALID" id="NATIONALID">
+                                    <div class="col-md-8"> 
+                                        <input class="form-control" autocomplete="off" placeholder="Enter National Id" type="text" value="@Model.NATIONALID" name="NATIONALID" id="NATIONALID">
                                     </div>
                                 </div>
                             </fieldset>
@@ -95,25 +95,25 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Email Address</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" name="EMAILID" id="EMAILID" onblur="return $.c9Validateinput(event, this, 'Email');" >
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" value="@Model.EMAILID" name="EMAILID" id="EMAILID" onblur="return $.c9Validateinput(event, this, 'Email');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Dependent</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Select Dependent" type="text" name="DEPENDENT" id="DEPENDENT">
+                                        <input class="form-control" autocomplete="off" placeholder="Select Dependent" type="text" value="@Model.DEPENDENT" name="DEPENDENT" id="DEPENDENT">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Years Of Service</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Years Of Service" type="text" name="YEARSOFSERVICE" id="YEARSOFSERVICE" onkeypress="return $.c9Validateinput(event, this, '0-9');" maxlength="2">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Years Of Service" type="text" value="@Model.YEARSOFSERVICE" name="YEARSOFSERVICE" id="YEARSOFSERVICE" onkeypress="return $.c9Validateinput(event, this, '0-9');" maxlength="2">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Gender</label>
                                     <div class="col-md-8">
-                                        <select class="form-control input-sm" placeholder="Select Gender" name="GENDER" id="GENDER">
+                                        <select class="form-control input-sm" placeholder="Select Marital Status" name="GENDER" id="GENDER">
                                             <option>Male</option>
                                             <option>Female</option>
                                         </select>
@@ -125,21 +125,19 @@
                                         <select class="form-control input-sm" placeholder="Select Marital Status" name="MARITALSTATUS" id="MARITALSTATUS">
                                             <option>Married</option>
                                             <option>Un Married</option>
-                                            <option>Divorced</option>
-                                            <option>Widow</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Passport No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Passport No." type="text" name="PASSPORTNO" id="PASSPORTNO">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Passport No." value="@Model.PASSPORTNO" type="text" name="PASSPORTNO" id="PASSPORTNO">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Country Of Issue</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Country Of Issue" type="text" name="COUNTRYOFISSUE" id="COUNTRYOFISSUE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Country Of Issue" type="text" value="@Model.COUNTRYOFISSUE" name="COUNTRYOFISSUE" id="COUNTRYOFISSUE">
                                     </div>
                                 </div>
                             </fieldset>
@@ -151,19 +149,19 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Cell No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Cell No." type="text" name="CELLNO" id="CELLNO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Cell No." type="text" value="@Model.CELLNO" name="CELLNO" id="CELLNO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Work Phone No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Work Phone No." type="text" name="WORKPHONE" id="WORKPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Work Phone No." type="text" value="@Model.WORKPHONE" name="WORKPHONE" id="WORKPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Home Phone No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Home Phone No." type="text" name="HOMEPHONE" id="HOMEPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Home Phone No." type="text" value="@Model.HOMEPHONE" name="HOMEPHONE" id="HOMEPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                             </fieldset>
@@ -173,19 +171,19 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Fax No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Work Phone No." type="text" name="FAXNO" id="FAXNO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Fax No." type="text" value="@Model.FAXNO" name="FAXNO" id="FAXNO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Spous/Other Family Person</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Spous/Other Family Person" type="text" name="SPOUSENAME" id="SPOUSENAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Spous/Other Family Person Name" type="text" value="@Model.SPOUSENAME" name="SPOUSENAME" id="SPOUSENAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Spous/Other Family Person Cell No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Spous/Other Family Person No." type="text" name="SPOUSENO" id="SPOUSENO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Spous/Other Family Person No." type="text" value="@Model.SPOUSENO" name="SPOUSENO" id="SPOUSENO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                             </fieldset>
@@ -197,43 +195,43 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left text-left">Complex Name </label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Complex Name" type="text" name="ADDR1COMPLEXNAME" id="ADDR1COMPLEXNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Complex Name" type="text" value="@Model.ADDR1COMPLEXNAME" name="ADDR1COMPLEXNAME" id="ADDR1COMPLEXNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street No</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Street No" type="text" name="ADDR1STREETNO" id="ADDR1STREETNO">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Street No" type="text" value="@Model.ADDR1STREETNO" name="ADDR1STREETNO" id="ADDR1STREETNO">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street Name</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Street Name" type="text" name="ADDR1STREETNAME" id="ADDR1STREETNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Street Name" type="text" value="@Model.ADDR1STREETNAME" name="ADDR1STREETNAME" id="ADDR1STREETNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Postal Code</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Postal Code" type="text" name="ADDR1POSTALCODE" id="ADDR1POSTALCODE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Postal Code" type="text" value="@Model.ADDR1POSTALCODE" name="ADDR1POSTALCODE" id="ADDR1POSTALCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Country</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Country" type="text" name="ADDR1COUNTRYNAME" id="ADDR1COUNTRYNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Country" type="text" value="@Model.ADDR1COUNTRYNAME" name="ADDR1COUNTRYNAME" id="ADDR1COUNTRYNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">State</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter State" type="text" name="ADDR1STATENAME" id="ADDR1STATENAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter State" type="text" value="@Model.ADDR1STATENAME" name="ADDR1STATENAME" id="ADDR1STATENAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">City</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter City" type="text" name="ADDR1CITYNAME" id="ADDR1CITYNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter City" type="text" value="@Model.ADDR1CITYNAME" name="ADDR1CITYNAME" id="ADDR1CITYNAME">
                                     </div>
                                 </div>
                             </fieldset>
@@ -244,7 +242,7 @@
                                     <label class="col-md-4 control-label text-left"> </label>
                                     <div class="col-md-8">
                                         <label class="checkbox">
-                                            <input type="checkbox" name="ADDR2SAMEASADDR1" id="ADDR2SAMEASADDR1">
+                                            <input type="checkbox" name="ADDR2SAMEASADDR1" id="ADDR2SAMEASADDR1" value="@Model.ADDR2SAMEASADDR1" checked="@Model.ADDR2SAMEASADDR1">
                                             <i></i>Postal Address Same As Company Address
                                         </label>
                                     </div>
@@ -252,43 +250,43 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Complex Name </label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Complex Name" type="text" name="ADDR2COMPLEXNAME" id="ADDR2COMPLEXNAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Complex Name" value="@Model.ADDR2COMPLEXNAME" type="text" name="ADDR2COMPLEXNAME" id="ADDR2COMPLEXNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street No</label>
                                     <div class="col-md-8">
-                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street No" type="text" name="ADDR2STREETNO" id="ADDR2STREETNO">
+                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street No" type="text" value="@Model.ADDR2STREETNO" name="ADDR2STREETNO" id="ADDR2STREETNO">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Street Name</label>
                                     <div class="col-md-8">
-                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street Name" type="text" name="ADDR2STREETNAME" id="ADDR2STREETNAME">
+                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street Name" type="text" value="@Model.ADDR2STREETNAME" name="ADDR2STREETNAME" id="ADDR2STREETNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Postal Code</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Postal Code" type="text" name="ADDR2POSTALCODE" id="ADDR2POSTALCODE">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Postal Code" type="text" value="@Model.ADDR2POSTALCODE" name="ADDR2POSTALCODE" id="ADDR2POSTALCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Country</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Country" type="text" name="ADDR2COUNTRYNAME" id="ADDR2COUNTRYNAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Country" type="text" value="@Model.ADDR2COUNTRYNAME" name="ADDR2COUNTRYNAME" id="ADDR2COUNTRYNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">State</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter State" type="text" name="ADDR2STATENAME" id="ADDR2STATENAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter State" type="text" value="@Model.ADDR2STATENAME" name="ADDR2STATENAME" id="ADDR2STATENAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">City</label>
                                     <div class="col-md-8">
-                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter City" type="text" name="ADDR2CITYNAME" id="ADDR2CITYNAME">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter City" type="text" value="@Model.ADDR2CITYNAME" name="ADDR2CITYNAME" id="ADDR2CITYNAME">
                                     </div>
                                 </div>
                             </fieldset>
@@ -300,31 +298,31 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Daily Rate </label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Daily Rate" type="text" name="DAILYRATE" id="DAILYRATE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Daily Rate" type="text" value="@Model.DAILYRATE" name="DAILYRATE" id="DAILYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Weekly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Weekly Rate" type="text" name="WEEKLYRATE" id="WEEKLYRATE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Weekly Rate" type="text" value="@Model.WEEKLYRATE" name="WEEKLYRATE" id="WEEKLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Monthly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Monthly Rate" type="text" name="MONTHLYRATE" id="MONTHLYRATE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Monthly Rate" type="text" value="@Model.MONTHLYRATE" name="MONTHLYRATE" id="MONTHLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Hourly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Hourly Rate" type="text" name="HOURLYRATE" id="HOURLYRATE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Hourly Rate" type="text" value="@Model.HOURLYRATE" name="HOURLYRATE" id="HOURLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Previus Pay</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Previus Pay" type="text" name="PREVIUSYEARLYPAY" id="PREVIUSYEARLYPAY">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Previus Pay" type="text" value="@Model.PREVIUSYEARLYPAY" name="PREVIUSYEARLYPAY" id="PREVIUSYEARLYPAY">
                                     </div>
                                 </div>
                             </fieldset>
@@ -334,7 +332,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Last Increament Date</label>
                                     @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Last Increament Date" type="text" name="LASTINCREAMENTDATE" id="LASTINCREAMENTDATE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Last Increament Date" type="text" value="@Model.LASTINCREAMENTDATE" name="LASTINCREAMENTDATE" id="LASTINCREAMENTDATE">
                                     </div>*@
                                     <div class="col-md-8">
                                         <input type="text" name="mydate" placeholder="Select a date"
@@ -344,7 +342,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Termination Date</label>
                                     @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Termination Date" type="text" name="TERMINATIONDATE" id="TERMINATIONDATE">
+                                        <input class="form-control" autocomplete="off" placeholder="Termination Date" type="text" value="@Model.TERMINATIONDATE" name="TERMINATIONDATE" id="TERMINATIONDATE">
                                     </div>*@
                                     <div class="col-md-8">
                                         <input type="text" name="mydate" placeholder="Select a date"
@@ -354,19 +352,19 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Average Hours Per Day</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Average Hours Per Day" type="text" name="AVGHOURPERDAY" id="AVGHOURPERDAY">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Average Hours Per Day" type="text" value="@Model.AVGHOURPERDAY" name="AVGHOURPERDAY" id="AVGHOURPERDAY">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Hour Per Week</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Hour Per Week" type="text" name="HOURPERWEEK" id="HOURPERWEEK">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Hour Per Week" type="text" value="@Model.HOURPERWEEK" name="HOURPERWEEK" id="HOURPERWEEK">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Days Per Month</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Days Per Month" type="text" name="DAYSPERMONTH" id="DAYSPERMONTH">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Days Per Month" type="text" value="@Model.DAYSPERMONTH" name="DAYSPERMONTH" id="DAYSPERMONTH">
                                     </div>
                                 </div>
                             </fieldset>
@@ -378,49 +376,49 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Week days</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Week days" type="text" name="WEEKDAYS" id="WEEKDAYS">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Week days" type="text" value="@Model.WEEKDAYS" name="WEEKDAYS" id="WEEKDAYS">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Annual Standard Leave</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Annual Standard Leave" type="text" name="ANNUALSTANDARDLEAVE" id="ANNUALSTANDARDLEAVE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Annual Standard Leave" type="text" value="@Model.ANNUALSTANDARDLEAVE" name="ANNUALSTANDARDLEAVE" id="ANNUALSTANDARDLEAVE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Annual Sick Leave</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Annual Sick Leave" type="text" name="ANNUALSICKLEAVE" id="ANNUALSICKLEAVE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Annual Sick Leave" type="text" value="@Model.ANNUALSICKLEAVE" name="ANNUALSICKLEAVE" id="ANNUALSICKLEAVE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Annual Optional Leave</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Annual Optional Leave" type="text" name="ANNUALOPTIONALLEAVE" id="ANNUALOPTIONALLEAVE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Annual Optional Leave" type="text" value="@Model.ANNUALOPTIONALLEAVE" name="ANNUALOPTIONALLEAVE" id="ANNUALOPTIONALLEAVE">
                                     </div>
                                 </div>
                             </fieldset>
                         </article>
-                    </div> 
-                </div> 
+                    </div>
+                </div>
             </div>
         </div>
-    </div> 
+    </div>
     <div class="widget-footer">
         <a id="btnCancel" class="btn btn-xs btn-default" href="/Employee/EmployeeDtl">
             <i class="fa fa-times"></i>
             Cancel
-        </a>  
-        &nbsp;
-        <button id="btnSaveEmployee" class="btn btn-primary btn-xs pull-right" type="button" onclick="onEmployeeSave()">
+        </a>&nbsp;
+        <button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button" onclick="onEmployeeSave()">
             <i class="fa fa-save"></i>
             Submit
         </button>
     </div>
 </form>
 
+
 <script src="~/js/libs/jquery-2.1.1.min.js"></script>
-<script src="~/js/libs/jquery-ui-1.10.3.min.js"></script> 
+<script src="~/js/libs/jquery-ui-1.10.3.min.js"></script>
 <script type="text/javascript">
 
     (function ($) {
@@ -439,13 +437,12 @@
     }(jQuery));
 
     function onEmployeeSave() {
-     
-        saveEmployee('frmAddEmployee', 'Employee', 'AddCompany');
-    } 
+        saveEmployee('frmAddEmployee', 'Employee', 'AddEmployee');
+    }
 
     function saveEmployee(FORMID, Controller, Action) {
         //loading for Trans Save button
-        var TransSaveBtnID = "btnSaveEmployee";
+        var TransSaveBtnID = "btnSave";
 
         $('#' + TransSaveBtnID).attr('disabled', true);
         var validate = true;
@@ -501,9 +498,8 @@
                 var TITLE = res.Title;
                 var TYPE = res.Type;
                 if (errid > 0) {
-
                     $.c9Message(errmsg, TITLE, TYPE);
-                    window.location = $('#btnCancelCom').attr('href');
+                    window.location = $('#btnCancel').attr('href');
                 } else {
                     $('#' + TransSaveBtnID).attr('disabled', false);
                     $.c9Message(errmsg, TITLE, TYPE);
@@ -511,5 +507,7 @@
             });
         }
     }
+
 </script>
- 
+
+

@@ -162,8 +162,8 @@
                                 <div class="row">
                                     <section class="col col-6">
                                         <label class="input">
-                                            <input type="text" id="COUNTRYID" name="COUNTRYID" placeholder="Select Country" autocomplete="off">
-                                            <span id="errorFile" style="color: Red;">@Html.ValidationMessageFor(model => model.COUNTRYID)</span>
+                                            <input type="text" id="COUNTRYNAME" name="COUNTRYNAME" placeholder="Enter Country" autocomplete="off">
+                                            <span id="errorFile" style="color: Red;">@Html.ValidationMessageFor(model => model.COUNTRYNAME)</span>
                                         </label>
                                     </section>
                                     <section class="col col-6">
@@ -478,27 +478,27 @@
         runAllForms();
         // Validation
         $(function () {
-            $("#COUNTRYID").select2({
-                multiple: false,
-                allowClear: true,
-                ajax: {
-                    cache: true,
-                    url: "/CommonLibrary/_Country",
-                    dataType: 'json',
-                    quietMillis: 100,
-                    data: function (term) {
-                        return {
-                            CountryId: 0,
-                            description: term
-                        };
-                    },
-                    results: function (data) {
-                        return { results: data };
-                    }
-                }
-            }).on('change', function () {
+            //$("#COUNTRYID").select2({
+            //    multiple: false,
+            //    allowClear: true,
+            //    ajax: {
+            //        cache: true,
+            //        url: "/CommonLibrary/_Country",
+            //        dataType: 'json',
+            //        quietMillis: 100,
+            //        data: function (term) {
+            //            return {
+            //                CountryId: 0,
+            //                description: term
+            //            };
+            //        },
+            //        results: function (data) {
+            //            return { results: data };
+            //        }
+            //    }
+            //}).on('change', function () {
 
-            });
+            //});
         });
     </script>
 

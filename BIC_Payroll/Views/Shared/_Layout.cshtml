@@ -27,6 +27,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="~/css/your_style.css"> -->
     <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
     <link rel="stylesheet" type="text/css" media="screen" href="~/css/demo.min.css">
+    <link href="~/css/toastr.min.css" rel="stylesheet" />
+    <link href="~/css/ERPDesign.css" rel="stylesheet" />
 
     <!-- FAVICONS -->
     <link rel="shortcut icon" href="~/img/favicon/favicon.ico" type="image/x-icon">
@@ -155,15 +157,7 @@
             <ul>
                 <li class="active">
                     <a href="/Home/index" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-lg fa-fw fa-building"></i> <span class="menu-item-parent">Company</span></a>
-                    <ul>
-                        <li>
-                            <a href="flot.html">Company Details</a>
-                        </li>
-                    </ul>
-                </li>
+                </li> 
                 <li>
                     <a href="/Employee/EmployeeDtl"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent">Employee</span></a>
                 </li>
@@ -181,7 +175,7 @@
         <!-- RIBBON -->
         <div id="ribbon">
 
-            <span class="ribbon-button-alignment">
+            <span class="ribbon-button-alignment hide">
                 <span id="refresh" class="btn btn-ribbon" data-action="resetWidgets" data-title="refresh" rel="tooltip" data-placement="bottom" data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
 						<i class="fa fa-refresh"></i>
 					</span>
@@ -257,14 +251,23 @@
     <!-- END SHORTCUT AREA -->
     <!--================================================== -->
     <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
-    @*
-    <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/js/plugin/pace/pace.min.js"></script>*@
+    @*<script data-pace-options='{ "restartOnRequestAfter": true }' src="~/js/plugin/pace/pace.min.js"></script>*@
 
     <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-     
-    <script src="~/js/libs/jquery-2.1.1.min.js"></script> 
-    <script src="~/js/libs/jquery-ui-1.10.3.min.js"></script>
-    <!-- IMPORTANT: APP CONFIG -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        if (!window.jQuery) {
+            document.write('<script src="~/js/libs/jquery-2.1.1.min.js"><\/script>');
+        }
+    </script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+        if (!window.jQuery.ui) {
+            document.write('<script src="~/js/libs/jquery-ui-1.10.3.min.js"><\/script>');
+        }
+    </script>
+
     <!-- IMPORTANT: APP CONFIG -->
     <script src="~/js/app.config.js"></script>
 
@@ -304,35 +307,9 @@
     <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
     <!-- Voice command : plugin -->
     <script src="~/js/speech/voicecommand.min.js"></script>
-    <script src="~/js/plugin/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/js/plugin/datatables/dataTables.colVis.min.js"></script>
-    <script src="~/js/plugin/datatables/dataTables.tableTools.min.js"></script>
-    <script src="~/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="~/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+
     <script src="~/js/toastr.min.js"></script>
     <script src="~/js/ProjectCommon.js"></script>
-    <!-- ENHANCEMENT PLUGINS : NOT A REQUIREMENT -->
-    <!-- Voice command : plugin -->
-    @*<script src="~/js/speech/voicecommand.min.js"></script>
-
-    <!-- SmartChat UI : plugin -->
-    <script src="~/js/smart-chat-ui/smart.chat.ui.min.js"></script>
-    <script src="~/js/smart-chat-ui/smart.chat.manager.min.js"></script>
-
-    <!-- PAGE RELATED PLUGIN(S) -->
-    <!-- Flot Chart Plugin: Flot Engine, Flot Resizer, Flot Tooltip -->
-    <script src="~/js/plugin/flot/jquery.flot.cust.min.js"></script>
-    <script src="~/js/plugin/flot/jquery.flot.resize.min.js"></script>
-    <script src="~/js/plugin/flot/jquery.flot.time.min.js"></script>
-    <script src="~/js/plugin/flot/jquery.flot.tooltip.min.js"></script>
-
-    <!-- Vector Maps Plugin: Vectormap engine, Vectormap language -->
-    <script src="~/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="~/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script>
-
-    <!-- Full Calendar -->
-    <script src="~/js/plugin/moment/moment.min.js"></script>
-    <script src="~/js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script>*@
 
     <script>
         $(document).ready(function () {

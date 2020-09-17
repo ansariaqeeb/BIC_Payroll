@@ -69,7 +69,7 @@ namespace BIC_Payroll.Controllers.Company
         }
 
         [Route("Company/Edit/{id}")]
-        public ActionResult Edit(int Id)
+        public ActionResult EditCompany(int Id)
         {
             try
             {

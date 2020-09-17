@@ -775,6 +775,7 @@
     <Compile Include="Controllers\Company\CompanyController.cs" />
     <Compile Include="Controllers\Employee\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\CustomAuthorizationAttribute.cs" />
     <Compile Include="Filters\CustomExceptionAttribute.cs" />
     <Compile Include="Filters\CustomSessionAdminAttribute.cs" />
@@ -819,10 +820,13 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Company\AddCompany.cshtml" />
-    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\EditCompany.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\AddEmployee.cshtml" />
-    <Content Include="Views\Employee\Edit.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
+    <Content Include="Views\User\UserIndex.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
