@@ -84,6 +84,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebGrease">
+      <HintPath>D:\BIC\BIC-Web-Services\BIC_Web_Services\BIC_Web_Services\BIC_Web_Services\bin\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -112,15 +115,20 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="css\bootstrap-datetimepicker.min.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\demo.min.css" />
+    <Content Include="css\ERPDesign.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\invoice.min.css" />
     <Content Include="css\lockscreen.min.css" />
+    <Content Include="css\select2.min.css" />
     <Content Include="css\smartadmin-production-plugins.min.css" />
     <Content Include="css\smartadmin-production.min.css" />
     <Content Include="css\smartadmin-rtl.min.css" />
     <Content Include="css\smartadmin-skins.min.css" />
+    <Content Include="css\toastr.css" />
+    <Content Include="css\toastr.min.css" />
     <Content Include="css\your_style.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\fontawesome4.2\fontawesome-webfont.svg" />
@@ -308,6 +316,7 @@
     <Content Include="img\vt-menu.png" />
     <Content Include="js\app.config.js" />
     <Content Include="js\app.min.js" />
+    <Content Include="js\bootstrap-datetimepicker.min.js" />
     <Content Include="js\bootstrap\bootstrap.min.js" />
     <Content Include="js\demo.min.js" />
     <Content Include="js\libs\jquery-2.1.1.min.js" />
@@ -745,6 +754,8 @@
     <Content Include="js\smart-chat-ui\smart.chat.ui.min.js" />
     <Content Include="js\smartwidgets\jarvis.widget.min.js" />
     <Content Include="js\speech\voicecommand.min.js" />
+    <Content Include="js\toastr.js" />
+    <Content Include="js\toastr.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -760,7 +771,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommonLibrary\CommonLibraryController.cs" />
+    <Compile Include="Controllers\Company\CompanyController.cs" />
+    <Compile Include="Controllers\Employee\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaySlip\PaySlipHeadController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\CustomAuthorizationAttribute.cs" />
     <Compile Include="Filters\CustomExceptionAttribute.cs" />
     <Compile Include="Filters\CustomSessionAdminAttribute.cs" />
@@ -802,6 +818,20 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ExceptionHandler\ErrorHandler.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\Company\AddCompany.cshtml" />
+    <Content Include="Views\Company\EditCompany.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\AddEmployee.cshtml" />
+    <Content Include="Views\Employee\EditEmployee.cshtml" />
+    <Content Include="Views\User\UserIndex.cshtml" />
+    <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\Company\GetPayFrequency.cshtml" />
+    <Content Include="Views\PaySlipHead\AddPaySlipHead.cshtml" />
+    <Content Include="Views\PaySlipHead\Index.cshtml" />
+    <Content Include="Views\PaySlipHead\EditPaySlipHead.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -812,6 +842,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\CommonLibrary\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">

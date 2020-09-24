@@ -14,7 +14,7 @@ namespace DataModel
     {
         #region properties
         XDocument xdoc;
-        int _USERID;
+        Int64 _USERID;
         string _LOGINID;
         string _Email;
         string _MobileNo;
@@ -32,8 +32,9 @@ namespace DataModel
         string _SecondaryEmailID;
         bool _ISACTIVE;
         bool _ISADMIN;
-        string _IFLAG;
-        public int USERID
+        string _IFLAG; 
+        string _COUNTRYNAME;
+        public Int64 USERID
         {
             get
             {
@@ -73,7 +74,8 @@ namespace DataModel
                 _Email = value;
             }
         }
-
+        [Required(ErrorMessage = "Please Enter Mobile No")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Minimum 10 characters required")]
         public string MobileNo
         {
             get
@@ -287,20 +289,35 @@ namespace DataModel
                 _CONFIRMPASSWORD = value;
             }
         }
+        [Required(ErrorMessage = "Enter Country")]
+         
+        public string COUNTRYNAME
+        {
+            get
+            {
+                return _COUNTRYNAME;
+            }
+
+            set
+            {
+                _COUNTRYNAME = value;
+            }
+        }
+         
         #endregion
         #region Methods
         public userMaster()
         {
         }
 
-        public Result.Result Save(userMaster obj, XElement LOGXML = null)
+        public Result.Result Save(userMaster obj,int USERID, XElement LOGXML = null)
         {
             try
             {
                 xdoc = DBXML.USERMAST_c(obj.IFLAG, obj.USERID, obj.LOGINID, obj.Email, obj.MobileNo==null?"":obj.MobileNo, obj.MobileVerify,
                     obj.EmailVerify, obj.FNAME == null ? "" : obj.FNAME,obj.MNAME==null?"":obj.MNAME,obj.LNAME==null ?"":obj.LNAME,obj.DOB,
                     obj.ADDRESS==null?"":obj.ADDRESS,obj.PASSWORD,obj.SVRKEY==null?"":obj.SVRKEY,obj.SVRDATE,
-                    obj.SecondaryEmailID==null ?"":obj.SecondaryEmailID, obj.ISACTIVE,obj.ISADMIN, LOGXML);
+                    obj.SecondaryEmailID==null ?"":obj.SecondaryEmailID, obj.ISACTIVE,obj.ISADMIN,obj.COUNTRYNAME==null ?"":obj.COUNTRYNAME,USERID, LOGXML);
                 return ReadBIErrors(Convert.ToString(SqlExe.GetXml(xdoc)));
             }
             catch (Exception ex)
@@ -313,13 +330,13 @@ namespace DataModel
         {
             try
             {
-                xdoc = DBXML.USERMAST_g(0,LoginId,DESC, LOGXML);
+                xdoc = DBXML.USERMAST_g(0,LoginId,DESC, USERID, LOGXML);
                 DataTable dt = SqlExe.GetDT(xdoc);
                 List<userMaster> dbresult = dt != null ?
                     (from s in dt.AsEnumerable()
                      select new userMaster
                      {
-                         USERID = s.Field<int>("USERID"),
+                         USERID = s.Field<Int64>("USERID"),
                          LOGINID = s.Field<string>("LOGINID"),
                          Email = s.Field<string>("Email"),
                          MobileNo = s.Field<string>("MobileNo"),
@@ -335,7 +352,45 @@ namespace DataModel
                          SVRDATE = s.Field<DateTime>("SVRDATE"),
                          SecondaryEmailID = s.Field<string>("SecondaryEmailID"),
                          ISACTIVE = s.Field<bool>("ISACTIVE"),
-                         ISADMIN = s.Field<bool>("ISADMIN")
+                         ISADMIN = s.Field<bool>("ISADMIN"),
+                         COUNTRYNAME = s.Field<string>("COUNTRYNAME")
+                     }).ToList() : null;
+
+                return dbresult;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<userMaster> getLKUserList(int USERID, XElement LOGXML = null)
+        {
+            try
+            {
+                xdoc = DBXML.LK_USERMAST_g(USERID, LOGXML);
+                DataTable dt = SqlExe.GetDT(xdoc);
+                List<userMaster> dbresult = dt != null ?
+                    (from s in dt.AsEnumerable()
+                     select new userMaster
+                     {
+                         USERID = s.Field<Int64>("USERID"),
+                         LOGINID = s.Field<string>("LOGINID"),
+                         Email = s.Field<string>("Email"),
+                         MobileNo = s.Field<string>("MobileNo"),
+                         MobileVerify = s.Field<bool>("MobileVerify"),
+                         EmailVerify = s.Field<bool>("EmailVerify"),
+                         FNAME = s.Field<string>("FNAME"),
+                         MNAME = s.Field<string>("MNAME"),
+                         LNAME = s.Field<string>("LNAME"),
+                         DOB = s.Field<DateTime>("DOB"),
+                         ADDRESS = s.Field<string>("ADDRESS"),
+                         PASSWORD = s.Field<string>("PASSWORD"),
+                         SVRKEY = s.Field<string>("SVRKEY"),
+                         SVRDATE = s.Field<DateTime>("SVRDATE"),
+                         SecondaryEmailID = s.Field<string>("SecondaryEmailID"),
+                         ISACTIVE = s.Field<bool>("ISACTIVE"),
+                         ISADMIN = s.Field<bool>("ISADMIN"),
+                         COUNTRYNAME = s.Field<string>("COUNTRYNAME")
                      }).ToList() : null;
 
                 return dbresult;
@@ -346,7 +401,6 @@ namespace DataModel
             }
         }
 
-        
         #endregion
     }
 }

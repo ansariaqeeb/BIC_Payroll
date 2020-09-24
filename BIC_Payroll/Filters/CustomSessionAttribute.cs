@@ -17,7 +17,7 @@ namespace BIC_Payroll.Filters
                 LoginModels objLog = new LoginModels();
                 object UserSession = filterContext.RequestContext.HttpContext.Session["SessionInformation"];
 
-                if (UserSession == null || ((LoginSessionDetails)UserSession).USERID == 0)
+                if (UserSession == null || ((LoginSessionDetails)UserSession).USERID == 0 || ((LoginSessionDetails)UserSession).objComp == null || ((LoginSessionDetails)UserSession).objComp.COMPID == 0)
                 {
 
                     if (HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName] != null)

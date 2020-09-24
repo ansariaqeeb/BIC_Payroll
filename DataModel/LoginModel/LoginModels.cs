@@ -35,7 +35,7 @@ namespace DataModel.LoginModel
             try
             {
                 XElement LOGXML = null;
-                xdoc = DBXML.USERMAST_g(0, objLogOnModel.UserName.Trim(), objLogOnModel.password.Trim(), LOGXML);
+                xdoc = DBXML.USERMAST_g(0, objLogOnModel.UserName.Trim(), objLogOnModel.password.Trim(),0, LOGXML);
 
                 DataTable dt = SqlExe.GetDT(xdoc);
                 LoginSessionDetails lst = new LoginSessionDetails();

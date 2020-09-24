@@ -39,7 +39,27 @@ namespace DataModel.CommonModel
         { ConStr = conStr;  }
 
         #region Methods
-         
+
+        public object fillStatusMasterlist(int STATUSID, int TYPEID, string DESC, int USERID, XElement LOGXML = null)
+        {
+            try
+            {
+                Xdoc = DBXML.StatusMaster_g(STATUSID, TYPEID, DESC, USERID, LOGXML);
+                dt = SqlExe.GetDT(Xdoc);
+                var dbResult = (from row in dt.AsEnumerable()
+                                select new
+                                {
+                                    id = row.Field<int>("STATUSID"),
+                                    text = row.Field<string>("STATUSCODE")
+                                }).ToList();
+                return dbResult;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
 
     }

@@ -1,0 +1,372 @@
+﻿
+@{
+    ViewBag.Title = "Add Company";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<form id="frmAddCompany" class="form-horizontal">
+    <div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
+        <header role="heading">
+            <ul id="widget-tab-1" class="nav nav-tabs">
+                <li class="active">
+                    <a data-toggle="tab" href="#hr1"> <span class="hidden-mobile hidden-tablet"> Company Details </span> </a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#hr2"><span class="hidden-mobile hidden-tablet"> Address Details </span></a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#hr3"><span class="hidden-mobile hidden-tablet"> Contact Person Details </span></a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#hr4"><span class="hidden-mobile hidden-tablet"> Pay Frequency </span></a>
+                </li>
+            </ul>
+        </header>
+        <div role="content">
+            <div class="widget-body no-padding">
+                <div class="tab-content padding-10">
+                    <div class="tab-pane fade in active" id="hr1">
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Company Code <span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input type="hidden" name="IFLAG" value="I" />
+                                        <input type="hidden" name="COMPID" id="COMPID">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Company Code" type="text" name="COMPCODE" id="COMPCODE">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Company Name <span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Company Name" type="text" name="COMPNAME" id="COMPNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Primary Phone No.</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Primary Phone No." type="text" name="PRIMARYPHONE" id="PRIMARYPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Secondary Phone No.</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Secondary Phone No." type="text" name="SECONDARYPHONE" id="SECONDARYPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Fax No.</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Fax No." type="text" name="FAX" id="FAX" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </article>
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset> 
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Email Address</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" name="EMAILID" id="EMAILID" onblur="return $.c9Validateinput(event, this, 'Email');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Website</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Website" type="text" name="WEBSITE" id="WEBSITE" onblur="return $.c9Validateinput(event, this, 'Website');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Established In</label> 
+                                    <div class="col-md-8">
+                                        <input type="text" name="ESTABLISHEDIN" placeholder="Select a date" class="form-control datepicker" data-dateformat="dd-M-yy">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Manpower Working</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Manpower Working" type="text" name="MANPOWERWORKING" id="MANPOWERWORKING" maxlength="4" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Registration No.</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Registration No." type="text" name="REGNO" id="REGNO">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </article>
+                    </div>
+                    <div class="tab-pane fade" id="hr2">
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset> 
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left text-left">Complex Name </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Complex Name" type="text" name="ADDR1COMPLEXNAME" id="ADDR1COMPLEXNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Street No</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Street No" type="text" name="ADDR1STREETNO" id="ADDR1STREETNO">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Street Name</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Street Name" type="text" name="ADDR1STREETNAME" id="ADDR1STREETNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Postal Code</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Postal Code" type="text" name="ADDR1POSTALCODE" id="ADDR1POSTALCODE">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Country</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Country" type="text" name="ADDR1COUNTRYNAME" id="ADDR1COUNTRYNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">State</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter State" type="text" name="ADDR1STATENAME" id="ADDR1STATENAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">City</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter City" type="text" name="ADDR1CITYNAME" id="ADDR1CITYNAME">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </article>
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset> 
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left"> </label>
+                                    <div class="col-md-8">
+                                        <label class="checkbox">
+                                            <input type="checkbox" name="ADDR2SAMEASADDR1" id="ADDR2SAMEASADDR1">
+                                            <i></i>Postal Address Same As Company Address
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Complex Name </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Complex Name" type="text" name="ADDR2COMPLEXNAME" id="ADDR2COMPLEXNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Street No</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street No" type="text" name="ADDR2STREETNO" id="ADDR2STREETNO">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Street Name</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control  addr2" autocomplete="off" placeholder="Enter Street Name" type="text" name="ADDR2STREETNAME" id="ADDR2STREETNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Postal Code</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Postal Code" type="text" name="ADDR2POSTALCODE" id="ADDR2POSTALCODE">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Country</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter Country" type="text" name="ADDR2COUNTRYNAME" id="ADDR2COUNTRYNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">State</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter State" type="text" name="ADDR2STATENAME" id="ADDR2STATENAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">City</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control addr2" autocomplete="off" placeholder="Enter City" type="text" name="ADDR2CITYNAME" id="ADDR2CITYNAME">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </article>
+                    </div>
+                    <div class="tab-pane fade" id="hr3">
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset> 
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Contact Person Name </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Contact Person Name" type="text" name="CONTACTPERSONNAME" id="CONTACTPERSONNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Contact Person Email </label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" name="CPEMAIL" id="CPEMAIL" onblur="return $.c9Validateinput(event, this, 'Email');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Phone No.</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Phone No." type="text" name="CPPHONENO" id="CPPHONENO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </article>
+                    </div>
+                    <div class="tab-pane fade" id="hr4">
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Process Monthly</label>
+                                    <div class="col-md-8">
+                                        <input role="checkbox" type="checkbox" id="PROCESSMONTHLY" value="true" checked="checked" class="cbox" name="PROCESSMONTHLY">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Starting Month </label> 
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Starting Month" value="1" type="text" name="STARTINGMONTH" id="STARTINGMONTH" maxlength="2" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Fisrt Month End Date</label>
+                                    <div class="col-md-8">
+                                        <input type="text" autocomplete="off" name="FIRSTMONTHENDDATE" placeholder="Select First Month End Date" class="form-control datepicker clsreq" data-dateformat="dd-M-yy">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Month in Tax Year</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" readonly="readonly" value="12" autocomplete="off" placeholder="Enter Month in Tax Year" type="text" name="MONTHSINTAXYEAR" id="MONTHSINTAXYEAR">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget-footer">
+        <a id="btnCancelCom" class="btn btn-xs btn-default" href="/Company/CompanyDtl">
+            <i class="fa fa-times"></i>
+            Cancel
+        </a>&nbsp;
+        <button id="btnSaveCompany" class="btn btn-primary btn-xs pull-right" type="button" onclick="onCompanySave()">
+            <i class="fa fa-save"></i>
+            Submit
+        </button>
+    </div>
+</form> 
+  
+<script src="~/js/libs/jquery-2.1.1.min.js"></script> 
+<script src="~/js/libs/jquery-ui-1.10.3.min.js"></script> 
+<script type="text/javascript">
+   
+    (function ($) {
+
+        $(".breadcrumb").html('<li id="breadcrumb1">Add Company</li>');
+        $('#ADDR2SAMEASADDR1').on('click', function () {
+            var curValue = $(this).is(':checked');
+            $(this).val(curValue);
+            if (curValue) {
+                $('.addr2').val('');
+                $('.addr2').attr('readonly', 'readonly');
+            } else {
+                $('.addr2').removeAttr('readonly', 'readonly');
+            }
+        });
+
+        $('#PROCESSMONTHLY').on('click', function () {
+            var curValue = $(this).is(':checked');
+            $(this).val(curValue); 
+        });
+    }(jQuery));
+
+    function onCompanySave() {
+        saveCompany('frmAddCompany', 'Company', 'AddCompany');
+    }
+
+
+    function saveCompany(FORMID, Controller, Action) {
+        //loading for Trans Save button
+        var TransSaveBtnID = "btnSaveCompany";
+
+        $('#' + TransSaveBtnID).attr('disabled', true);
+        var validate = true;
+        $('#' + FORMID + ' .clsreq').each(function () {
+            if ($(this).hasClass("select2")) {
+                var message = $(this).siblings('input:hidden').attr('placeholder');
+                var val = $(this).select2("val");
+                if (val == "" || val == null || val == 0) {
+                    validate = false;
+                    $(this).find('.select2-choice').addClass('clsShowWarning');
+                    $(this).select2("focus", "val");
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            } else if ($(this).hasClass("select")) {
+                var message = $(this).attr('data-placeholder');
+                var val = $(this).val();
+                if (val == "" || val == null || val == 0) {
+                    validate = false;
+                    $(this).addClass('clsShowWarning');
+                    $(this).focus();
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            }
+            else {
+                var focus = $(this).attr('data-focus');
+                var message = $(this).attr('placeholder') == undefined || $(this).attr('placeholder') == null ? $(this).attr('data-placeholder') : $(this).attr('placeholder');
+                var val = $(this).hasClass("textarea") ? $(this).text().trim() : $(this).val() == "" || $(this).val() == null ? $(this).val() : $(this).val().trim();
+                if (val == "" || val == 0 || val == null) {
+                    validate = false;
+                    if (typeof focus === "undefined" || focus === null) {
+                        $(this).focus();
+                    }
+                    $(this).addClass('clsShowWarning');
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            }
+        });
+
+        if (validate) {
+            $('#' + TransSaveBtnID).attr("disabled", true);
+
+            var serializedData = $("#" + FORMID).serialize();
+            var url = "/" + Controller + "/" + Action + "/";
+            $.post(url, serializedData, function (res) { 
+                var errid = res.ResultId;
+                var errmsg = res.Message;
+                var TITLE = res.Title;
+                var TYPE = res.Type;
+                if (errid > 0) {
+                   
+                    $.c9Message(errmsg, TITLE, TYPE);
+                    window.location = $('#btnCancelCom').attr('href');
+                } else {
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(errmsg, TITLE, TYPE);
+                }
+            });
+        }
+    }
+     
+</script>

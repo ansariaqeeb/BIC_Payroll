@@ -30,7 +30,7 @@ namespace BIC_Payroll.Controllers
 
             if (UserSession != null && ((LoginSessionDetails)UserSession).USERID != 0)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("CompanyDtl", "Company");
             }
             else if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             {
@@ -43,7 +43,7 @@ namespace BIC_Payroll.Controllers
                     if (serializeModel.USERID > 0)
                     {
                         Session["SessionInformation"] = serializeModel;
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("CompanyDtl", "Company");
                     }
                 }
                 catch (Exception ex)
@@ -118,7 +118,7 @@ namespace BIC_Payroll.Controllers
                         string time = DateTime.Now.AddMinutes(1).ToString("mm.ss");
                         Session["ReminderTime"] = time;
                         objLog.RememberMe = true;
-                        return RedirectToAction("Index", "Home", new { returnUrl = (this.HttpContext.Request).Path });
+                        return RedirectToAction("CompanyDtl", "Company", new { returnUrl = (this.HttpContext.Request).Path });
                     }
                     //else
                     //{
@@ -226,7 +226,7 @@ namespace BIC_Payroll.Controllers
                     //faCookie.Expires = authTicket.Expiration; // comment for use as non persistence cookie
                     Response.Cookies.Add(faCookie);
 
-                    if (objLogSession.USERID != 0)
+                    if (objLogSession!= null && objLogSession.USERID != 0)
                     {
                         Session["SessionInformation"] = objLogSession;
                         string time = DateTime.Now.AddMinutes(1).ToString("mm.ss");
@@ -240,7 +240,7 @@ namespace BIC_Payroll.Controllers
                         {
                             if (System.Configuration.ConfigurationManager.AppSettings["DefaultUrl"] == "")
                             {
-                                return RedirectToAction("Index", "Home", new { returnUrl = (this.HttpContext.Request).Path });
+                                return RedirectToAction("CompanyDtl", "Company", new { returnUrl = (this.HttpContext.Request).Path });
                             }
                             else
                             {
@@ -253,7 +253,7 @@ namespace BIC_Payroll.Controllers
                         if (vLicenseExpired)
                             ModelState.AddModelError("ErrorMgr", "License expired. Please renew your License.");
                         else
-                            ModelState.AddModelError("ErrorMgr", strErrorMsg); // "The user name or password provided is incorrect."
+                            ModelState.AddModelError("ErrorMgr", "Invalid login id or password!"); // "The user name or password provided is incorrect."
                     }
                 }
             }
@@ -281,7 +281,8 @@ namespace BIC_Payroll.Controllers
                     //string vSvrKey = CommonMethods.Encrypt(DateTime.Now.Date.ToString(), "BICPRO");
                     //obj.PASSWORD = vPassword;
                     obj.SVRKEY = "abcd";
-                    objRes = obj.Save(obj);
+                    obj.ISADMIN = true;
+                    objRes = obj.Save(obj,0);
                     if (objRes.ResultId>0)
                     {
                         return RedirectToAction("Login", "Account");

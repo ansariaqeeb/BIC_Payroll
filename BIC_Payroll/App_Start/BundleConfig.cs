@@ -9,32 +9,18 @@ namespace BIC_Payroll.App_Start
     public class BundleConfig
     {
         public static void RegisterBundles(BundleCollection bundles)
-        {
-            //Script used in BI PageSheetView
-            bundles.Add(new ScriptBundle("~/bundles/BIJS").Include(
-                "~/Scripts/Highcharts-4.0.1/stock/highstock.js",
-                "~/Scripts/Highcharts-4.0.1/js/highcharts-3d.js",
-                "~/Scripts/Highcharts-4.0.1/js/modules/funnel.js",
-                "~/Scripts/Highcharts-4.0.1/js/modules/exporting.js",
-                "~/Scripts/Highcharts-4.0.1/js/grouped-categories.js",
-                "~/assets/js/gridstack/lodash.js",
-                "~/assets/js/gridstack/knockout-min.js",
-                "~/assets/js/gridstack/gridstack.js",
-                "~/assets/js/lz-string-1.3.3-min.js",
-                "~/assets/js/jquery.table2excel.js",
-                "~/Scripts/tableHeadFixer.js"
-                ));
-
+        { 
             //Jquery bundle
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/js/libs/jquery-{version}.js")); 
 
             //CSS for Login Page
-            bundles.Add(new StyleBundle("~/Content/LoginCommonCSS").Include("~/assets/css/bootstrap.min.css",
-                "~/assets/css/font-awesome.min.css",
-                "~/assets/css/ace-fonts.css",
-                "~/assets/css/ace.min.css",
-                "~/assets/css/select2.min.css",
-                "~/assets/css/ace-rtl.min.css"));
+            bundles.Add(new StyleBundle("~/Content/LoginCommonCSS").Include("~/css/bootstrap.min.css",
+                "~/css/font-awesome.min.css",
+                "~/css/smartadmin-production-plugins.min.css",
+                "~/css/smartadmin-production.min.css",
+                "~/css/smartadmin-skins.min.css",
+                "~/css/smartadmin-rtl.min.css",
+                "~/css/demo.min.css"));
 
             //Js for Login page
             bundles.Add(new ScriptBundle("~/bundles/LoginCommonJS").Include("~/Scripts/jquery-2.0.3.min.js",

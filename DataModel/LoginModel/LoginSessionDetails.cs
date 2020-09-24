@@ -12,7 +12,7 @@ namespace DataModel.LoginModel
         public DateTime SVRDATE { get; set; }
         public string LOGINID { get; set; }
         public string USERNAME { get; set; } 
-        public int COMPID { get; set; }
+        public DataModel.Company.Company objComp { get; set; }
         public string Email { get; set; }
         public string FNAME { get; set; }
         public string LNAME { get; set; }
