@@ -35,7 +35,7 @@
                                     <div class="col-md-8">
                                         <input type="hidden" name="IFLAG" value="I" />
                                         <input type="hidden" name="EMPID" id="EMPID">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Employee Code" type="text" name="EMPCODE" id="EMPCODE">
+                                        <input class="form-control clsreq" autocomplete="off" value="XXXXXX" readonly="readonly" placeholder="Enter Employee Code" type="text" name="EMPCODE" id="EMPCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -63,23 +63,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Start Date</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Start Date" type="text" name="STARTDATE" id="STARTDATE">
-                                    </div>*@
+                                    <label class="col-md-4 control-label text-left">Start Date</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="STARTDATE" placeholder="Select Start Date" class="form-control datepicker" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">DOB</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Date Of Birth" type="text" name="DOB" id="DOB">
-                                    </div>*@
+                                    <label class="col-md-4 control-label text-left">DOB</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="DOB" placeholder="Select Date Of Birth" class="form-control datepicker" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -300,25 +292,25 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Daily Rate </label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Daily Rate" type="text" name="DAILYRATE" id="DAILYRATE">
+                                        <input class="form-control" autocomplete="off" readonly="readonly" placeholder="Enter Daily Rate" type="text" name="DAILYRATE" id="DAILYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Weekly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Weekly Rate" type="text" name="WEEKLYRATE" id="WEEKLYRATE">
+                                        <input class="form-control" autocomplete="off" readonly="readonly" placeholder="Enter Weekly Rate" type="text" name="WEEKLYRATE" id="WEEKLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Monthly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Monthly Rate" type="text" name="MONTHLYRATE" id="MONTHLYRATE">
+                                        <input class="form-control" autocomplete="off" readonly="readonly" placeholder="Enter Monthly Rate" type="text" name="MONTHLYRATE" id="MONTHLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Hourly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Hourly Rate" type="text" name="HOURLYRATE" id="HOURLYRATE">
+                                        <input class="form-control" autocomplete="off" readonly="readonly" placeholder="Enter Hourly Rate" type="text" name="HOURLYRATE" id="HOURLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -332,23 +324,15 @@
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
                             <fieldset>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Last Increament Date</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Last Increament Date" type="text" name="LASTINCREAMENTDATE" id="LASTINCREAMENTDATE">
-                                    </div>*@
+                                    <label class="col-md-4 control-label text-left">Last Increament Date</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="LASTINCREAMENTDATE" placeholder="Select Last Increament Date" class="form-control datepicker" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Termination Date</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Termination Date" type="text" name="TERMINATIONDATE" id="TERMINATIONDATE">
-                                    </div>*@
+                                    <label class="col-md-4 control-label text-left">Termination Date</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="TERMINATIONDATE" placeholder="Select Termination Date" class="form-control datepicker" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -440,7 +424,7 @@
 
     function onEmployeeSave() {
      
-        saveEmployee('frmAddEmployee', 'Employee', 'AddCompany');
+        saveEmployee('frmAddEmployee', 'Employee', 'AddEmployee');
     } 
 
     function saveEmployee(FORMID, Controller, Action) {
@@ -494,16 +478,15 @@
             $('#' + TransSaveBtnID).attr("disabled", true);
 
             var serializedData = $("#" + FORMID).serialize();
-            var url = "/" + Controller + "/" + Action + "/";
+            var url = "/" + Controller + "/" + Action + "/"; 
             $.post(url, serializedData, function (res) {
                 var errid = res.ResultId;
                 var errmsg = res.Message;
                 var TITLE = res.Title;
                 var TYPE = res.Type;
                 if (errid > 0) {
-
                     $.c9Message(errmsg, TITLE, TYPE);
-                    window.location = $('#btnCancelCom').attr('href');
+                    window.location = $('#btnCancel').attr('href');
                 } else {
                     $('#' + TransSaveBtnID).attr('disabled', false);
                     $.c9Message(errmsg, TITLE, TYPE);

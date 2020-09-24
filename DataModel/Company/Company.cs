@@ -56,6 +56,13 @@ namespace DataModel.Company
         string _CONTACTPERSONNAME;
         string _CPEMAIL;
         string _CPPHONENO;
+        bool _PROCESSMONTHLY;
+        int _STARTINGMONTH;
+        DateTime _FIRSTMONTHENDDATE;
+        int _MONTHSINTAXYEAR;
+        List<FREQUENCYPERIODTRANS> _PayFreqTransList;
+        int _MID;
+        bool _ISCLOSED;
         public int COMPID
         {
             get
@@ -614,6 +621,97 @@ namespace DataModel.Company
                 _CPPHONENO = value;
             }
         }
+
+        public bool PROCESSMONTHLY
+        {
+            get
+            {
+                return _PROCESSMONTHLY;
+            }
+
+            set
+            {
+                _PROCESSMONTHLY = value;
+            }
+        }
+
+        public int STARTINGMONTH
+        {
+            get
+            {
+                return _STARTINGMONTH;
+            }
+
+            set
+            {
+                _STARTINGMONTH = value;
+            }
+        }
+
+        public DateTime FIRSTMONTHENDDATE
+        {
+            get
+            {
+                return _FIRSTMONTHENDDATE;
+            }
+
+            set
+            {
+                _FIRSTMONTHENDDATE = value;
+            }
+        }
+
+        public int MONTHSINTAXYEAR
+        {
+            get
+            {
+                return _MONTHSINTAXYEAR;
+            }
+
+            set
+            {
+                _MONTHSINTAXYEAR = value;
+            }
+        }
+
+        public List<FREQUENCYPERIODTRANS> PayFreqTransList
+        {
+            get
+            {
+                return _PayFreqTransList;
+            }
+
+            set
+            {
+                _PayFreqTransList = value;
+            }
+        }
+
+        public int MID
+        {
+            get
+            {
+                return _MID;
+            }
+
+            set
+            {
+                _MID = value;
+            }
+        }
+
+        public bool ISCLOSED
+        {
+            get
+            {
+                return _ISCLOSED;
+            }
+
+            set
+            {
+                _ISCLOSED = value;
+            }
+        }
         #endregion
         #region Method
         public Company()
@@ -647,7 +745,12 @@ namespace DataModel.Company
                     obj.EMAILID == null ? "" : obj.EMAILID,
                     obj.WEBSITE == null ? "" : obj.WEBSITE,
                     obj.ESTABLISHEDIN, obj.MANPOWERWORKING, obj.REGNO == null ? "" : obj.REGNO,
-                    obj.ISACTIVE, USERID, LOGXML);
+                    obj.ISACTIVE,
+                    obj.PROCESSMONTHLY,
+                    obj.STARTINGMONTH,
+                    obj.MONTHSINTAXYEAR,
+                    obj.FIRSTMONTHENDDATE, 
+                    USERID, LOGXML);
                 return ReadBIErrors(Convert.ToString(SqlExe.GetXml(xdoc)));
             }
             catch (Exception ex)
@@ -693,7 +796,11 @@ namespace DataModel.Company
                          ESTABLISHEDIN = s.Field<DateTime>("ESTABLISHEDIN"),
                          MANPOWERWORKING = s.Field<int>("MANPOWERWORKING"),
                          REGNO = s.Field<string>("REGNO"),
-                         ISACTIVE = s.Field<bool>("ISACTIVE")
+                         PROCESSMONTHLY = s.Field<bool>("PROCESSMONTHLY"),
+                         MONTHSINTAXYEAR = s.Field<int>("MONTHSINTAXYEAR"),
+                         FIRSTMONTHENDDATE = s.Field<DateTime>("FIRSTMONTHENDDATE"),
+                         STARTINGMONTH = s.Field<int>("STARTINGMONTH"),
+                         ISACTIVE = s.Field<bool>("ISACTIVE"),
                      }).ToList() : null;
 
                 return dbresult;
@@ -701,6 +808,164 @@ namespace DataModel.Company
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public List<Company> getPayFrequency(int COMPID, int USERID, XElement LOGXML = null)
+        {
+            try
+            {
+                xdoc = DBXML.PAYFREQUENCY_g(COMPID, 0, 0, "", USERID, LOGXML);
+                DataTable dt = SqlExe.GetDT(xdoc);
+                List<Company> dbresult = dt != null ?
+                    (from s in dt.AsEnumerable()
+                     select new Company
+                     {
+                         MID = s.Field<int>("MID"),
+                         PROCESSMONTHLY = s.Field<bool>("PROCESSMONTHLY"),
+                         STARTINGMONTH = s.Field<int>("STARTINGMONTH"),
+                         FIRSTMONTHENDDATE = s.Field<DateTime>("FIRSTMONTHENDDATE"),
+                         MONTHSINTAXYEAR = s.Field<int>("MONTHSINTAXYEAR"),
+                         COMPID = s.Field<int>("COMPID"), 
+                         ISACTIVE = s.Field<bool>("MISACTIVE"),
+                         ISCLOSED = s.Field<bool>("MISCLOSED"),
+                         PayFreqTransList = s.Field<string>("TRANSDETAILS") != null ?
+                         (from m in XDocument.Parse(s.Field<string>("TRANSDETAILS")).Elements("TRANSACTION").Elements("TRANS")
+                          select new FREQUENCYPERIODTRANS
+                          { 
+                              TID = m.Attributes("TID").FirstOrDefault().Value == null ? 0 : Convert.ToInt32(m.Attributes("TID").FirstOrDefault().Value),
+                              MONTHID = m.Attributes("MONTHID").FirstOrDefault().Value == null ? 0 : Convert.ToInt32(m.Attributes("MONTHID").FirstOrDefault().Value),
+                              MONTHENDDATE = Convert.ToDateTime(m.Attributes("MONTHENDDATE").FirstOrDefault().Value),
+                              STATUS = m.Attributes("STATUS").FirstOrDefault().Value == null ? "" : Convert.ToString(m.Attributes("STATUS").FirstOrDefault().Value),
+                              ISACTIVE = Convert.ToInt32(m.Attributes("ISACTIVE").FirstOrDefault().Value) == 0 ? false : true,
+                              ISCLOSED = Convert.ToInt32(m.Attributes("ISCLOSED").FirstOrDefault().Value) == 0 ? false : true,
+                              ISCURRENT = Convert.ToInt32(m.Attributes("ISCURRENT").FirstOrDefault().Value) == 0 ? false : true,
+                          }).ToList() : null,
+                     }).ToList() : null;
+
+                return dbresult;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+    }
+
+    public class FREQUENCYPERIODTRANS
+    {
+        #region Properties
+        int _TID;
+        int _RMID;
+        int _MONTHID;
+        DateTime _MONTHENDDATE;
+        string _STATUS;
+        bool _ISACTIVE;
+        bool _ISCLOSED;
+        bool _ISCURRENT;
+
+        public int TID
+        {
+            get
+            {
+                return _TID;
+            }
+
+            set
+            {
+                _TID = value;
+            }
+        }
+
+        public int RMID
+        {
+            get
+            {
+                return _RMID;
+            }
+
+            set
+            {
+                _RMID = value;
+            }
+        }
+
+        public int MONTHID
+        {
+            get
+            {
+                return _MONTHID;
+            }
+
+            set
+            {
+                _MONTHID = value;
+            }
+        }
+
+        public DateTime MONTHENDDATE
+        {
+            get
+            {
+                return _MONTHENDDATE;
+            }
+
+            set
+            {
+                _MONTHENDDATE = value;
+            }
+        }
+
+        public string STATUS
+        {
+            get
+            {
+                return _STATUS;
+            }
+
+            set
+            {
+                _STATUS = value;
+            }
+        }
+
+        public bool ISACTIVE
+        {
+            get
+            {
+                return _ISACTIVE;
+            }
+
+            set
+            {
+                _ISACTIVE = value;
+            }
+        }
+
+        public bool ISCLOSED
+        {
+            get
+            {
+                return _ISCLOSED;
+            }
+
+            set
+            {
+                _ISCLOSED = value;
+            }
+        }
+
+        public bool ISCURRENT
+        {
+            get
+            {
+                return _ISCURRENT;
+            }
+
+            set
+            {
+                _ISCURRENT = value;
             }
         }
         #endregion

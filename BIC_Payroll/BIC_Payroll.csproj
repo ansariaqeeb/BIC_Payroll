@@ -775,6 +775,7 @@
     <Compile Include="Controllers\Company\CompanyController.cs" />
     <Compile Include="Controllers\Employee\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PaySlip\PaySlipHeadController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\CustomAuthorizationAttribute.cs" />
     <Compile Include="Filters\CustomExceptionAttribute.cs" />
@@ -827,6 +828,10 @@
     <Content Include="Views\User\UserIndex.cshtml" />
     <Content Include="Views\User\AddUser.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\Company\GetPayFrequency.cshtml" />
+    <Content Include="Views\PaySlipHead\AddPaySlipHead.cshtml" />
+    <Content Include="Views\PaySlipHead\Index.cshtml" />
+    <Content Include="Views\PaySlipHead\EditPaySlipHead.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

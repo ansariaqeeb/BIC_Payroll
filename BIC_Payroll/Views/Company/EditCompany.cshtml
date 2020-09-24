@@ -46,19 +46,19 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Primary Phone No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Primary Phone No." value="@Model.PRIMARYPHONE" type="text" name="PRIMARYPHONE" id="PRIMARYPHONE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Primary Phone No." value="@Model.PRIMARYPHONE" type="text" name="PRIMARYPHONE" id="PRIMARYPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Secondary Phone No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Secondary No." type="text" value="@Model.SECONDARYPHONE" name="SECONDARYPHONE" id="SECONDARYPHONE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Secondary No." type="text" value="@Model.SECONDARYPHONE" name="SECONDARYPHONE" id="SECONDARYPHONE" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Fax No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Fax No." type="text" value="@Model.FAX" name="FAX" id="FAX">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Fax No." type="text" value="@Model.FAX" name="FAX" id="FAX" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                             </fieldset>
@@ -69,25 +69,25 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Email Address</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" value="@Model.EMAILID" name="EMAILID" id="EMAILID">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" value="@Model.EMAILID" name="EMAILID" id="EMAILID"  onblur="return $.c9Validateinput(event, this, 'Email');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Website</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Website" type="text" value="@Model.WEBSITE" name="WEBSITE" id="WEBSITE">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Website" type="text" value="@Model.WEBSITE" name="WEBSITE" id="WEBSITE"  onblur="return $.c9Validateinput(event, this, 'Website');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Established In</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Established In" type="text" name="ESTABLISHEDIN" id="ESTABLISHEDIN">
+                                    <div class="col-md-8"> 
+                                        <input type="text" name="ESTABLISHEDIN" placeholder="Select Established In Date" value="@Model.ESTABLISHEDIN.ToString("dd-MMM-yyyy")" class="form-control datepicker" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Manpower Working</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Manpower Working" value="@Model.MANPOWERWORKING" type="text" name="MANPOWERWORKING" id="MANPOWERWORKING">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Manpower Working" value="@Model.MANPOWERWORKING" type="text" name="MANPOWERWORKING" id="MANPOWERWORKING" maxlength="4" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -217,19 +217,19 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Contact Person Name </label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Contact Person Name" type="text" name="CONTACTPERSONNAME" id="CONTACTPERSONNAME">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Contact Person Name" type="text" value="@Model.CONTACTPERSONNAME" name="CONTACTPERSONNAME" id="CONTACTPERSONNAME">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Contact Person Email </label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" name="CPEMAIL" id="CPEMAIL">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" name="CPEMAIL" id="CPEMAIL" value="@Model.CPEMAIL" onblur="return $.c9Validateinput(event, this, 'Email');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Phone No.</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Phone No." type="text" name="CPPHONENO" id="CPPHONENO">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Phone No." type="text" name="CPPHONENO" id="CPPHONENO" value="@Model.CPPHONENO" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                             </fieldset>
@@ -241,29 +241,25 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Process Monthly</label>
                                     <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="PROCESSMONTHLY" class="cbox" name="PROCESSMONTHLY">
+                                        <input role="checkbox" type="checkbox" id="PROCESSMONTHLY" checked="@Model.PROCESSMONTHLY" value="@Model.PROCESSMONTHLY" class="cbox" name="PROCESSMONTHLY">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Starting Month </label>
-                                    @*<div class="col-md-8">
-                            <input class="form-control" autocomplete="off" placeholder="Enter Starting Month" type="text" name="STARTMONTH" id="STARTMONTH">
-                        </div>*@
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input class="form-control clsreq" readonly="readonly" autocomplete="off" placeholder="Enter Starting Month" value="@Model.STARTINGMONTH" type="text" name="STARTINGMONTH" id="STARTINGMONTH" maxlength="2" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Fisrt Month End Date</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Fisrt Month End Date" type="text" name="MONTHEND" id="MONTHEND">
+                                        <input type="text" name="FIRSTMONTHENDDATE" readonly="readonly" autocomplete="off" placeholder="Select First Month End Date" value="@Model.FIRSTMONTHENDDATE.ToString("dd-MMM-yyyy")" class="form-control clsreq" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Month in Tax Year</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Month in Tax Year" type="text" name="MONTHINYEAR" id="MONTHINYEAR">
+                                        <input class="form-control clsreq" readonly="readonly" autocomplete="off" value="@Model.MONTHSINTAXYEAR" placeholder="Enter Month in Tax Year" type="text" name="MONTHSINTAXYEAR" id="MONTHSINTAXYEAR" onkeypress="return $.c9Validateinput(event, this, '0-9');">
                                     </div>
                                 </div>
                             </fieldset>
@@ -310,6 +306,11 @@
             } else {
                 $('.addr2').removeAttr('readonly', 'readonly');
             }
+        });
+
+        $('#PROCESSMONTHLY').on('click', function () {
+            var curValue = $(this).is(':checked');
+            $(this).val(curValue);
         });
 
         $('#ISACTIVE').on('click', function () {

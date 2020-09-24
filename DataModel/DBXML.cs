@@ -83,7 +83,7 @@ namespace DataModel
             string ADDR1STREETNAME, string ADDR1POSTALCODE, string ADDR1COUNTRYNAME, string ADDR1STATENAME, string ADDR1CITYNAME, bool ADDR2SAMEASADDR1,
             string ADDR2COMPLEXNAME, string ADDR2STREETNO, string ADDR2STREETNAME, string ADDR2POSTALCODE, string ADDR2COUNTRYNAME, string ADDR2STATENAME,
             string ADDR2CITYNAME, string PRIMARYPHONE, string SECONDARYPHONE, string FAX, string EMAILID, string WEBSITE,DateTime ESTABLISHEDIN,
-            int MANPOWERWORKING,string REGNO,bool ISACTIVE, int USERID, XElement LOGXML)
+            int MANPOWERWORKING,string REGNO,bool ISACTIVE,bool PROCESSMONTHLY,int STARTINGMONTH,int MONTHSINTAXYEAR,DateTime FIRSTMONTHENDDATE, int USERID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
@@ -114,13 +114,35 @@ namespace DataModel
            new XAttribute("ESTABLISHEDIN", ESTABLISHEDIN),
            new XAttribute("REGNO", REGNO),
            new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("PROCESSMONTHLY", PROCESSMONTHLY),
+           new XAttribute("STARTINGMONTH", STARTINGMONTH),
+           new XAttribute("MONTHSINTAXYEAR", MONTHSINTAXYEAR),
+           new XAttribute("FIRSTMONTHENDDATE", FIRSTMONTHENDDATE),
            new XAttribute("USERID", USERID)  
            )); 
             XDocument CreateXml = CommonXML("COMPANY_c", MAINXML, LOGXML);
             return CreateXml;
         }
 
-        static public XDocument EMPLOYEE_c(string FLAG,int EMPID,string EMPCODE, string TITLE ,string FIRSTNAME,string MIDDLENAME ,string LASTNAME,string NICKNAME,
+        static public XDocument PAYSLIPHEADS_c(string FLAG, Int64 HEADID, string HEADCODE, int TRANSACTIONTYPE, string DESC, bool ISACTIVE,
+            int COMPID, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("HEADID", HEADID),
+           new XAttribute("HEADCODE", HEADCODE),
+           new XAttribute("TRANSACTIONTYPE", TRANSACTIONTYPE),
+           new XAttribute("DESC", DESC),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("COMPID", COMPID), 
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("PAYSLIPHEADS_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument EMPLOYEE_c(string FLAG, Int64 EMPID,string EMPCODE, string TITLE ,string FIRSTNAME,string MIDDLENAME ,string LASTNAME,string NICKNAME,
                     DateTime STARTDATE, DateTime DOB,string NATIONALID,string PASSPORTNO,string COUNTRYOFISSUE ,string GENDER,string MARITALSTATUS,string DEPENDENT,
                     string YEARSOFSERVICE,string ADDR1COMPLEXNAME,string ADDR1STREETNO ,string ADDR1STREETNAME,string ADDR1POSTALCODE,string ADDR1COUNTRYNAME ,
                     string ADDR1STATENAME,string ADDR1CITYNAME,bool ADDR2SAMEASADDR1,string ADDR2COMPLEXNAME,string ADDR2STREETNO ,string ADDR2STREETNAME,
@@ -136,8 +158,7 @@ namespace DataModel
            new XAttribute("EMPCODE", EMPCODE),
            new XAttribute("TITLE", TITLE),
            new XAttribute("FIRSTNAME", FIRSTNAME),
-           new XAttribute("MIDDLENAME", MIDDLENAME),
-           new XAttribute("MIDDLENAME", MIDDLENAME),
+           new XAttribute("MIDDLENAME", MIDDLENAME), 
            new XAttribute("LASTNAME", LASTNAME),
            new XAttribute("NICKNAME", NICKNAME),
            new XAttribute("STARTDATE", STARTDATE),
@@ -398,7 +419,34 @@ namespace DataModel
             XDocument CreateXml = CommonXML("COMPANY_g", MAINXML, LOGXML);
             return CreateXml;
         }
-
+        static public XDocument PAYSLIPHEADS_g(int HEADID, string HEADCODE, string DESC, int COMPID,int TRANSACTIONTYPE, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("HEADID", HEADID),
+           new XAttribute("HEADCODE", HEADCODE),
+           new XAttribute("DESC", DESC),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("TRANSACTIONTYPE", TRANSACTIONTYPE),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("PAYSLIPHEADS_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+        static public XDocument PAYFREQUENCY_g(int COMPID, int MID, int TID, string FLAG, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("MID", MID),
+           new XAttribute("TID", TID),
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("PAYFREQUENCY_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+        
         static public XDocument EMPLOYEE_g(int EMPID, string EMPCODE,int COMPID, string DESC, int USERID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
@@ -441,6 +489,19 @@ namespace DataModel
             return CreateXml;
         }
 
+        static public XDocument StatusMaster_g(int STATUSID, int TYPEID, string DESC, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("STATUSID", STATUSID),
+           new XAttribute("TYPEID", TYPEID),
+           new XAttribute("DESC", DESC), 
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("StatusMaster_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+        
         #endregion
 
     }

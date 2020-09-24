@@ -35,7 +35,7 @@
                                     <div class="col-md-8">
                                         <input type="hidden" name="IFLAG" value="E" />
                                         <input type="hidden" name="EMPID" id="EMPID" value="@Model.EMPID">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Employee Code" type="text" value="@Model.EMPCODE" name="EMPCODE" id="EMPCODE">
+                                        <input class="form-control clsreq" readonly="readonly" autocomplete="off" placeholder="Enter Employee Code" type="text" value="@Model.EMPCODE" name="EMPCODE" id="EMPCODE">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -63,23 +63,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Start Date</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Start Date" type="text" value="@Model.STARTDATE" name="STARTDATE" id="STARTDATE">
-                                    </div>*@
+                                    <label class="col-md-4 control-label text-left">Start Date</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="mydate" placeholder="Select Start Date" class="form-control datepicker"  value="@Model.STARTDATE.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">DOB</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Date Of Birth" type="text" value="@Model.DOB" name="DOB" id="DOB">
-                                    </div>*@
+                                    <label class="col-md-4 control-label text-left">DOB</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="mydate" placeholder="Select Date Of Birth" class="form-control datepicker" value="@Model.DOB.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -125,6 +117,8 @@
                                         <select class="form-control input-sm" placeholder="Select Marital Status" name="MARITALSTATUS" id="MARITALSTATUS">
                                             <option>Married</option>
                                             <option>Un Married</option>
+                                            <option>Divorced</option>
+                                            <option>Widow</option>
                                         </select>
                                     </div>
                                 </div>
@@ -138,6 +132,12 @@
                                     <label class="col-md-4 control-label text-left">Country Of Issue</label>
                                     <div class="col-md-8">
                                         <input class="form-control" autocomplete="off" placeholder="Enter Country Of Issue" type="text" value="@Model.COUNTRYOFISSUE" name="COUNTRYOFISSUE" id="COUNTRYOFISSUE">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Is Active.</label>
+                                    <div class="col-md-8">
+                                        <input role="checkbox" type="checkbox" id="ISACTIVE" class="cbox" name="ISACTIVE" value="@Model.ISACTIVE.ToString()" checked="@Model.ISACTIVE">
                                     </div>
                                 </div>
                             </fieldset>
@@ -331,22 +331,16 @@
                             <fieldset>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Last Increament Date</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Last Increament Date" type="text" value="@Model.LASTINCREAMENTDATE" name="LASTINCREAMENTDATE" id="LASTINCREAMENTDATE">
-                                    </div>*@
+                                     
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="LASTINCREAMENTDATE" placeholder="Select Last Increament Date" class="form-control datepicker" value="@Model.TERMINATIONDATE.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Termination Date</label>
-                                    @*<div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Termination Date" type="text" value="@Model.TERMINATIONDATE" name="TERMINATIONDATE" id="TERMINATIONDATE">
-                                    </div>*@
+                                    
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select a date"
-                                               class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        <input type="text" name="TERMINATIONDATE" placeholder="Select Termination Date" class="form-control datepicker" value="@Model.TERMINATIONDATE.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -422,7 +416,7 @@
 <script type="text/javascript">
 
     (function ($) {
-        $(".breadcrumb").html('<li id="breadcrumb1">Add Employee</li>');
+        $(".breadcrumb").html('<li id="breadcrumb1">Edit Employee</li>');
         $('#ADDR2SAMEASADDR1').on('click', function () {
             var curValue = $(this).is(':checked');
             $(this).val(curValue);
@@ -432,6 +426,11 @@
             } else {
                 $('.addr2').removeAttr('readonly', 'readonly');
             }
+        });
+
+        $('#ISACTIVE').on('click', function () {
+            var isvalue = $(this).is(':checked');
+            $(this).val(isvalue);
         });
 
     }(jQuery));

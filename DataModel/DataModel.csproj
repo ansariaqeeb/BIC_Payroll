@@ -57,6 +57,7 @@
     <Compile Include="Master\COUNTRYMAST.cs" />
     <Compile Include="Master\Employee.cs" />
     <Compile Include="Master\Login.cs" />
+    <Compile Include="Master\PaySlipHead.cs" />
     <Compile Include="Master\StateMaster.cs" />
     <Compile Include="Master\TokenServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,9 +65,7 @@
     <Compile Include="Result\Result.cs" />
     <Compile Include="Service\Service.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{16047fdb-4890-4012-930a-5fe87d805e14}</Project>

@@ -14,9 +14,9 @@ namespace DataModel.Master
         #region Properties 
         XDocument xdoc;
         string _IFLAG;
-        int _EMPID;
+        Int64 _EMPID;
         string _EMPCODE;
-        string _TITLE;
+        string _NTITLE;
         string _FIRSTNAME;
         string _MIDDLENAME;
         string _LASTNAME;
@@ -33,29 +33,17 @@ namespace DataModel.Master
         string _ADDR1COMPLEXNAME;
         string _ADDR1STREETNO;
         string _ADDR1STREETNAME;
-        string _ADDR1POSTALCODE;
-        int _ADDR1COUNTRYID;
-        string _ADDR1COUNTRYNAME;
-        string _ADDR1COUNTRYCODE;
-        int _ADDR1STATEID;
-        string _ADDR1STATECODE;
-        string _ADDR1STATENAME;
-        int _ADDR1CITYID;
-        string _ADDR1CITYCODE;
+        string _ADDR1POSTALCODE; 
+        string _ADDR1COUNTRYNAME;  
+        string _ADDR1STATENAME; 
         string _ADDR1CITYNAME;
         bool _ADDR2SAMEASADDR1;
         string _ADDR2COMPLEXNAME;
         string _ADDR2STREETNO;
         string _ADDR2STREETNAME;
-        string _ADDR2POSTALCODE;
-        int _ADDR2COUNTRYID;
-        string _ADDR2COUNTRYNAME;
-        string _ADDR2COUNTRYCODE;
-        int _ADDR2STATEID;
-        string _ADDR2STATECODE;
-        string _ADDR2STATENAME;
-        int _ADDR2CITYID;
-        string _ADDR2CITYCODE;
+        string _ADDR2POSTALCODE; 
+        string _ADDR2COUNTRYNAME;  
+        string _ADDR2STATENAME; 
         string _ADDR2CITYNAME;
         string _WORKPHONE;
         string _HOMEPHONE;
@@ -83,7 +71,7 @@ namespace DataModel.Master
         string _COMPCODE;
         string _COMPNAME;
 
-        public int EMPID
+        public Int64 EMPID
         {
             get
             {
@@ -109,16 +97,16 @@ namespace DataModel.Master
             }
         }
 
-        public string TITLE
+        public string NTITLE
         {
             get
             {
-                return _TITLE;
+                return _NTITLE;
             }
 
             set
             {
-                _TITLE = value;
+                _NTITLE = value;
             }
         }
 
@@ -341,20 +329,7 @@ namespace DataModel.Master
             {
                 _ADDR1POSTALCODE = value;
             }
-        }
-
-        public int ADDR1COUNTRYID
-        {
-            get
-            {
-                return _ADDR1COUNTRYID;
-            }
-
-            set
-            {
-                _ADDR1COUNTRYID = value;
-            }
-        }
+        } 
 
         public string ADDR1COUNTRYNAME
         {
@@ -368,46 +343,8 @@ namespace DataModel.Master
                 _ADDR1COUNTRYNAME = value;
             }
         }
-
-        public string ADDR1COUNTRYCODE
-        {
-            get
-            {
-                return _ADDR1COUNTRYCODE;
-            }
-
-            set
-            {
-                _ADDR1COUNTRYCODE = value;
-            }
-        }
-
-        public int ADDR1STATEID
-        {
-            get
-            {
-                return _ADDR1STATEID;
-            }
-
-            set
-            {
-                _ADDR1STATEID = value;
-            }
-        }
-
-        public string ADDR1STATECODE
-        {
-            get
-            {
-                return _ADDR1STATECODE;
-            }
-
-            set
-            {
-                _ADDR1STATECODE = value;
-            }
-        }
-
+         
+         
         public string ADDR1STATENAME
         {
             get
@@ -419,33 +356,7 @@ namespace DataModel.Master
             {
                 _ADDR1STATENAME = value;
             }
-        }
-
-        public int ADDR1CITYID
-        {
-            get
-            {
-                return _ADDR1CITYID;
-            }
-
-            set
-            {
-                _ADDR1CITYID = value;
-            }
-        }
-
-        public string ADDR1CITYCODE
-        {
-            get
-            {
-                return _ADDR1CITYCODE;
-            }
-
-            set
-            {
-                _ADDR1CITYCODE = value;
-            }
-        }
+        } 
 
         public string ADDR1CITYNAME
         {
@@ -523,20 +434,7 @@ namespace DataModel.Master
             {
                 _ADDR2POSTALCODE = value;
             }
-        }
-
-        public int ADDR2COUNTRYID
-        {
-            get
-            {
-                return _ADDR2COUNTRYID;
-            }
-
-            set
-            {
-                _ADDR2COUNTRYID = value;
-            }
-        }
+        } 
 
         public string ADDR2COUNTRYNAME
         {
@@ -549,47 +447,7 @@ namespace DataModel.Master
             {
                 _ADDR2COUNTRYNAME = value;
             }
-        }
-
-        public string ADDR2COUNTRYCODE
-        {
-            get
-            {
-                return _ADDR2COUNTRYCODE;
-            }
-
-            set
-            {
-                _ADDR2COUNTRYCODE = value;
-            }
-        }
-
-        public int ADDR2STATEID
-        {
-            get
-            {
-                return _ADDR2STATEID;
-            }
-
-            set
-            {
-                _ADDR2STATEID = value;
-            }
-        }
-
-        public string ADDR2STATECODE
-        {
-            get
-            {
-                return _ADDR2STATECODE;
-            }
-
-            set
-            {
-                _ADDR2STATECODE = value;
-            }
-        }
-
+        } 
         public string ADDR2STATENAME
         {
             get
@@ -601,33 +459,7 @@ namespace DataModel.Master
             {
                 _ADDR2STATENAME = value;
             }
-        }
-
-        public int ADDR2CITYID
-        {
-            get
-            {
-                return _ADDR2CITYID;
-            }
-
-            set
-            {
-                _ADDR2CITYID = value;
-            }
-        }
-
-        public string ADDR2CITYCODE
-        {
-            get
-            {
-                return _ADDR2CITYCODE;
-            }
-
-            set
-            {
-                _ADDR2CITYCODE = value;
-            }
-        }
+        } 
 
         public string ADDR2CITYNAME
         {
@@ -987,7 +819,7 @@ namespace DataModel.Master
         }
 
 
-        public Result.Result Save(Employee obj, int USERID, XElement LOGXML = null)
+        public Result.Result Save(Employee obj,int COMPID, int USERID, XElement LOGXML = null)
         {
             try
             {
@@ -995,7 +827,7 @@ namespace DataModel.Master
                     obj.IFLAG, 
                     obj.EMPID, 
                     obj.EMPCODE == null ? "" : obj.EMPCODE, 
-                    obj.TITLE == null ? "" : obj.TITLE,
+                    obj.NTITLE == null ? "" : obj.NTITLE,
                     obj.FIRSTNAME == null ? "" : obj.FIRSTNAME,
                     obj.MIDDLENAME == null ? "" : obj.MIDDLENAME,
                     obj.LASTNAME == null ? "" : obj.LASTNAME,
@@ -1008,7 +840,7 @@ namespace DataModel.Master
                     obj.GENDER == null ? "" : obj.GENDER,
                     obj.MARITALSTATUS == null ? "" : obj.MARITALSTATUS,
                     obj.DEPENDENT == null ? "" : obj.DEPENDENT,
-                    obj.YEARSOFSERVICE, 
+                    obj.YEARSOFSERVICE == null ? "" : obj.YEARSOFSERVICE,
                     obj.ADDR1COMPLEXNAME == null ? "" : obj.ADDR1COMPLEXNAME,
                     obj.ADDR1STREETNO == null ? "" : obj.ADDR1STREETNO,
                     obj.ADDR1STREETNAME == null ? "" : obj.ADDR1STREETNAME,
@@ -1041,11 +873,11 @@ namespace DataModel.Master
                     obj.AVGHOURPERDAY,
                     obj.HOURPERWEEK,
                     obj.DAYSPERMONTH,
-                    obj.WEEKDAYS,
+                    obj.WEEKDAYS == null ? "" : obj.WEEKDAYS,
                     obj.ANNUALSTANDARDLEAVE,
                     obj.ANNUALSICKLEAVE, 
-                    obj.ANNUALOPTIONALLEAVE, 
-                    obj.COMPID, 
+                    obj.ANNUALOPTIONALLEAVE,
+                    COMPID, 
                     obj.ISACTIVE, 
                     USERID, 
                     LOGXML);
@@ -1068,10 +900,10 @@ namespace DataModel.Master
                     (from s in dt.AsEnumerable()
                      select new Employee
                      {
-                         EMPID = s.Field<int>("EMPID"),
+                         EMPID = s.Field<Int64>("EMPID"),
                          COMPID = s.Field<int>("COMPID"),
                          EMPCODE = s.Field<string>("EMPCODE"),
-                         TITLE = s.Field<string>("TITLE"),
+                         NTITLE = s.Field<string>("TITLE"),
                          FIRSTNAME = s.Field<string>("FIRSTNAME"),
                          MIDDLENAME = s.Field<string>("MIDDLENAME"),
                          LASTNAME = s.Field<string>("LASTNAME"),
@@ -1084,36 +916,24 @@ namespace DataModel.Master
                          GENDER = s.Field<string>("GENDER"),
                          MARITALSTATUS = s.Field<string>("MARITALSTATUS"),
                          DEPENDENT = s.Field<string>("DEPENDENT"),
-                         YEARSOFSERVICE = s.Field<string>("YEARSOFSERVICE"), 
+                         YEARSOFSERVICE = s.Field<string>("YEARSOFSERVICE"),
                          ADDR1COMPLEXNAME = s.Field<string>("ADDR1COMPLEXNAME"),
                          ADDR1STREETNO = s.Field<string>("ADDR1STREETNO"),
                          ADDR1STREETNAME = s.Field<string>("ADDR1STREETNAME"),
                          ADDR1POSTALCODE = s.Field<string>("ADDR1POSTALCODE"),
-                         ADDR1COUNTRYID = s.Field<int>("ADDR1COUNTRYID"),
                          ADDR1COUNTRYNAME = s.Field<string>("ADDR1COUNTRYNAME"),
-                         ADDR1COUNTRYCODE = s.Field<string>("ADDR1COUNTRYCODE"),
-                         ADDR1STATEID = s.Field<int>("ADDR1STATEID"),
-                         ADDR1STATECODE = s.Field<string>("ADDR1STATECODE"),
                          ADDR1STATENAME = s.Field<string>("ADDR1STATENAME"),
-                         ADDR1CITYID = s.Field<int>("ADDR1CITYID"),
-                         ADDR1CITYCODE = s.Field<string>("ADDR1CITYCODE"),
                          ADDR1CITYNAME = s.Field<string>("ADDR1CITYNAME"),
                          ADDR2COMPLEXNAME = s.Field<string>("ADDR2COMPLEXNAME"),
                          ADDR2STREETNO = s.Field<string>("ADDR2STREETNO"),
                          ADDR2STREETNAME = s.Field<string>("ADDR2STREETNAME"),
                          ADDR2POSTALCODE = s.Field<string>("ADDR2POSTALCODE"),
-                         ADDR2COUNTRYID = s.Field<int>("ADDR2COUNTRYID"),
                          ADDR2COUNTRYNAME = s.Field<string>("ADDR2COUNTRYNAME"),
-                         ADDR2COUNTRYCODE = s.Field<string>("ADDR2COUNTRYCODE"),
-                         ADDR2STATEID = s.Field<int>("ADDR2STATEID"),
-                         ADDR2STATECODE = s.Field<string>("ADDR2STATECODE"),
                          ADDR2STATENAME = s.Field<string>("ADDR2STATENAME"),
-                         ADDR2CITYID = s.Field<int>("ADDR2CITYID"),
-                         ADDR2CITYCODE = s.Field<string>("ADDR2CITYCODE"),
                          ADDR2CITYNAME = s.Field<string>("ADDR2CITYNAME"),
                          WORKPHONE = s.Field<string>("WORKPHONE"),
                          HOMEPHONE = s.Field<string>("HOMEPHONE"),
-                         CELLNO = s.Field<string>("CELLNO"), 
+                         CELLNO = s.Field<string>("CELLNO"),
                          FAXNO = s.Field<string>("FAXNO"),
                          SPOUSENAME = s.Field<string>("SPOUSENAME"),
                          SPOUSENO = s.Field<string>("SPOUSENO"),
@@ -1132,8 +952,6 @@ namespace DataModel.Master
                          ANNUALSTANDARDLEAVE = s.Field<decimal>("ANNUALSTANDARDLEAVE"),
                          ANNUALSICKLEAVE = s.Field<decimal>("ANNUALSICKLEAVE"),
                          ANNUALOPTIONALLEAVE = s.Field<decimal>("ANNUALOPTIONALLEAVE"),
-                         COMPCODE = s.Field<string>("COMPCODE"),
-                         COMPNAME = s.Field<string>("COMPNAME"),
                          ISACTIVE = s.Field<bool>("ISACTIVE")
                      }).ToList() : null;
 
