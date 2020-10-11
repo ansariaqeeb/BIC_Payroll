@@ -1,46 +1,39 @@
-﻿@model  DataModel.Master.PaySlipHead
+﻿@model DataModel.Master.EmployeePaySlipMapping
 @{
-    ViewBag.Title = "Edit Pay Slip Head";
-    Layout = "~/Views/Shared/_Layout.cshtml"; ;
+    Layout = null; ;
 }
-<form id="frmAddPaySlipHead" class="form-horizontal">
+<style type="text/css">
+    .jarviswidget > div {
+        border-style: none !important;
+    }
+</style>
+<form id="frmAddPaySlipMapping" class="form-horizontal">
     <div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
         <div role="content">
             <div class="widget-body no-padding">
                 <div class="tab-content padding-10">
                     <div class="tab-pane fade in active" id="hr1">
-                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                        <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
                             <fieldset>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Pay Slip Head Code<span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
                                         <input type="hidden" name="IFLAG" value="E" />
-                                        <input type="hidden" name="HEADID" id="HEADID" value="@Model.HEADID">   
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Pay Slip Head Code" value="@Model.HEADCODE" c type="text" name="HEADCODE" id="HEADCODE">
+                                        <input type="hidden" name="MID" id="MID" value="@Model.MID">
+                                        <input type="hidden" name="EMPID" id="EMPID" value="@Model.EMPID">
+                                        <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" value="@Model.HEADID" data-desc="@Model.HEADCODE" placeholder="Select Pay Slip" type="text" name="HEADID" id="HEADID">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Head Type <span class="red clsStar"><sub>*</sub></span></label>
+                                    <label class="col-md-4 control-label text-left">Transaction Type <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Head Type" type="hidden" value="@Model.TRANSACTIONTYPEID" data-desc="@Model.TRANSACTIONTYPECODE" name="TRANSACTIONTYPEID" id="TRANSACTIONTYPEID">
+                                        <input class="form-control" readonly="readonly" autocomplete="off" placeholder="Enter Type" value="@Model.STATUSCODE" type="text" name="TRANSACTIONTYPE" id="TRANSACTIONTYPE">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Affect National Pay</label>
+                                    <label class="col-md-4 control-label text-left">Calculation Sequence <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="ISAFFECTNATIONALPAY" class="cbox chkbox" name="ISAFFECTNATIONALPAY" value="@Model.ISAFFECTNATIONALPAY.ToString()" checked="@Model.ISAFFECTNATIONALPAY">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Affect Pay Slip</label>
-                                    <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="ISAFFECTPAYSLIP" class="cbox chkbox" name="ISAFFECTPAYSLIP" value="@Model.ISAFFECTPAYSLIP.ToString()" checked="@Model.ISAFFECTPAYSLIP">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Print on Pay Slip</label>
-                                    <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="PRINTONPS" class="cbox chkbox" name="PRINTONPS" value="@Model.PRINTONPS.ToString()" checked="@Model.PRINTONPS">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Calculation Sequence" value="@Model.CALSEQUENCE" maxlength="20" type="text" name="CALSEQUENCE" id="CALSEQUENCE">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -56,136 +49,81 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Type Of Input <span class="red clsStar"><sub>*</sub></span></label>
+                                    <label class="col-md-4 control-label text-left">Amount <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
-                                        <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Type Of Input" type="hidden" name="TYPEOFINPUTID" id="TYPEOFINPUTID" value="@Model.TYPEOFINPUTID" data-desc="@Model.TYPEOFINPUTDESC">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Amount" maxlength="20" type="text" value="@Model.AMOUNT" name="AMOUNT" id="AMOUNT">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Rate </label>
-                                    <div class="col-md-8">
-                                        <input class="width-100 col-md-12 no-padding select2" autocomplete="off" placeholder="Select Rate" type="hidden" name="RATEID" id="RATEID" value="@Model.RATEID" data-desc="@Model.RATEDESC">
-                                    </div>
-                                </div> 
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Description <span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control clsreq" autocomplete="off" placeholder="Enter Description" type="text" name="DESC" id="DESC">@Model.DESC</textarea>
-                                    </div>
-                                </div>
-                               
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Is Active</label>
                                     <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="ISACTIVE" class="cbox chkbox" name="ISACTIVE" value="@Model.ISACTIVE.ToString()" checked="@Model.ISACTIVE">
+                                        <input role="checkbox" type="checkbox" id="ISACTIVE" class="cbox" name="ISACTIVE" value="@Model.ISACTIVE.ToString()" checked="@Model.ISACTIVE">
                                     </div>
                                 </div>
                             </fieldset>
                         </article>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="widget-footer">
-        <a id="btnCancel" class="btn btn-xs btn-default" href="/PaySlipHead/PaySlipHeadDtl">
-            <i class="fa fa-times"></i>
+    <div class="modal-footer">
+        <button id="btnCancelmaping" type="button" class="btn btn-default" data-dismiss="modal">
             Cancel
-        </a>&nbsp;
-        <button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button">
-            <i class="fa fa-save"></i>
-            Submit
+        </button>
+        <button id="btnSave" type="button" class="btn btn-primary">
+            Save
         </button>
     </div>
 </form>
-
-
-<script src="~/js/libs/jquery-2.1.1.min.js"></script>
-<script src="~/js/libs/jquery-ui-1.10.3.min.js"></script>
 <link href="~/css/select2.min.css" rel="stylesheet" />
 <script src="~/js/plugin/select2/select2.min.js"></script>
-<script src="~/js/toastr.min.js"></script>
 <script src="~/js/ProjectCommon.js"></script>
 <script type="text/javascript">
 
     (function ($) {
-        $(".breadcrumb").html('<li id="breadcrumb1">Edit Pay Slip Transaction</li>');
+        $(".breadcrumb").html('<li id="breadcrumb1">Add Pay slip Head</li>');
 
-        $('.chkbox').on('click', function () {
+        var IsCalculation = $('#IsCalculation').is(':checked');
+
+        if (IsCalculation) {
+            $('#FORMULA').attr('readonly', false);
+            $('#AMOUNT').attr('readonly', true);
+        } else {
+            $('#FORMULA').attr('readonly', true);
+            $('#AMOUNT').attr('readonly', false);
+        }
+
+        $('#ISACTIVE').on('click', function () {
             var isvalue = $(this).is(':checked');
             $(this).val(isvalue);
         });
 
-        $("#TRANSACTIONTYPEID").select2({
+        $('#IsCalculation').on('click', function () {
+            var isvalue = $(this).is(':checked');
+            $(this).val(isvalue);
+            $('#FORMULA').val('');
+            $('#AMOUNT').val('');
+            if (isvalue) {
+                $('#FORMULA').attr('readonly', false);
+                $('#AMOUNT').attr('readonly', true);
+            } else {
+                $('#FORMULA').attr('readonly', true);
+                $('#AMOUNT').attr('readonly', false);
+            }
+        });
+
+        $("#HEADID").select2({
             multiple: false,
             allowClear: false,
             ajax: {
                 cache: true,
-                url: "/CommonLibrary/_StatusMaster",
+                url: "/CommonLibrary/_PayHeads",
                 dataType: 'json',
                 quietMillis: 100,
                 data: function (term) {
                     return {
-                        TypeId: 5,
-                        StatusId: 0,
-                        description:term
-                    };
-                },
-                results: function (data) {
-                    return { results: data };
-                }
-            },
-            initSelection: function (element, callback) {
-                var id = $("#TRANSACTIONTYPEID").val();
-                var text = $("#TRANSACTIONTYPEID").attr('data-desc');
-
-                $("#TRANSACTIONTYPEID").select2('data', { id: id, text: text });
-            }
-        }).on('change', function () {
-
-        });
-
-        $("#TYPEOFINPUTID").select2({
-            multiple: false,
-            allowClear: false,
-            ajax: {
-                cache: true,
-                url: "/CommonLibrary/_StatusMaster",
-                dataType: 'json',
-                quietMillis: 100,
-                data: function (term) {
-                    return {
-                        TypeId: 7,
-                        StatusId: 0,
-                        description: term
-                    };
-                },
-                results: function (data) {
-                    return { results: data };
-                }
-            },
-            initSelection: function (element, callback) {
-                var id = $("#TYPEOFINPUTID").val();
-                var text = $("#TYPEOFINPUTID").attr('data-desc');
-
-                $("#TYPEOFINPUTID").select2('data', { id: id, text: text });
-            }
-        }).on('change', function () {
-
-        });
-
-        $("#RATEID").select2({
-            multiple: false,
-            allowClear: true,
-            ajax: {
-                cache: true,
-                url: "/CommonLibrary/_RateMaster",
-                dataType: 'json',
-                quietMillis: 100,
-                data: function (term) {
-                    return {
-                        rateid: 0,
+                        headId: 0,
                         desc: term
                     };
                 },
@@ -194,18 +132,19 @@
                 }
             },
             initSelection: function (element, callback) {
-                var id = $("#RATEID").val();
-                var text = $("#RATEID").attr('data-desc');
+                var id = $("#HEADID").val();
+                var text = $("#HEADID").attr('data-desc');
 
-                $("#RATEID").select2('data', { id: id, text: text });
+                $("#HEADID").select2('data', { id: id, text: text });
             }
         }).on('change', function () {
-
+            var data = $("#HEADID").select2('data');
+            $('#TRANSACTIONTYPE').val(data.transType);
         });
 
 
         $("#btnSave").on('click', function () {
-            PaySlipHeadSave('frmAddPaySlipHead', 'PaySlipHead', 'AddPaySlipHead');
+            PaySlipHeadSave('frmAddPaySlipMapping', 'PaySlipEmpMap', 'AddPaySlipMapping');
         });
 
         function PaySlipHeadSave(FORMID, Controller, Action) {
@@ -267,9 +206,11 @@
                     var TITLE = res.Title;
                     var TYPE = res.Type;
                     if (errid > 0) {
-
                         $.c9Message(errmsg, TITLE, TYPE);
-                        window.location = $('#btnCancel').attr('href');
+                        $('#btnCancelmaping').click();
+                        
+                        loadEmpPayStr(@Model.EMPID);
+                        $('.modal-backdrop').remove();
                     } else {
                         $('#' + TransSaveBtnID).attr('disabled', false);
                         $.c9Message(errmsg, TITLE, TYPE);
@@ -279,7 +220,6 @@
         }
     }(jQuery));
 
-   
 
 </script>
 

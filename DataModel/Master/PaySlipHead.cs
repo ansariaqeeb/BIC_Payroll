@@ -19,7 +19,16 @@ namespace DataModel.Master
         string _DESC;
         int _TRANSACTIONTYPEID;
         string _TRANSACTIONTYPECODE;
+        bool _ISAFFECTNATIONALPAY;
+        bool _ISAFFECTPAYSLIP;
+        bool _PRINTONPS;
+        int _TYPEOFINPUTID;
+        string _TYPEOFINPUTDESC;
+        int _RATEID;
+        string _RATEDESC;
         bool _ISACTIVE;
+        string _FORMULA;
+        bool _IsCalculation;
         
 
         public string IFLAG
@@ -113,6 +122,123 @@ namespace DataModel.Master
             }
         }
 
+        public string FORMULA
+        {
+            get
+            {
+                return _FORMULA;
+            }
+
+            set
+            {
+                _FORMULA = value;
+            }
+        }
+
+        public bool IsCalculation
+        {
+            get
+            {
+                return _IsCalculation;
+            }
+
+            set
+            {
+                _IsCalculation = value;
+            }
+        }
+
+        public bool ISAFFECTNATIONALPAY
+        {
+            get
+            {
+                return _ISAFFECTNATIONALPAY;
+            }
+
+            set
+            {
+                _ISAFFECTNATIONALPAY = value;
+            }
+        }
+
+        public bool ISAFFECTPAYSLIP
+        {
+            get
+            {
+                return _ISAFFECTPAYSLIP;
+            }
+
+            set
+            {
+                _ISAFFECTPAYSLIP = value;
+            }
+        }
+
+        public bool PRINTONPS
+        {
+            get
+            {
+                return _PRINTONPS;
+            }
+
+            set
+            {
+                _PRINTONPS = value;
+            }
+        }
+
+        public int TYPEOFINPUTID
+        {
+            get
+            {
+                return _TYPEOFINPUTID;
+            }
+
+            set
+            {
+                _TYPEOFINPUTID = value;
+            }
+        }
+
+        public string TYPEOFINPUTDESC
+        {
+            get
+            {
+                return _TYPEOFINPUTDESC;
+            }
+
+            set
+            {
+                _TYPEOFINPUTDESC = value;
+            }
+        }
+
+        public int RATEID
+        {
+            get
+            {
+                return _RATEID;
+            }
+
+            set
+            {
+                _RATEID = value;
+            }
+        }
+
+        public string RATEDESC
+        {
+            get
+            {
+                return _RATEDESC;
+            }
+
+            set
+            {
+                _RATEDESC = value;
+            }
+        }
+
         #endregion
         #region Method
         public PaySlipHead()
@@ -124,8 +250,8 @@ namespace DataModel.Master
         {
             try
             {
-                xdoc = DBXML.PAYSLIPHEADS_c(obj.IFLAG, obj.HEADID, obj.HEADCODE == null ? "" : obj.HEADCODE, obj.TRANSACTIONTYPEID,
-                    obj.DESC == null ? "" : obj.DESC, obj.ISACTIVE, COMPID, USERID, LOGXML);
+                xdoc = DBXML.PAYSLIPHEADS_c(obj.IFLAG, obj.HEADID, obj.HEADCODE == null ? "" : obj.HEADCODE, obj.TRANSACTIONTYPEID,obj.FORMULA==null?"":obj.FORMULA,obj.IsCalculation,
+                    obj.DESC == null ? "" : obj.DESC, obj.ISACTIVE,obj.ISAFFECTNATIONALPAY,obj.ISAFFECTPAYSLIP,obj.PRINTONPS,obj.TYPEOFINPUTID,obj.RATEID, COMPID, USERID, LOGXML);
                 return ReadBIErrors(Convert.ToString(SqlExe.GetXml(xdoc)));
             }
             catch (Exception ex)
@@ -150,6 +276,15 @@ namespace DataModel.Master
                          DESC = s.Field<string>("DESC"),
                          TRANSACTIONTYPEID = s.Field<int>("TRANSACTIONTYPE"),
                          TRANSACTIONTYPECODE = s.Field<string>("STATUSCODE"),
+                         FORMULA = s.Field<string>("FORMULA"),
+                         IsCalculation = s.Field<bool>("IsCalculation"),
+                         ISAFFECTNATIONALPAY = s.Field<bool>("ISAFFECTNATIONALPAY"),
+                         ISAFFECTPAYSLIP = s.Field<bool>("ISAFFECTPAYSLIP"),
+                         PRINTONPS = s.Field<bool>("PRINTONPS"),
+                         TYPEOFINPUTID = s.Field<int>("TYPEOFINPUTID"),
+                         TYPEOFINPUTDESC = s.Field<string>("TYPEOFINPUTDESC"),
+                         RATEID = s.Field<int>("RATEID"),
+                         RATEDESC = s.Field<string>("RATEDESC"),
                          ISACTIVE = s.Field<bool>("ISACTIVE"),
                      }).ToList() : null;
 
@@ -160,7 +295,32 @@ namespace DataModel.Master
                 throw ex;
             }
         }
-         
+
+
+        public object fillPaySlipHead(int HEADID, string HEADCODE, string DESC, int COMPID, int TRANSACTIONTYPEID, int USERID, XElement LOGXML = null)
+        {
+            try
+            {
+
+                xdoc = DBXML.PAYSLIPHEADS_g(HEADID, HEADCODE, DESC, COMPID, TRANSACTIONTYPEID, USERID, LOGXML);
+                DataTable dt = SqlExe.GetDT(xdoc);
+                var dbResult = (from row in dt.AsEnumerable()
+                                select new
+                                {
+                                    id = row.Field<Int64>("HEADID"),
+                                    text = row.Field<string>("HEADCODE"),
+                                    transType = row.Field<string>("STATUSCODE"),
+                                    FORMULA = row.Field<string>("FORMULA"),
+                                    IsCalculation = row.Field<bool>("IsCalculation")
+
+                                }).ToList();
+                return dbResult;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
     }
 }

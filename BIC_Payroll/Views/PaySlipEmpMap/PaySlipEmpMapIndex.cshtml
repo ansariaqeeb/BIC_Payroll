@@ -1,0 +1,175 @@
+﻿@model List<DataModel.Master.EmployeePaySlipMapping>
+@{
+    ViewBag.Title = "Pay Slip Mapping";
+    Layout = null ;
+}
+
+<div class="well">
+    <div class="btn-group btn-group-justified">
+        <a href="#" @*href="/PaySlipEmpMap/AddPaySlipMapping/@ViewBag.EMPID"*@ id="btnAddForm" class="btn btn-default btn" data-toggle="modal" data-target="#myModal">Map Pay Slip Head</a>
+    </div>
+</div>
+<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Head Code</th>
+            <th>Transaction Type</th>
+            <th>Sequence</th>
+            <th>Amount</th>
+            <th>Has Calculation</th>
+            <th>Formula</th>
+            <th>Active</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-xs btn-default btnedit" data-mid="@item.MID" title="Edit Mapping" data-original-title="Edit Row" href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></a>
+                    <a class="btn btn-xs btn-default btndelete" data-mid="@item.MID" title="Delete Mapping" data-original-title="Edit Row" href="#" ><i class="fa fa-trash-o"></i></a>
+                </td>
+                <td>@item.HEADCODE</td>
+                <td>@item.STATUSCODE</td>
+                <td>@item.CALSEQUENCE</td> 
+                <td>@item.AMOUNT</td>
+                <td>
+                    @if (item.IsCalculation)
+                    {
+                        <i class="fa fa-check green" style="color:green"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-times" style="color:red"></i>
+                    }
+                </td>
+                <td>@item.FORMULA</td>
+                <td>
+                    @if (item.ISACTIVE)
+                    {
+                        <i class="fa fa-check green" style="color:green"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-times" style="color:red"></i>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Pay Slip Head Mapping</h4>
+            </div>
+            <div class="modal-body row" id="modelbody"> 
+
+            </div>
+           
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal --> 
+@*<script src="~/js/libs/jquery-2.1.1.min.js"></script>*@ 
+<script type="text/javascript">
+
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+    $(document).ready(function () {
+        $(".breadcrumb").html('<li id="breadcrumb1">Pay Slip Head Details</li>');
+       
+        $('#btnAddForm').on('click', function () {
+            var url = '/PaySlipEmpMap/AddPaySlipMapping?Id=' + @ViewBag.EMPID;
+            $.get(url, function (data) {
+                $('#modelbody').html(data);
+            });
+        });
+
+        $('.btnedit').on('click', function () {
+            var id=$(this).attr('data-MID');
+            var url = '/PaySlipEmpMap/EditPaySlipMapping?Id=' + id;
+            $.get(url, function (data) {
+                $('#modelbody').html(data);
+            });
+        });
+
+        $('.btnedit').on('click', function () {
+            var id=$(this).attr('data-MID');
+            var url = '/PaySlipEmpMap/EditPaySlipMapping?Id=' + id;
+            $.get(url, function (data) {
+                $('#modelbody').html(data);
+            });
+        });
+
+
+        $('.btndelete').on('click', function () {
+            var id=$(this).attr('data-MID');
+             
+            var result = confirm("Are you sure, you want to delete pay slip head?");
+            if (result == true) {
+                $.get('/PaySlipEmpMap/Delete', { Id: id }, function (res) {
+
+                    var errid = res.ResultId;
+                    var errmsg = res.Message;
+                    var TITLE = res.Title;
+                    var TYPE = res.Type;
+                    if (errid > 0) {
+                        $.c9Message(errmsg, TITLE, TYPE); 
+                        loadEmpPayStr(@ViewBag.EMPID);
+                    } else {
+                        $.c9Message(errmsg, TITLE, TYPE); 
+                    } 
+                });
+            } else {
+                        
+            }
+
+
+            @*bootbox.confirm({
+                title: 'Confirm delete',
+                message: "Are you sure, you want to delete pay slip head?",
+                buttons: {
+                    'confirm': {
+                        label: 'Confirm',
+                        className: 'btn-sm btn-info'
+                    },
+
+                    'cancel': {
+                        label: 'Cancel',
+                        className: 'btn-sm btn-danger'
+                    },
+                },
+                callback: function (result) {
+                    if (result == true) {
+                        $.get('/PaySlipEmpMap/Delete', { Id: id }, function (res) {
+
+                            var errid = res.ResultId;
+                            var errmsg = res.Message;
+                            var TITLE = res.Title;
+                            var TYPE = res.Type;
+                            if (errid > 0) {
+                                $.c9Message(errmsg, TITLE, TYPE); 
+                                loadEmpPayStr(@ViewBag.EMPID);
+                            } else {
+                                $.c9Message(errmsg, TITLE, TYPE); 
+                            } 
+                        });
+                    } else {
+                        
+                    }
+                }
+            });*@
+        });
+     
+    })
+
+
+</script>
+
+

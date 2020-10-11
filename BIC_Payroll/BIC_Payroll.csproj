@@ -122,7 +122,11 @@
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\invoice.min.css" />
     <Content Include="css\lockscreen.min.css" />
+    <Content Include="css\select2-spinner.gif" />
+    <Content Include="css\select2.css" />
     <Content Include="css\select2.min.css" />
+    <Content Include="css\select2.png" />
+    <Content Include="css\select2x2.png" />
     <Content Include="css\smartadmin-production-plugins.min.css" />
     <Content Include="css\smartadmin-production.min.css" />
     <Content Include="css\smartadmin-rtl.min.css" />
@@ -732,6 +736,7 @@
     <Content Include="js\plugin\noUiSlider\jquery.nouislider.min.js" />
     <Content Include="js\plugin\pace\pace.min.js" />
     <Content Include="js\plugin\select2\readme.txt" />
+    <Content Include="js\plugin\select2\select2.js" />
     <Content Include="js\plugin\select2\select2.min.js" />
     <Content Include="js\plugin\selectToUISlider\selectToUISlider.jQuery.min.js" />
     <Content Include="js\plugin\slimscroll\jquery.slimscroll.min.js" />
@@ -776,6 +781,9 @@
     <Compile Include="Controllers\Employee\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaySlip\PaySlipHeadController.cs" />
+    <Compile Include="Controllers\PaySpliEmployeeMap\PaySlipEmpMapController.cs" />
+    <Compile Include="Controllers\ProcessPay\ProcessPayController.cs" />
+    <Compile Include="Controllers\RateController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\CustomAuthorizationAttribute.cs" />
     <Compile Include="Filters\CustomExceptionAttribute.cs" />
@@ -832,6 +840,15 @@
     <Content Include="Views\PaySlipHead\AddPaySlipHead.cshtml" />
     <Content Include="Views\PaySlipHead\Index.cshtml" />
     <Content Include="Views\PaySlipHead\EditPaySlipHead.cshtml" />
+    <Content Include="Views\PaySlipEmpMap\PaySlipEmpMapIndex.cshtml" />
+    <Content Include="Views\PaySlipEmpMap\EditPaySlipHead.cshtml" />
+    <Content Include="Views\PaySlipEmpMap\AddPaySlipMapping.cshtml" />
+    <Content Include="Views\PaySlipEmpMap\EditPaySlipMapping.cshtml" />
+    <Content Include="Views\Rate\RateIndex.cshtml" />
+    <Content Include="Views\Rate\AddRate.cshtml" />
+    <Content Include="Views\Rate\EditRate.cshtml" />
+    <Content Include="Views\ProcessPay\ProcessPayIndex.cshtml" />
+    <Content Include="Views\ProcessPay\GetEmpPaySlip.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

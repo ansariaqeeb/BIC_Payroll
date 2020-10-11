@@ -161,6 +161,12 @@
                 <li class="clsMenu">
                     <a href="/PaySlipHead/PaySlipHeadDtl"><i class="fa fa-lg fa-fw fa-file-text-o"></i> <span class="menu-item-parent">Pay Slip Heads</span></a>
                 </li>
+                <li class="clsMenu">
+                    <a href="/Rate/RateDtl"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Rate</span></a>
+                </li>
+                <li class="clsMenu">
+                    <a href="/ProcessPay/ProcessPayDtl"><i class="fa fa-lg fa-fw fa-repeat"></i> <span class="menu-item-parent">Process Payslip</span></a>
+                </li>
             </ul>
             
         </nav>
@@ -255,7 +261,6 @@
     <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
     @*<script data-pace-options='{ "restartOnRequestAfter": true }' src="~/js/plugin/pace/pace.min.js"></script>*@
 
-    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
         if (!window.jQuery) {
@@ -301,7 +306,7 @@
 
     <![endif]-->
     <!-- Demo purpose only -->
-    <script src="~/js/demo.min.js"></script>
+   @* <script src="~/js/demo.min.js"></script>*@
 
     <!-- MAIN APP JS FILE -->
     <script src="~/js/app.min.js"></script>
@@ -354,7 +359,10 @@
             weekday[6] = "Saturday";
 
             var n = weekday[d.getDay()]; 
-            var date = n+' - '+d.getDate()+'/'+d.getMonth()+'/'+d.getYear()
+            formatDate = (d.getMonth() + 1) + '/' + 
+                         d.getDate() + '/' + 
+                         d.getFullYear(); 
+            var date = n+' - '+formatDate
 
             $("#dayDate").html(date);
         }

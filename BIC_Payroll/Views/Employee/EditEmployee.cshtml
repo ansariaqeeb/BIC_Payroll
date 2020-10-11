@@ -1,6 +1,6 @@
 ﻿@model DataModel.Master.Employee
 @{
-    ViewBag.Title = "Add Employee";
+    ViewBag.Title = "Edit Employee";
     Layout = "~/Views/Shared/_Layout.cshtml"; ;
 }
 <form id="frmAddEmployee" class="form-horizontal">
@@ -21,6 +21,9 @@
                 </li>
                 <li>
                     <a data-toggle="tab" href="#hr5"><span class="hidden-mobile hidden-tablet"> Leave Details </span></a>
+                </li>
+                <li>
+                    <a data-toggle="tab" href="#hr6"><span class="hidden-mobile hidden-tablet"> Pay Structure </span></a>
                 </li>
             </ul>
         </header>
@@ -65,13 +68,19 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Start Date</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select Start Date" class="form-control datepicker"  value="@Model.STARTDATE.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
+                                        @{ 
+                                            string startDate = Model.STARTDATE.ToString("dd-MMM-yyyy") == "01-Jan-0001" ? "" : Model.STARTDATE.ToString("dd-MMM-yyyy");
+                                        }
+                                        <input type="text" name="mydate" placeholder="Select Start Date" class="form-control datepicker"  value="@startDate" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">DOB</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="mydate" placeholder="Select Date Of Birth" class="form-control datepicker" value="@Model.DOB.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
+                                        @{
+                                            string dob = Model.DOB.ToString("dd-MMM-yyyy") == "01-Jan-0001" ? "" : Model.DOB.ToString("dd-MMM-yyyy");
+                                        }
+                                        <input type="text" name="mydate" placeholder="Select Date Of Birth" class="form-control datepicker" value="@dob" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -294,71 +303,76 @@
                     </div>
                     <div class="tab-pane fade" id="hr4">
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
-                            <fieldset>
+                            <fieldset> 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Daily Rate </label>
+                                    <label class="col-md-4 control-label text-left">Average Hours Per Day</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Daily Rate" type="text" value="@Model.DAILYRATE" name="DAILYRATE" id="DAILYRATE">
+                                        <input class="form-control text-right" autocomplete="off" placeholder="Enter Average Hours Per Day" type="text" value="@Model.AVGHOURPERDAY" name="AVGHOURPERDAY" id="AVGHOURPERDAY">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Weekly Rate</label>
+                                    <label class="col-md-4 control-label text-left">Hour Per Week</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Weekly Rate" type="text" value="@Model.WEEKLYRATE" name="WEEKLYRATE" id="WEEKLYRATE">
+                                        <input class="form-control text-right" autocomplete="off" placeholder="Enter Hour Per Week" type="text" value="@Model.HOURPERWEEK" name="HOURPERWEEK" id="HOURPERWEEK">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Monthly Rate</label>
+                                    <label class="col-md-4 control-label text-left">Days Per Month</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Monthly Rate" type="text" value="@Model.MONTHLYRATE" name="MONTHLYRATE" id="MONTHLYRATE">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Hourly Rate</label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Hourly Rate" type="text" value="@Model.HOURLYRATE" name="HOURLYRATE" id="HOURLYRATE">
+                                        <input class="form-control text-right" autocomplete="off" placeholder="Enter Days Per Month" type="text" value="@Model.DAYSPERMONTH" name="DAYSPERMONTH" id="DAYSPERMONTH">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Previus Pay</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Previus Pay" type="text" value="@Model.PREVIUSYEARLYPAY" name="PREVIUSYEARLYPAY" id="PREVIUSYEARLYPAY">
+                                        <input class="form-control text-right" autocomplete="off" placeholder="Enter Previus Pay" type="text" value="@Model.PREVIUSYEARLYPAY" name="PREVIUSYEARLYPAY" id="PREVIUSYEARLYPAY">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Last Increament Date</label>
+                                    <div class="col-md-8">
+                                        @{
+                                            string lastIncreament = Model.LASTINCREAMENTDATE.ToString("dd-MMM-yyyy") == "01-Jan-0001" ? "" : Model.LASTINCREAMENTDATE.ToString("dd-MMM-yyyy");
+                                        }
+                                        <input type="text" name="LASTINCREAMENTDATE" placeholder="Select Last Increament Date" class="form-control datepicker" value="@lastIncreament" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                             </fieldset>
                         </article>
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
                             <fieldset>
+                               
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Last Increament Date</label>
-                                     
+                                    <label class="col-md-4 control-label text-left">Termination Date</label> 
                                     <div class="col-md-8">
-                                        <input type="text" name="LASTINCREAMENTDATE" placeholder="Select Last Increament Date" class="form-control datepicker" value="@Model.TERMINATIONDATE.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
+                                        @{
+                                            string trminationDate = Model.TERMINATIONDATE.ToString("dd-MMM-yyyy") == "01-Jan-0001" ? "" : Model.TERMINATIONDATE.ToString("dd-MMM-yyyy");
+                                        }
+                                        <input type="text" name="TERMINATIONDATE" placeholder="Select Termination Date" class="form-control datepicker" value="@trminationDate" data-dateformat="dd-M-yy">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Termination Date</label>
-                                    
+                                    <label class="col-md-4 control-label text-left">Daily Rate </label>
                                     <div class="col-md-8">
-                                        <input type="text" name="TERMINATIONDATE" placeholder="Select Termination Date" class="form-control datepicker" value="@Model.TERMINATIONDATE.ToString("dd-MMM-yyyy")" data-dateformat="dd-M-yy">
+                                        <input class="form-control text-right" readonly="readonly" autocomplete="off" placeholder="Enter Daily Rate" type="text" value="@Model.DAILYRATE" name="DAILYRATE" id="DAILYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Average Hours Per Day</label>
+                                    <label class="col-md-4 control-label text-left">Weekly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Average Hours Per Day" type="text" value="@Model.AVGHOURPERDAY" name="AVGHOURPERDAY" id="AVGHOURPERDAY">
+                                        <input class="form-control text-right" readonly="readonly" autocomplete="off" placeholder="Enter Weekly Rate" type="text" value="@Model.WEEKLYRATE" name="WEEKLYRATE" id="WEEKLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Hour Per Week</label>
+                                    <label class="col-md-4 control-label text-left">Monthly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Hour Per Week" type="text" value="@Model.HOURPERWEEK" name="HOURPERWEEK" id="HOURPERWEEK">
+                                        <input class="form-control text-right" readonly="readonly" autocomplete="off" placeholder="Enter Monthly Rate" type="text" value="@Model.MONTHLYRATE" name="MONTHLYRATE" id="MONTHLYRATE">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Days Per Month</label>
+                                    <label class="col-md-4 control-label text-left">Hourly Rate</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" autocomplete="off" placeholder="Enter Days Per Month" type="text" value="@Model.DAYSPERMONTH" name="DAYSPERMONTH" id="DAYSPERMONTH">
+                                        <input class="form-control text-right" readonly="readonly" autocomplete="off" placeholder="Enter Hourly Rate" type="text" value="@Model.HOURLYRATE" name="HOURLYRATE" id="HOURLYRATE">
                                     </div>
                                 </div>
                             </fieldset>
@@ -394,6 +408,8 @@
                             </fieldset>
                         </article>
                     </div>
+                    <div class="tab-pane fade" id="hr6"> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -403,7 +419,7 @@
             <i class="fa fa-times"></i>
             Cancel
         </a>&nbsp;
-        <button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button" onclick="onEmployeeSave()">
+        <button id="btnSaveEmployee" class="btn btn-primary btn-xs pull-right" type="button" onclick="onEmployeeSave()">
             <i class="fa fa-save"></i>
             Submit
         </button>
@@ -413,6 +429,7 @@
 
 <script src="~/js/libs/jquery-2.1.1.min.js"></script>
 <script src="~/js/libs/jquery-ui-1.10.3.min.js"></script>
+
 <script type="text/javascript">
 
     (function ($) {
@@ -433,6 +450,8 @@
             $(this).val(isvalue);
         });
 
+        var empid = $('#EMPID').val();
+        loadEmpPayStr(empid);
     }(jQuery));
 
     function onEmployeeSave() {
@@ -506,7 +525,14 @@
             });
         }
     }
+    function loadEmpPayStr(id) {
+        var url = '/PaySlipEmpMap/PaySlipEmpMapIndex?id=' + id;
+        $.get(url, function (data) {
+            $('#hr6').html(data);
+        });
 
+
+    }
 </script>
 
 

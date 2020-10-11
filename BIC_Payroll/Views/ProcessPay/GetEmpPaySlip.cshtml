@@ -1,0 +1,210 @@
+﻿@model List<DataModel.Transaction.ProcessPayslip>
+@{
+    ViewBag.Title = "Process Employee Payslip";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model != null)
+{
+    <form id="frmProcessPayslip" class="form-horizontal">
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td>Employee Code</td>
+                    <td>@Model.FirstOrDefault().EMPCODE</td>
+                    <td>@Model.FirstOrDefault().FIRSTNAME @Model.FirstOrDefault().LASTNAME</td>
+                    <td>Status :</td>
+                    <td>
+                        @if (Model.FirstOrDefault().ISPROCESSED)
+                        {
+                            <b>Processed</b>
+                        }
+                        else
+                        {
+                            <b>Not Processed</b>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="dt_basic" class="table table-bordered table-hover table-condensed" width="100%">
+            <thead>
+                <tr>
+                    <th>Tran Code</th>
+                    <th>Transaction Description</th>
+                    <th class="text-right">Quantity</th>
+                    <th class="text-right">Rate</th>
+                    <th class="text-right">Amount</th>
+                    <th class="text-center">Override</th>
+                    <th>Reference</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 0;
+                }
+                @foreach (var item in Model)
+                {
+                    <tr id="@i">
+                        <td>@item.HEADCODE</td>
+                        <td>@item.HEADDESC</td>
+                        <td class="text-right">
+                            @if (item.TYPEOFINPUTID == 1)
+                            {
+                                <input class="text-right" autocomplete="off" placeholder="Enter Quantity" value="@item.QTY" maxlength="20" type="text" name="objList[@i].QTY" id="@item.QTY+_+@i"  onkeypress="return $.c9Validateinput(event, this, '0-9.2');">
+                            }
+                            else
+                            {
+                                <input value="@item.QTY" type="hidden" name="objList[@i].QTY" id="@item.QTY+@i">
+                                @item.QTY
+                            }
+                        </td>
+                        <td class="text-right">@item.RATE</td>
+                        <td class="text-right">
+                            @if (item.TYPEOFINPUTID == 2)
+                            {
+                                <input class="text-right" autocomplete="off" placeholder="Enter Quantity" value="@item.AMOUNT" maxlength="20" type="text" name="objList[@i].AMOUNT" id="AMOUNT+_+@(i)" onkeypress="return $.c9Validateinput(event, this, '0-9.2');">
+                            }
+                            else
+                            {
+                                <input value="@item.AMOUNT" type="hidden" name="objList[@i].AMOUNT" id="AMOUNT+@i">
+                                @item.QTY
+                            }
+                        </td>
+                        <td class="text-center">
+                            <input role="checkbox" type="checkbox" id="ISOVERRIDE+_+@i" class="cbox chkBox" name="objList[@i].ISOVERRIDE" value="@item.ISOVERRIDE" checked="@item.ISOVERRIDE">
+                        </td>
+                        <td> 
+                            <input autocomplete="off" placeholder="Enter Reference" value="@item.REFERENCE" maxlength="20" type="text" name="objList[@i].REFERENCE" id="REFERENCE+_+@(i)">
+                        </td>
+                        <input type="hidden" name="objList[@i].PROCESSID" value="@item.PROCESSID" id="PROCESSID+_+@i" />
+                        <input type="hidden" name="objList[@i].RATE" value="@item.RATE" id="RATE+_+@i" />
+                        <input type="hidden" name="objList[@i].HEADID" value="@item.HEADID" id="HEADID+_+@i" />
+                        <input type="hidden" name="objList[@i].EMPID" value="@item.EMPID" id="EMPID+_+@i" />
+                        <input type="hidden" name="objList[@i].CALSEQUENCE" value="@item.CALSEQUENCE" id="CALSEQUENCE+_+@i" />
+                        <input type="hidden" name="objList[@i].MAPAMOUNT" value="@item.MAPAMOUNT" id="MAPAMOUNT+_+@i" />
+                        <input type="hidden" name="objList[@i].TRANSACTIONTYPE" value="@item.TRANSACTIONTYPE" id="TRANSACTIONTYPE+_+@i" />
+                        <input type="hidden" name="objList[@i].IsCalculation" value="@item.IsCalculation" id="IsCalculation+_+@i" />
+                        <input type="hidden" name="objList[@i].ISAFFECTNATIONALPAY" value="@item.ISAFFECTNATIONALPAY" id="ISAFFECTNATIONALPAY+_+@i" />
+                        <input type="hidden" name="objList[@i].ISAFFECTPAYSLIP" value="@item.ISAFFECTPAYSLIP" id="ISAFFECTPAYSLIP+_+@i" />
+                        <input type="hidden" name="objList[@i].TYPEOFINPUTID" value="@item.TYPEOFINPUTID" id="TYPEOFINPUTID+_+@i" />
+                        <input type="hidden" name="objList[@i].RATEID" value="@item.RATEID" id="RATEID+_+@i" />
+                        <input type="hidden" name="objList[@i].PERIODID" value="@item.PERIODID" id="PERIODID+_+@i" />
+                        <input type="hidden" name="objList[@i].PERIODTRANS" value="@item.PERIODTRANS" id="PERIODTRANS+_+@i" />
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+
+        <table class="table table-bordered table-condensed">
+            <tbody>
+                <tr>
+                    <td>Total Gross Income</td>
+                    <td>@Model.Where(x => x.TRANSACTIONTYPE == 1).Sum(x => x.AMOUNT)</td>
+                    <td>Total Deductions</td>
+                    <td>@Model.Where(x => x.TRANSACTIONTYPE == 2).Sum(x => x.AMOUNT)</td>
+                    <td>Total Nett Pay</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="widget-footer">
+            <a id="btnCancelCom" class="btn btn-xs btn-default" href="/ProcessPay/ProcessPayDtl">
+                <i class="fa fa-times"></i>
+                Cancel
+            </a>&nbsp;
+            <button id="btnProcessPayslip" class="btn btn-primary btn-xs pull-right" type="button" onclick="onSave()">
+                <i class="fa fa-save"></i>
+                Save
+            </button>
+        </div>
+    </form>
+                    }
+<script src="~/js/libs/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+    $(document).ready(function () {
+        $(".breadcrumb").html('<li id="breadcrumb1" class="text-right">Process Employee Payslip');
+
+        $('.chkBox').on('click', function () {
+            var isvalue = $(this).is(':checked');
+            $(this).val(isvalue);
+        });
+    })
+
+    function onSave() {
+
+        saveEmployee('frmProcessPayslip', 'ProcessPay', 'EmpPaySlip');
+    }
+
+    function saveEmployee(FORMID, Controller, Action) {
+        //loading for Trans Save button
+        var TransSaveBtnID = "btnProcessPayslip";
+
+        $('#' + TransSaveBtnID).attr('disabled', true);
+        var validate = true;
+        $('#' + FORMID + ' .clsreq').each(function () {
+            if ($(this).hasClass("select2")) {
+                var message = $(this).siblings('input:hidden').attr('placeholder');
+                var val = $(this).select2("val");
+                if (val == "" || val == null || val == 0) {
+                    validate = false;
+                    $(this).find('.select2-choice').addClass('clsShowWarning');
+                    $(this).select2("focus", "val");
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            } else if ($(this).hasClass("select")) {
+                var message = $(this).attr('data-placeholder');
+                var val = $(this).val();
+                if (val == "" || val == null || val == 0) {
+                    validate = false;
+                    $(this).addClass('clsShowWarning');
+                    $(this).focus();
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            }
+            else {
+                var focus = $(this).attr('data-focus');
+                var message = $(this).attr('placeholder') == undefined || $(this).attr('placeholder') == null ? $(this).attr('data-placeholder') : $(this).attr('placeholder');
+                var val = $(this).hasClass("textarea") ? $(this).text().trim() : $(this).val() == "" || $(this).val() == null ? $(this).val() : $(this).val().trim();
+                if (val == "" || val == 0 || val == null) {
+                    validate = false;
+                    if (typeof focus === "undefined" || focus === null) {
+                        $(this).focus();
+                    }
+                    $(this).addClass('clsShowWarning');
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            }
+        });
+
+        if (validate) {
+            $('#' + TransSaveBtnID).attr("disabled", true);
+
+            var serializedData = $("#" + FORMID).serialize();
+            var url = "/" + Controller + "/" + Action + "/";
+            $.post(url, serializedData, function (res) {
+                var errid = res.ResultId;
+                var errmsg = res.Message;
+                var TITLE = res.Title;
+                var TYPE = res.Type;
+                if (errid > 0) {
+                    $.c9Message(errmsg, TITLE, TYPE);
+                    window.location = $('#btnCancel').attr('href');
+                } else {
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(errmsg, TITLE, TYPE);
+                }
+            });
+        }
+    }
+
+</script>
