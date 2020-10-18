@@ -124,7 +124,8 @@ namespace DataModel
             return CreateXml;
         }
 
-        static public XDocument PAYSLIPHEADS_c(string FLAG, Int64 HEADID, string HEADCODE, int TRANSACTIONTYPE, string DESC, bool ISACTIVE,
+        static public XDocument PAYSLIPHEADS_c(string FLAG, Int64 HEADID, string HEADCODE, int TRANSACTIONTYPE,string FORMULA,bool IsCalculation, string DESC, 
+            bool ISACTIVE, bool ISAFFECTNATIONALPAY, bool ISAFFECTPAYSLIP, bool PRINTONPS, int TYPEOFINPUTID, int RATEID,
             int COMPID, int USERID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
@@ -133,12 +134,72 @@ namespace DataModel
            new XAttribute("HEADID", HEADID),
            new XAttribute("HEADCODE", HEADCODE),
            new XAttribute("TRANSACTIONTYPE", TRANSACTIONTYPE),
+           new XAttribute("FORMULA", FORMULA),
+           new XAttribute("IsCalculation", IsCalculation),
            new XAttribute("DESC", DESC),
            new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("ISAFFECTNATIONALPAY", ISAFFECTNATIONALPAY),
+           new XAttribute("ISAFFECTPAYSLIP", ISAFFECTPAYSLIP),
+           new XAttribute("PRINTONPS", PRINTONPS),
+           new XAttribute("TYPEOFINPUTID", TYPEOFINPUTID),
+           new XAttribute("RATEID", RATEID),
            new XAttribute("COMPID", COMPID), 
            new XAttribute("USERID", USERID)
            ));
             XDocument CreateXml = CommonXML("PAYSLIPHEADS_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+
+        static public XDocument RATEMASTER_c(string FLAG, int RATEID, string RATECODE,string DESCRIPTION, decimal RATE,bool ISACTIVE,int COMPID, 
+            int BASEFACTORID,int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("RATEID", RATEID),
+           new XAttribute("RATECODE", RATECODE),
+           new XAttribute("DESCRIPTION", DESCRIPTION),
+           new XAttribute("RATE", RATE),
+           new XAttribute("BASEFACTORID", BASEFACTORID),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("RATEMASTER_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument PROCESSPAYSLIP_c(string FLAG, int COMPID, XElement transXML, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG), 
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            MAINXML.Add(transXML);
+            XDocument CreateXml = CommonXML("PROCESSPAYSLIP_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument EMPLOYEEPAYMAPPING_c(string FLAG, Int64 MID, Int64 HEADID, Int64 EMPID,int CALSEQUENCE,decimal AMOUNT, bool IsCalculation, string FORMULA,
+            bool ISACTIVE, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("MID", MID),
+           new XAttribute("HEADID", HEADID),
+           new XAttribute("EMPID", EMPID),
+           new XAttribute("CALSEQUENCE", CALSEQUENCE),
+           new XAttribute("AMOUNT", AMOUNT),
+           new XAttribute("IsCalculation", IsCalculation),
+           new XAttribute("FORMULA", FORMULA),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("EMPLOYEEPAYMAPPING_c", MAINXML, LOGXML);
             return CreateXml;
         }
 
@@ -431,6 +492,44 @@ namespace DataModel
            new XAttribute("USERID", USERID)
            ));
             XDocument CreateXml = CommonXML("PAYSLIPHEADS_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        static public XDocument RATEMASTER_g(int RATEID, string RATECODE, int COMPID, int BASEFACTORID, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("RATEID", RATEID),
+           new XAttribute("RATECODE", RATECODE),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("BASEFACTORID", BASEFACTORID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("RATEMASTER_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+        static public XDocument PROCESSPAYSLIP_g(Int64 EMPID, Int64 COMPID, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("EMPID", EMPID),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("PROCESSPAYSLIP_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
+        
+        static public XDocument EMPLOYEEPAYMAPPING_g(int MID,int EMPID, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("MID", MID),
+           new XAttribute("EMPID", EMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("EMPLOYEEPAYMAPPING_g", MAINXML, LOGXML);
             return CreateXml;
         }
         static public XDocument PAYFREQUENCY_g(int COMPID, int MID, int TID, string FLAG, int USERID, XElement LOGXML)

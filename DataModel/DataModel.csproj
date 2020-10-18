@@ -56,14 +56,17 @@
     <Compile Include="Master\CacheHelper.cs" />
     <Compile Include="Master\COUNTRYMAST.cs" />
     <Compile Include="Master\Employee.cs" />
+    <Compile Include="Master\EmployeePaySlipMapping.cs" />
     <Compile Include="Master\Login.cs" />
     <Compile Include="Master\PaySlipHead.cs" />
+    <Compile Include="Master\RateMaster.cs" />
     <Compile Include="Master\StateMaster.cs" />
     <Compile Include="Master\TokenServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Master\userMaster.cs" />
     <Compile Include="Result\Result.cs" />
     <Compile Include="Service\Service.cs" />
+    <Compile Include="Transaction\ProcessPayslip.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
