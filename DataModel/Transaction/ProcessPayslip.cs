@@ -47,6 +47,9 @@ namespace DataModel.Transaction
         string _LASTNAME;
         bool _ISPROCESSED;
         bool _ISCLOSED;
+        decimal _TOTALGROSSINCOME;
+        decimal _TOTALDEDUCTION;
+        decimal _NETPAY;
         public string IFLAG
         {
             get
@@ -476,6 +479,45 @@ namespace DataModel.Transaction
             }
         }
 
+        public decimal TOTALGROSSINCOME
+        {
+            get
+            {
+                return _TOTALGROSSINCOME;
+            }
+
+            set
+            {
+                _TOTALGROSSINCOME = value;
+            }
+        }
+
+        public decimal TOTALDEDUCTION
+        {
+            get
+            {
+                return _TOTALDEDUCTION;
+            }
+
+            set
+            {
+                _TOTALDEDUCTION = value;
+            }
+        }
+
+        public decimal NETPAY
+        {
+            get
+            {
+                return _NETPAY;
+            }
+
+            set
+            {
+                _NETPAY = value;
+            }
+        }
+
 
         #endregion
         #region Methods
@@ -488,7 +530,7 @@ namespace DataModel.Transaction
         {
             try
             {
-                xdoc = DBXML.PROCESSPAYSLIP_c("I",  COMPID, CreateTransXMl(objList), USERID, LOGXML);
+                xdoc = DBXML.PROCESSPAYSLIP_c("I",  COMPID, objList != null ? objList.FirstOrDefault().EMPID:0, CreateTransXMl(objList), USERID, LOGXML);
                 return ReadBIErrors(Convert.ToString(SqlExe.GetXml(xdoc)));
             }
             catch (Exception ex)
@@ -552,7 +594,10 @@ namespace DataModel.Transaction
                          ISOVERRIDE = s.Field<bool>("ISOVERRIDE"),
                          REFERENCE = s.Field<string>("REFERENCE"),
                          ISPROCESSED = s.Field<bool>("ISPROCESSED"),
-                         ISCLOSED = s.Field<bool>("ISCLOSED")
+                         ISCLOSED = s.Field<bool>("ISCLOSED"),
+                         TOTALGROSSINCOME = s.Field<decimal>("TOTALGROSSINCOME"),
+                         TOTALDEDUCTION = s.Field<decimal>("TOTALDEDUCTION"),
+                         NETPAY = s.Field<decimal>("NETPAY"),
                      }).ToList() : null;
 
                 return dbresult;

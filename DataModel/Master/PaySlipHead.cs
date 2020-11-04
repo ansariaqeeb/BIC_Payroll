@@ -29,7 +29,8 @@ namespace DataModel.Master
         bool _ISACTIVE;
         string _FORMULA;
         bool _IsCalculation;
-        
+        string _PAYROLLDESC;
+
 
         public string IFLAG
         {
@@ -239,6 +240,19 @@ namespace DataModel.Master
             }
         }
 
+        public string PAYROLLDESC
+        {
+            get
+            {
+                return _PAYROLLDESC;
+            }
+
+            set
+            {
+                _PAYROLLDESC = value;
+            }
+        }
+
         #endregion
         #region Method
         public PaySlipHead()
@@ -251,7 +265,7 @@ namespace DataModel.Master
             try
             {
                 xdoc = DBXML.PAYSLIPHEADS_c(obj.IFLAG, obj.HEADID, obj.HEADCODE == null ? "" : obj.HEADCODE, obj.TRANSACTIONTYPEID,obj.FORMULA==null?"":obj.FORMULA,obj.IsCalculation,
-                    obj.DESC == null ? "" : obj.DESC, obj.ISACTIVE,obj.ISAFFECTNATIONALPAY,obj.ISAFFECTPAYSLIP,obj.PRINTONPS,obj.TYPEOFINPUTID,obj.RATEID, COMPID, USERID, LOGXML);
+                    obj.DESC == null ? "" : obj.DESC, obj.PAYROLLDESC == null ? "" : obj.PAYROLLDESC, obj.ISACTIVE,obj.ISAFFECTNATIONALPAY,obj.ISAFFECTPAYSLIP,obj.PRINTONPS,obj.TYPEOFINPUTID,obj.RATEID, COMPID, USERID, LOGXML);
                 return ReadBIErrors(Convert.ToString(SqlExe.GetXml(xdoc)));
             }
             catch (Exception ex)
@@ -274,6 +288,7 @@ namespace DataModel.Master
                          HEADID = s.Field<Int64>("HEADID"),
                          HEADCODE = s.Field<string>("HEADCODE"),
                          DESC = s.Field<string>("DESC"),
+                         PAYROLLDESC = s.Field<string>("PAYROLLDESC"),
                          TRANSACTIONTYPEID = s.Field<int>("TRANSACTIONTYPE"),
                          TRANSACTIONTYPECODE = s.Field<string>("STATUSCODE"),
                          FORMULA = s.Field<string>("FORMULA"),
@@ -295,8 +310,6 @@ namespace DataModel.Master
                 throw ex;
             }
         }
-
-
         public object fillPaySlipHead(int HEADID, string HEADCODE, string DESC, int COMPID, int TRANSACTIONTYPEID, int USERID, XElement LOGXML = null)
         {
             try
@@ -312,7 +325,6 @@ namespace DataModel.Master
                                     transType = row.Field<string>("STATUSCODE"),
                                     FORMULA = row.Field<string>("FORMULA"),
                                     IsCalculation = row.Field<bool>("IsCalculation")
-
                                 }).ToList();
                 return dbResult;
             }

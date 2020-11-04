@@ -63,6 +63,9 @@ namespace DataModel.Company
         List<FREQUENCYPERIODTRANS> _PayFreqTransList;
         int _MID;
         bool _ISCLOSED;
+        int _MONTHID;
+        string _MONTHENDDATE;
+
         public int COMPID
         {
             get
@@ -712,6 +715,32 @@ namespace DataModel.Company
                 _ISCLOSED = value;
             }
         }
+
+        public int MONTHID
+        {
+            get
+            {
+                return _MONTHID;
+            }
+
+            set
+            {
+                _MONTHID = value;
+            }
+        }
+
+        public string MONTHENDDATE
+        {
+            get
+            {
+                return _MONTHENDDATE;
+            }
+
+            set
+            {
+                _MONTHENDDATE = value;
+            }
+        }
         #endregion
         #region Method
         public Company()
@@ -801,6 +830,8 @@ namespace DataModel.Company
                          FIRSTMONTHENDDATE = s.Field<DateTime>("FIRSTMONTHENDDATE"),
                          STARTINGMONTH = s.Field<int>("STARTINGMONTH"),
                          ISACTIVE = s.Field<bool>("ISACTIVE"),
+                         MONTHID = s.Field<int>("MONTHID"),
+                         MONTHENDDATE = s.Field<DateTime>("MONTHENDDATE").ToString("dd-MMM-yyyy"),
                      }).ToList() : null;
 
                 return dbresult;

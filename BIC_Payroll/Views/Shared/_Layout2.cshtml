@@ -197,13 +197,12 @@
     <!-- PAGE FOOTER -->
     <div class="page-footer">
         <div class="row">
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-4">
                 <span class="txt-color-white">B.I.C Solutions Ltd. <span class="hidden-xs"> - Business Intelligence</span> © 2020-2021</span>
-            </div>
-
+            </div> 
             <div class="col-xs-6 col-sm-6 text-right hidden-xs">
                 <div class="txt-color-white inline-block">
-                    <i class="txt-color-blueLight hidden-mobile"> <i class="fa fa-clock-o"></i> <strong><input class="text-right" type="text" readonly="readonly" id="clock" /></strong> </i>
+                    <i id="dayDate" class="txt-color-blueLight hidden-mobile">Last account activity </i>&nbsp;&nbsp;<i class="fa fa-clock-o"></i> <strong id="clock">52 mins ago &nbsp;</strong>
                 </div>
             </div>
         </div>
@@ -316,6 +315,7 @@
             pageSetUp();
             setInterval("settime()", 1000);
             onMenuLoad();
+            setDayDate();
         });
         function onMenuLoad() {
             var url = window.location.pathname;
@@ -330,7 +330,31 @@
             }
         }
 
-        function settime() { 
+        function setDayDate() {
+
+            var d = new Date();
+            var weekday = new Array(7);
+            weekday[0] = "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+
+            var n = weekday[d.getDay()];
+            formatDate = (d.getMonth() + 1) + '/' +
+                         d.getDate() + '/' +
+                         d.getFullYear();
+            var date = n + ' - ' + formatDate
+
+            $("#dayDate").html(date);
+        }
+
+
+
+        function settime() {
+
             var dateTime = new Date();
             var hour = dateTime.getHours();
             var minute = dateTime.getMinutes();
@@ -344,7 +368,7 @@
 
             var time = "" + hour + ":" + minute + ":" + second;
 
-            $("#clock").val(time);
+            $("#clock").html(time);
         }
     </script>
 

@@ -35,7 +35,7 @@
                                         <input class="form-control clsreq" autocomplete="off" placeholder="Enter Calculation Sequence" maxlength="20" type="text" name="CALSEQUENCE" id="CALSEQUENCE">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     <label class="col-md-4 control-label text-left">Is Calculation</label>
                                     <div class="col-md-8">
                                         <input role="checkbox" type="checkbox" id="IsCalculation" class="cbox" name="IsCalculation">
@@ -46,7 +46,7 @@
                                     <div class="col-md-8">
                                         <input class="form-control" readonly="readonly" autocomplete="off" placeholder="Enter Formula" maxlength="20" type="text" name="FORMULA" id="FORMULA">
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Amount <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
@@ -77,19 +77,7 @@
     (function ($) {
         $(".breadcrumb").html('<li id="breadcrumb1">Add Pay slip Head</li>');
 
-        $('#IsCalculation').on('click', function () {
-            var isvalue = $(this).is(':checked');
-            $(this).val(isvalue);
-            $('#FORMULA').val('');
-            $('#AMOUNT').val('');
-            if (isvalue) { 
-                $('#FORMULA').attr('readonly', false);
-                $('#AMOUNT').attr('readonly', true);
-            } else {
-                $('#FORMULA').attr('readonly', true);
-                $('#AMOUNT').attr('readonly', false);
-            }
-        });
+        
 
         $("#HEADID").select2({
             multiple: false,
@@ -115,6 +103,12 @@
 
             var formula = data.FORMULA;
             var isCalculation = data.IsCalculation;
+            if (isCalculation) {
+                $('#AMOUNT').val('');
+                $('#AMOUNT').attr('readonly', true);
+            } else {
+                $('#AMOUNT').attr('readonly', false);
+            } 
         });
 
 
@@ -185,7 +179,7 @@
                         $('#btnCancelmaping').click();
                          
                         loadEmpPayStr(@ViewBag.EMPID);
-                        //location.reload();
+                        $('.modal-backdrop').remove();
                     } else {
                         $('#' + TransSaveBtnID).attr('disabled', false);
                         $.c9Message(errmsg, TITLE, TYPE);

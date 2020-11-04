@@ -21,6 +21,7 @@
                                         <input type="hidden" name="IFLAG" value="E" />
                                         <input type="hidden" name="MID" id="MID" value="@Model.MID">
                                         <input type="hidden" name="EMPID" id="EMPID" value="@Model.EMPID">
+                                        <input type="hidden" name="IsCalculation" id="IsCalculation" value="@Model.IsCalculation">
                                         <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" value="@Model.HEADID" data-desc="@Model.HEADCODE" placeholder="Select Pay Slip" type="text" name="HEADID" id="HEADID">
                                     </div>
                                 </div>
@@ -36,7 +37,7 @@
                                         <input class="form-control clsreq" autocomplete="off" placeholder="Enter Calculation Sequence" value="@Model.CALSEQUENCE" maxlength="20" type="text" name="CALSEQUENCE" id="CALSEQUENCE">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     <label class="col-md-4 control-label text-left">Is Calculation</label>
                                     <div class="col-md-8">
                                         <input role="checkbox" type="checkbox" id="IsCalculation" class="cbox" name="IsCalculation" value="@Model.IsCalculation.ToString()" checked="@Model.IsCalculation">
@@ -47,7 +48,7 @@
                                     <div class="col-md-8">
                                         <input class="form-control" autocomplete="off" placeholder="Enter Formula" value="@Model.FORMULA" maxlength="20" type="text" name="FORMULA" id="FORMULA">
                                     </div>
-                                </div>
+                                </div>*@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Amount <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
@@ -84,13 +85,11 @@
     (function ($) {
         $(".breadcrumb").html('<li id="breadcrumb1">Add Pay slip Head</li>');
 
-        var IsCalculation = $('#IsCalculation').is(':checked');
+        var IsCalculation = $('#IsCalculation').val();
 
-        if (IsCalculation) {
-            $('#FORMULA').attr('readonly', false);
+        if (IsCalculation) { 
             $('#AMOUNT').attr('readonly', true);
-        } else {
-            $('#FORMULA').attr('readonly', true);
+        } else { 
             $('#AMOUNT').attr('readonly', false);
         }
 
@@ -98,21 +97,7 @@
             var isvalue = $(this).is(':checked');
             $(this).val(isvalue);
         });
-
-        $('#IsCalculation').on('click', function () {
-            var isvalue = $(this).is(':checked');
-            $(this).val(isvalue);
-            $('#FORMULA').val('');
-            $('#AMOUNT').val('');
-            if (isvalue) {
-                $('#FORMULA').attr('readonly', false);
-                $('#AMOUNT').attr('readonly', true);
-            } else {
-                $('#FORMULA').attr('readonly', true);
-                $('#AMOUNT').attr('readonly', false);
-            }
-        });
-
+         
         $("#HEADID").select2({
             multiple: false,
             allowClear: false,
@@ -140,6 +125,14 @@
         }).on('change', function () {
             var data = $("#HEADID").select2('data');
             $('#TRANSACTIONTYPE').val(data.transType);
+
+            var isCalculation = data.IsCalculation;
+            if (isCalculation) {
+                $('#AMOUNT').val('');
+                $('#AMOUNT').attr('readonly', true);
+            } else {
+                $('#AMOUNT').attr('readonly', false);
+            }
         });
 
 
