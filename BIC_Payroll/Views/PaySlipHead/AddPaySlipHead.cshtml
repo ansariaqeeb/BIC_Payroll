@@ -12,7 +12,7 @@
                         <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
                             <fieldset>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Pay Slip Transaction Code<span class="red clsStar"><sub>*</sub></span></label>
+                                    <label class="col-md-4 control-label text-left">Payroll Transaction Code<span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
                                         <input type="hidden" name="IFLAG" value="I" />
                                         <input type="hidden" name="HEADID" id="HEADID">
@@ -20,11 +20,23 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Description <span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control clsreq" autocomplete="off" placeholder="Enter Description" type="text" name="DESC" id="DESC"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Payroll Transaction Description <span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" autocomplete="off" placeholder="Enter Payroll Transaction Description" type="text" name="PAYROLLDESC" id="PAYROLLDESC"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Transaction Type <span class="red clsStar"><sub>*</sub></span></label>
                                     <div class="col-md-8">
                                         <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Transaction Type" type="hidden" name="TRANSACTIONTYPEID" id="TRANSACTIONTYPEID">
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Affect National Pay</label>
                                     <div class="col-md-8">
@@ -45,14 +57,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Is Calculation</label>
-                                    <div class="col-md-8"> 
-                                        <input role="checkbox" type="checkbox" id="IsCalculation" class="cbox" name="IsCalculation">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Formula</label>
                                     <div class="col-md-8">
-                                        <input class="form-control" readonly="readonly" autocomplete="off" placeholder="Enter Formula" maxlength="20" type="text" name="FORMULA" id="FORMULA">
+                                        <input role="checkbox" type="checkbox" id="IsCalculation" class="cbox" name="IsCalculation">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -60,23 +66,102 @@
                                     <div class="col-md-8">
                                         <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Type Of Input" type="hidden" name="TYPEOFINPUTID" id="TYPEOFINPUTID">
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-4 control-label text-left">Rate </label>
                                     <div class="col-md-8">
                                         <input class="width-100 col-md-12 no-padding select2" autocomplete="off" placeholder="Select Rate" type="hidden" name="RATEID" id="RATEID">
                                     </div>
-                                </div> 
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Description <span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control clsreq" autocomplete="off" placeholder="Enter Description" type="text" name="DESC" id="DESC"></textarea>
-                                    </div>
                                 </div>
-                               
                             </fieldset>
                         </article>
-                         
+                        <article id="Formulasection" class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable hide">
+                            <fieldset>
+                                <div class="form-group">
+                                    <textarea class="col-xs-12 col-sm-12 width-100" placeholder="Formula" rows="11" readonly="readonly" name="FORMULA" id="FORMULA"></textarea>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="width-100 col-md-12 no-padding select2" autocomplete="off" placeholder="Select Payroll Transaction" type="hidden" name="HEADIDFORMULA" id="HEADIDFORMULA">
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-group">
+                                    <table style="width:100%;">
+                                        <tbody>
+                                            <tr class="trdigit">
+                                                <td>
+                                                    <input id="One" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="1">
+                                                </td>
+                                                <td>
+                                                    <input id="Two" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="2">
+                                                </td>
+                                                <td>
+                                                    <input id="Three" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="3">
+                                                </td>
+                                                <td>
+                                                    <input id="Four" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="4">
+                                                </td>
+                                                <td>
+                                                    <input id="Five" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="5">
+                                                </td>
+                                                <td>
+                                                    <input id="Six" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="6">
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td class="trdigit">
+                                                    <input id="Seven" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="7">
+                                                </td>
+                                                <td class="trdigit">
+                                                    <input id="Eight" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="8">
+                                                </td>
+                                                <td class="trdigit">
+                                                    <input id="Nine" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="9">
+                                                </td>
+                                                <td class="trdigit">
+                                                    <input id="Zero" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="0">
+                                                </td>
+                                                <td>
+                                                    <input id="Openbracket" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="(">
+                                                </td>
+                                                <td>
+                                                    <input id="Closebracket" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value=")">
+                                                </td>
+                                            </tr>
+                                            <tr class="trOrp">
+                                                <td>
+                                                    <input id="Plus" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="+" />
+                                                </td>
+                                                <td>
+                                                    <input id="Minus" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="-" />
+                                                </td>
+                                                <td>
+                                                    <input id="Multiplication" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="*" />
+                                                </td>
+                                                <td>
+                                                    <input id="Division" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="/" />
+                                                </td>
+                                                <td>
+                                                    <input id="Backspace" type="button" class="btn btn-xs btn-inverse calcbtndiv back" style="width: 99%" value="<-" />
+                                                </td>
+                                                <td>
+                                                    <input type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value=".">
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6">
+                                                    <input id="Equal" type="button" class="btn btn-xs btn-inverse calcbtndiv Clr" style="width: 100%" value="clear" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </fieldset> 
+                        </article>
                     </div>
                 </div>
             </div>
@@ -87,7 +172,7 @@
             <i class="fa fa-times"></i>
             Cancel
         </a>&nbsp;
-        <button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button" >
+        <button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button">
             <i class="fa fa-save"></i>
             Submit
         </button>
@@ -118,7 +203,7 @@
                     return {
                         TypeId: 5,
                         StatusId: 0,
-                        description:term
+                        description: term
                     };
                 },
                 results: function (data) {
@@ -161,7 +246,7 @@
                 dataType: 'json',
                 quietMillis: 100,
                 data: function (term) {
-                    return { 
+                    return {
                         rateid: 0,
                         desc: term
                     };
@@ -176,18 +261,7 @@
 
         $('.chkbox').on('click', function () {
             var isvalue = $(this).is(':checked');
-            $(this).val(isvalue);  
-        });
-
-        $('#IsCalculation').on('click', function () {
-            var isvalue = $(this).is(':checked');
             $(this).val(isvalue);
-            $('#FORMULA').val(''); 
-            if (isvalue) {
-                $('#FORMULA').attr('readonly', false);
-            } else {
-                $('#FORMULA').attr('readonly', true);
-            }
         });
 
         $("#btnSave").on('click', function () {
@@ -263,7 +337,64 @@
                 });
             }
         }
+
+
+        $("#HEADIDFORMULA").select2({
+            multiple: false,
+            allowClear: false,
+            ajax: {
+                cache: true,
+                url: "/CommonLibrary/_PayHeads",
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (term) {
+                    return {
+                        headId: 0,
+                        desc: term
+                    };
+                },
+                results: function (data) {
+                    return { results: data };
+                }
+            }
+        }).on('change', function () {
+            var data = $("#HEADIDFORMULA").select2('data');
+            var txtFormula = $('#FORMULA').val();
+            $('#FORMULA').val(txtFormula.concat("[" + data.text.trim() + "]"));
+        });
+
+        $('#IsCalculation').on('click', function () {
+            var isvalue = $(this).is(':checked');
+            $(this).val(isvalue);
+            $('#FORMULA').val('');
+            if (isvalue) {
+                $('#Formulasection').removeClass('hide');
+            } else {
+                $('#Formulasection').addClass('hide');
+            }
+        });
+
+        //Operator Click
+        $('.opr').on('click', function () {
+            var oprator = $(this).val();
+            var txtFormula = $('#FORMULA').val();
+            $('.tblparamcode').show();
+            $('.trdigit').show();
+            $('#FORMULA').val(txtFormula.concat(oprator.trim()))
+
+        });
+
+        //digit Click
+        $('.digit').on('click', function () {
+            var digit = $(this).val();
+            var txtFormula = $('#FORMULA').val();
+            $('#FORMULA').val(txtFormula.concat(digit.trim()));
+        });
+        $('.Clr').on('click', function () {
+            $('#FORMULA').val('');
+            Arr = [];
+        });
     }(jQuery));
-      
+
 </script>
 

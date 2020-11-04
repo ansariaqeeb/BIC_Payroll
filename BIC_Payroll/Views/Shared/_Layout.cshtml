@@ -88,7 +88,7 @@
                     <a href="#" class="dropdown-toggle no-margin userdropdown" data-toggle="dropdown">
                         <img src="~/img/avatars/male.png" alt="John Doe" class="online" />
                     </a>
-                    <ul class="dropdown-menu pull-right"> 
+                    <ul class="dropdown-menu pull-right">
                         <li>
                             <a href="profile.html" class="padding-10 padding-top-0 padding-bottom-0"> <i class="fa fa-user"></i> <u>P</u>rofile</a>
                         </li>
@@ -118,7 +118,7 @@
                 <span> <a href="javascript:void(0);" data-action="launchFullscreen" title="Full Screen"><i class="fa fa-arrows-alt"></i></a> </span>
             </div>
             @{
-            DataModel.LoginModel.LoginSessionDetails SessLogObj = (DataModel.LoginModel.LoginSessionDetails)Session["SessionInformation"];
+                DataModel.LoginModel.LoginSessionDetails SessLogObj = (DataModel.LoginModel.LoginSessionDetails)Session["SessionInformation"];
             }
 
             <!-- end multiple lang -->
@@ -126,8 +126,7 @@
             <ul class="header-dropdown-list hidden-xs">
                 <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <span> @SessLogObj.objComp.COMPCODE </span> <i class="fa fa-angle-down"></i> </a>
-                    <ul class="dropdown-menu pull-right" id="CompList">
-                    </ul>
+                    <ul class="dropdown-menu pull-right" id="CompList"></ul>
                 </li>
             </ul>
 
@@ -151,7 +150,7 @@
             <ul id="ulMenu">
                 <li class="active clsMenu">
                     <a href="/Home/index" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>
-                </li> 
+                </li>
                 <li class="clsMenu">
                     <a href="/Employee/EmployeeDtl"><i class="fa fa-lg fa-fw fa-group"></i> <span class="menu-item-parent">Employee</span></a>
                 </li>
@@ -168,7 +167,7 @@
                     <a href="/ProcessPay/ProcessPayDtl"><i class="fa fa-lg fa-fw fa-repeat"></i> <span class="menu-item-parent">Process Payslip</span></a>
                 </li>
             </ul>
-            
+
         </nav>
         <span class="minifyme" data-action="minifyMenu">
             <i class="fa fa-arrow-circle-left hit"></i>
@@ -217,14 +216,22 @@
     <!-- PAGE FOOTER -->
     <div class="page-footer">
         <div class="row">
-            <div class="col-xs-12 col-sm-6">
+            <div class="col-xs-12 col-sm-4">
                 <span class="txt-color-white">B.I.C Solutions Ltd. <span class="hidden-xs"> - Business Intelligence</span> © 2020-2021</span>
             </div>
-
-            <div class="col-xs-6 col-sm-6 text-right hidden-xs">
+            <div class="col-xs-2 col-sm-2 text-right hidden-xs">
                 <div class="txt-color-white inline-block">
-                    <i id="dayDate" class="txt-color-blueLight hidden-mobile">Last account activity </i>&nbsp;&nbsp;<i  class="fa fa-clock-o"></i> <strong id="clock">52 mins ago &nbsp;</strong> 
-                    @*<i class="txt-color-blueLight hidden-mobile"> <i class="fa fa-clock-o"></i> <strong><input class="text-right" type="text" readonly="readonly" id="clock" /></strong> </i>*@
+                    <i class="txt-color-blueLight hidden-mobile">Current Month Id</i>&nbsp;&nbsp; : <strong id="currentMonthId">52 mins ago &nbsp;</strong>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 text-right hidden-xs">
+                <div class="txt-color-white inline-block">
+                    <i class="txt-color-blueLight hidden-mobile">Current Month End Date</i>&nbsp;&nbsp; : <strong id="currentMonth">52 mins ago &nbsp;</strong>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 text-right hidden-xs">
+                <div class="txt-color-white inline-block">
+                    <i id="dayDate" class="txt-color-blueLight hidden-mobile">Last account activity </i>&nbsp;&nbsp;<i class="fa fa-clock-o"></i> <strong id="clock">52 mins ago &nbsp;</strong>
                 </div>
             </div>
         </div>
@@ -306,7 +313,7 @@
 
     <![endif]-->
     <!-- Demo purpose only -->
-   @* <script src="~/js/demo.min.js"></script>*@
+    @* <script src="~/js/demo.min.js"></script>*@
 
     <!-- MAIN APP JS FILE -->
     <script src="~/js/app.min.js"></script>
@@ -324,7 +331,7 @@
     <script src="~/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('.minifyme').click(); 
+            $('.minifyme').click();
             // DO NOT REMOVE : GLOBAL FUNCTIONS!
             pageSetUp();
             setInterval("settime()", 1000);
@@ -345,9 +352,9 @@
                 });
             }
         }
-        
+
         function setDayDate() {
-             
+
             var d = new Date();
             var weekday = new Array(7);
             weekday[0] = "Sunday";
@@ -358,10 +365,10 @@
             weekday[5] = "Friday";
             weekday[6] = "Saturday";
 
-            var n = weekday[d.getDay()]; 
-            formatDate = (d.getMonth() + 1) + '/' + 
-                         d.getDate() + '/' + 
-                         d.getFullYear(); 
+            var n = weekday[d.getDay()];
+            formatDate = (d.getMonth() + 1) + '/' +
+                         d.getDate() + '/' +
+                         d.getFullYear();
             var date = n+' - '+formatDate
 
             $("#dayDate").html(date);
@@ -370,7 +377,7 @@
 
 
         function settime() {
-             
+
             var dateTime = new Date();
             var hour = dateTime.getHours();
             var minute = dateTime.getMinutes();
@@ -397,12 +404,15 @@
                 $.each(data,function (index,value) {
                     if (compId === value.COMPID) {
                         active='active';
+                        
+                        $("#currentMonthId").html(value.MONTHID);
+                        $("#currentMonth").html(value.MONTHENDDATE);
                     }else
                     {
                         active='';
                     }
                     lidata=lidata+'<li class="'+active+'"><a href="/Home/Index?Id='+value.COMPID+'"> '+value.COMPCODE+'</a></li>';
-                });  
+                });
                 $('#CompList').html(lidata)
             });
         }

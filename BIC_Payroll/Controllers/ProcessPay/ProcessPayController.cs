@@ -56,7 +56,7 @@ namespace BIC_Payroll.Controllers.ProcessPay
                 SessLogObj = (LoginSessionDetails)HttpContext.Session["SessionInformation"];
                 ProcessPayslip obj = new ProcessPayslip();
                 objRes = obj.Save(objList, SessLogObj.objComp.COMPID, Convert.ToInt32(SessLogObj.USERID));
-                return Json(1, JsonRequestBehavior.AllowGet);
+                return Json(objRes, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

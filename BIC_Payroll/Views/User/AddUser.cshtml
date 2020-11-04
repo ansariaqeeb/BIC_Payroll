@@ -1,0 +1,178 @@
+﻿@{ 
+    ViewBag.Title = "Add User";
+    Layout = "~/Views/Shared/_Layout2.cshtml"; ;
+}
+<form id="frmAddUser" class="form-horizontal">
+    <div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
+        <div role="content">
+            <div class="widget-body no-padding">
+                <div class="tab-content padding-10">
+                    <div class="tab-pane fade in active" id="hr1">
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">First Name<span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input type="hidden" name="IFLAG" value="I" />
+                                        <input type="hidden" name="USERID" id="USERID">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter First Name" type="text" name="FNAME" id="FNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Middle Name <span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Middle Name" type="text" name="MNAME" id="MNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Last Name <span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Last Name" type="text" name="LNAME" id="LNAME">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Login Id<span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Login Id" type="text" name="LOGINID" id="LOGINID">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Email Id</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Email Address" type="text" name="Email" id="Email" onblur="return $.c9Validateinput(event, this, 'Email');">
+                                    </div>
+                                </div> 
+                            </fieldset>
+                        </article>
+                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Mobile No.<span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Mobile No." type="text" name="MobileNo" id="MobileNo" maxlength="13" onkeypress="return $.c9Validateinput(event, this, '0-9');">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Password<span class="red clsStar"><sub>*</sub></span></label>
+                                    <div class="col-md-8">
+                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Password" type="text" name="PASSWORD" id="PASSWORD">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Date Of Birth</label>
+                                    @*<div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Date Of Birth" type="text" name="DOB" id="DOB">
+                                    </div>*@
+                                    <div class="col-md-8">
+                                        <input type="text" name="DOB" placeholder="Select Date Of Birth" class="form-control datepicker" data-dateformat="dd-M-yy">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label text-left">Country</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" autocomplete="off" placeholder="Enter Country" type="text" name="COUNTRYNAME" id="COUNTRYNAME">
+                                    </div>
+                                </div> 
+                            </fieldset>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="widget-footer">
+        <a id="btnCancel" class="btn btn-xs btn-default" href="/User/UserDtl">
+            <i class="fa fa-times"></i>
+            Cancel
+        </a>&nbsp;
+        <button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button" onclick="onUserSave()">
+            <i class="fa fa-save"></i>
+            Submit
+        </button>
+    </div>
+</form>
+
+
+<script src="~/js/libs/jquery-2.1.1.min.js"></script>
+<script src="~/js/libs/jquery-ui-1.10.3.min.js"></script>
+<script type="text/javascript">
+
+    (function ($) {
+        $(".breadcrumb").html('<li id="breadcrumb1">Add User</li>'); 
+    }(jQuery));
+
+    function onUserSave() {
+        saveUser('frmAddUser', 'User', 'AddUser');
+    }
+
+    function saveUser(FORMID, Controller, Action) {
+        //loading for Trans Save button
+        var TransSaveBtnID = "btnSave";
+
+        $('#' + TransSaveBtnID).attr('disabled', true);
+        var validate = true;
+        $('#' + FORMID + ' .clsreq').each(function () {
+            if ($(this).hasClass("select2")) {
+                var message = $(this).siblings('input:hidden').attr('placeholder');
+                var val = $(this).select2("val");
+                if (val == "" || val == null || val == 0) {
+                    validate = false;
+                    $(this).find('.select2-choice').addClass('clsShowWarning');
+                    $(this).select2("focus", "val");
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            } else if ($(this).hasClass("select")) {
+                var message = $(this).attr('data-placeholder');
+                var val = $(this).val();
+                if (val == "" || val == null || val == 0) {
+                    validate = false;
+                    $(this).addClass('clsShowWarning');
+                    $(this).focus();
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            }
+            else {
+                var focus = $(this).attr('data-focus');
+                var message = $(this).attr('placeholder') == undefined || $(this).attr('placeholder') == null ? $(this).attr('data-placeholder') : $(this).attr('placeholder');
+                var val = $(this).hasClass("textarea") ? $(this).text().trim() : $(this).val() == "" || $(this).val() == null ? $(this).val() : $(this).val().trim();
+                if (val == "" || val == 0 || val == null) {
+                    validate = false;
+                    if (typeof focus === "undefined" || focus === null) {
+                        $(this).focus();
+                    }
+                    $(this).addClass('clsShowWarning');
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(message, "Warning", "W");
+                    return false;
+                }
+            }
+        });
+
+        if (validate) {
+            $('#' + TransSaveBtnID).attr("disabled", true);
+
+            var serializedData = $("#" + FORMID).serialize();
+            var url = "/" + Controller + "/" + Action + "/";
+            $.post(url, serializedData, function (res) {
+                var errid = res.ResultId;
+                var errmsg = res.Message;
+                var TITLE = res.Title;
+                var TYPE = res.Type;
+                if (errid > 0) {
+                    
+                    $.c9Message(errmsg, TITLE, TYPE);
+                    window.location = $('#btnCancel').attr('href');
+                } else {
+                    $('#' + TransSaveBtnID).attr('disabled', false);
+                    $.c9Message(errmsg, TITLE, TYPE);
+                }
+            });
+        }
+    }
+
+</script>
+

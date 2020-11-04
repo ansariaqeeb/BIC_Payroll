@@ -124,7 +124,7 @@ namespace DataModel
             return CreateXml;
         }
 
-        static public XDocument PAYSLIPHEADS_c(string FLAG, Int64 HEADID, string HEADCODE, int TRANSACTIONTYPE,string FORMULA,bool IsCalculation, string DESC, 
+        static public XDocument PAYSLIPHEADS_c(string FLAG, Int64 HEADID, string HEADCODE, int TRANSACTIONTYPE,string FORMULA,bool IsCalculation, string DESC, string PAYROLLDESC,
             bool ISACTIVE, bool ISAFFECTNATIONALPAY, bool ISAFFECTPAYSLIP, bool PRINTONPS, int TYPEOFINPUTID, int RATEID,
             int COMPID, int USERID, XElement LOGXML)
         {
@@ -137,6 +137,7 @@ namespace DataModel
            new XAttribute("FORMULA", FORMULA),
            new XAttribute("IsCalculation", IsCalculation),
            new XAttribute("DESC", DESC),
+           new XAttribute("PAYROLLDESC", PAYROLLDESC),
            new XAttribute("ISACTIVE", ISACTIVE),
            new XAttribute("ISAFFECTNATIONALPAY", ISAFFECTNATIONALPAY),
            new XAttribute("ISAFFECTPAYSLIP", ISAFFECTPAYSLIP),
@@ -170,12 +171,13 @@ namespace DataModel
             return CreateXml;
         }
 
-        static public XDocument PROCESSPAYSLIP_c(string FLAG, int COMPID, XElement transXML, int USERID, XElement LOGXML)
+        static public XDocument PROCESSPAYSLIP_c(string FLAG, int COMPID ,Int64 EMPID, XElement transXML, int USERID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",
            new XElement("SPDETAILS",
            new XAttribute("FLAG", FLAG), 
            new XAttribute("COMPID", COMPID),
+           new XAttribute("EMPID", EMPID),
            new XAttribute("USERID", USERID)
            ));
             MAINXML.Add(transXML);
