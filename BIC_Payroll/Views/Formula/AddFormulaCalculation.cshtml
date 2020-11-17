@@ -1,0 +1,142 @@
+﻿
+@{
+	Layout = null; ;
+}
+
+<style type="text/css">
+    .jarviswidget > div {
+        border-style: none !important;
+    }
+</style>
+<form id="frmAddFormulaCal" class="form-horizontal">
+	<div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
+		<div role="content">
+			<div class="widget-body no-padding">
+				<div class="tab-content padding-10">
+					<div class="tab-pane fade in active" id="hr1">
+						<article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Condition </label>
+									<div class="col-md-8">
+										<input type="hidden" name="IFLAG" value="I" />
+										<input type="hidden" name="HEADID" id="HEADID" value="@ViewBag.Id"> 
+										<textarea class="form-control" autocomplete="off" placeholder="Enter Condition" type="text" name="CONDITION" id="CONDITION"> </textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Calculation </label>
+									<div class="col-md-8"> 
+										<textarea class="form-control" autocomplete="off" placeholder="Enter Calculation" type="text" name="CALCULATION" id="CALCULATION"> </textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Is Exit.</label>
+									<div class="col-md-8">
+										<input role="checkbox" type="checkbox" id="ISEXIT" class="cbox" name="ISEXIT">
+									</div>
+								</div>
+							</fieldset>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button id="btnCancelCal" type="button" class="btn btn-default" data-dismiss="modal">
+			Cancel
+		</button>
+		<button id="btnSave" type="button" class="btn btn-primary">
+			Save
+		</button>
+	</div>
+</form>  
+<script src="~/js/ProjectCommon.js"></script>
+<script type="text/javascript">
+
+	(function ($) {
+		$('#ISEXIT').on('click', function () {
+			var isvalue = $(this).is(':checked');
+			$(this).val(isvalue);
+		});
+		 
+		$("#btnSave").on('click', function () {
+			FormulaVariableSave('frmAddFormulaCal', 'Formula', 'AddFormulaCalculation');
+		});
+
+		function FormulaVariableSave(FORMID, Controller, Action) {
+
+			//loading for Trans Save button
+			var TransSaveBtnID = "btnSave";
+
+			$('#' + TransSaveBtnID).attr('disabled', true);
+			var validate = true;
+			$('#' + FORMID + ' .clsreq').each(function () {
+				if ($(this).hasClass("select2")) {
+					var message = $(this).siblings('input:hidden').attr('placeholder');
+					var val = $(this).select2("val");
+					if (val == "" || val == null || val == 0) {
+						validate = false;
+						$(this).find('.select2-choice').addClass('clsShowWarning');
+						$(this).select2("focus", "val");
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				} else if ($(this).hasClass("select")) {
+					var message = $(this).attr('data-placeholder');
+					var val = $(this).val();
+					if (val == "" || val == null || val == 0) {
+						validate = false;
+						$(this).addClass('clsShowWarning');
+						$(this).focus();
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				}
+				else {
+					var focus = $(this).attr('data-focus');
+					var message = $(this).attr('placeholder') == undefined || $(this).attr('placeholder') == null ? $(this).attr('data-placeholder') : $(this).attr('placeholder');
+					var val = $(this).hasClass("textarea") ? $(this).text().trim() : $(this).val() == "" || $(this).val() == null ? $(this).val() : $(this).val().trim();
+					if (val == "" || val == 0 || val == null) {
+						validate = false;
+						if (typeof focus === "undefined" || focus === null) {
+							$(this).focus();
+						}
+						$(this).addClass('clsShowWarning');
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				}
+			});
+
+			if (validate) {
+				$('#' + TransSaveBtnID).attr("disabled", true);
+
+				var serializedData = $("#" + FORMID).serialize();
+				var url = "/" + Controller + "/" + Action + "/";
+				$.post(url, serializedData, function (res) {
+					var errid = res.ResultId;
+					var errmsg = res.Message;
+					var TITLE = res.Title;
+					var TYPE = res.Type;
+					if (errid > 0) {
+
+						$.c9Message(errmsg, TITLE, TYPE);
+						loadCalculations();
+						$('#btnCancelCal').click();
+					} else {
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(errmsg, TITLE, TYPE);
+					}
+				});
+			}
+		}
+	}(jQuery));
+
+</script>
+
+

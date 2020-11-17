@@ -184,6 +184,7 @@ namespace DataModel
             XDocument CreateXml = CommonXML("PROCESSPAYSLIP_c", MAINXML, LOGXML);
             return CreateXml;
         }
+        
 
         static public XDocument EMPLOYEEPAYMAPPING_c(string FLAG, Int64 MID, Int64 HEADID, Int64 EMPID,int CALSEQUENCE,decimal AMOUNT, bool IsCalculation, string FORMULA,
             bool ISACTIVE, int USERID, XElement LOGXML)
@@ -427,12 +428,48 @@ namespace DataModel
             XDocument CreateXml = CommonXML("USERMAST_c", MAINXML, LOGXML);
             return CreateXml;
         }
+        static public XDocument FORMULAVRIABLE_c(string FLAG, Int64 HEADID, Int64 VARID, string VARIABLE, Int64 FIELDID, decimal TESTVALUE,
+           bool ISACTIVE, Int64 COMPID, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("HEADID", HEADID),
+           new XAttribute("VARID", VARID),
+           new XAttribute("VARIABLE", VARIABLE),
+           new XAttribute("FIELDID", FIELDID),
+           new XAttribute("TESTVALUE", TESTVALUE),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("FORMULAVRIABLE_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
 
+        static public XDocument FORMULACALCULATION_c(string FLAG, Int64 CALID, Int64 HEADID, string CONDITION, string CALCULATION, bool ISEXIT, string RESULT, decimal TESTVALUE,
+           bool ISACTIVE, Int64 COMPID, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("FLAG", FLAG),
+           new XAttribute("CALID", CALID),
+           new XAttribute("HEADID", HEADID),
+           new XAttribute("CONDITION", CONDITION),
+           new XAttribute("CALCULATION", CALCULATION),
+           new XAttribute("ISEXIT", ISEXIT),
+           new XAttribute("RESULT", RESULT),
+           new XAttribute("TESTVALUE", TESTVALUE),
+           new XAttribute("ISACTIVE", ISACTIVE),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("FORMULACALCULATION_c", MAINXML, LOGXML);
+            return CreateXml;
+        }
         #endregion
-
-
         #region G Saction
-        
+
         static public XDocument STATUSMASTER_h(int TYPEID, int STATUSID, string DESC, int Flag, XElement LOGXML, string CONDITION)
         {
             XElement MAINXML = new XElement("SPXML",
@@ -521,8 +558,33 @@ namespace DataModel
             XDocument CreateXml = CommonXML("PROCESSPAYSLIP_g", MAINXML, LOGXML);
             return CreateXml;
         }
+        static public XDocument FORMULAVRIABLE_g(Int64 VARID,int HEADID, string VARIABLE, int COMPID, int USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("VARID", VARID),
+           new XAttribute("HEADID", HEADID),
+           new XAttribute("VARIABLE", VARIABLE),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("FORMULAVRIABLE_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
 
-        
+        static public XDocument FORMULACALCULATION_g(Int64 CALID,int HEADID, Int64 COMPID, Int64 USERID, XElement LOGXML)
+        {
+            XElement MAINXML = new XElement("SPXML",
+           new XElement("SPDETAILS",
+           new XAttribute("CALID", CALID),
+           new XAttribute("HEADID", HEADID),
+           new XAttribute("COMPID", COMPID),
+           new XAttribute("USERID", USERID)
+           ));
+            XDocument CreateXml = CommonXML("FORMULACALCULATION_g", MAINXML, LOGXML);
+            return CreateXml;
+        }
+
         static public XDocument EMPLOYEEPAYMAPPING_g(int MID,int EMPID, int USERID, XElement LOGXML)
         {
             XElement MAINXML = new XElement("SPXML",

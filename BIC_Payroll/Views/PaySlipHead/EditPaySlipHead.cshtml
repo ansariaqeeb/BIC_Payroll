@@ -81,7 +81,7 @@
                                 </div>
                             </fieldset>
                         </article>
-                        <article id="Formulasection" class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable hide">
+                        @*<article id="Formulasection" class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable hide">
                             <fieldset>
                                 <div class="form-group">
                                     <textarea class="col-xs-12 col-sm-12 width-100" placeholder="Formula" rows="11" readonly="readonly" name="FORMULA" id="FORMULA">@Model.FORMULA</textarea>
@@ -168,7 +168,7 @@
                                 </div>
                             </fieldset>
 
-                            @*<fieldset>
+                            <fieldset>
                                     <div class="col-md-12">
                                         @{
                                             List<SelectListItem> lst = new List<SelectListItem>();
@@ -181,8 +181,8 @@
                                         }
                                         @Html.DropDownList("slctopr", new SelectList(lst, "Value", "Text", ""), "Select..", new { @class = "form-control"})
                                     </div>
-                                </fieldset>*@
-                        </article>
+                                </fieldset>
+                        </article>*@
                     </div>
                 </div>
             </div>

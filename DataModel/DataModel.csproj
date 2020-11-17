@@ -57,6 +57,8 @@
     <Compile Include="Master\COUNTRYMAST.cs" />
     <Compile Include="Master\Employee.cs" />
     <Compile Include="Master\EmployeePaySlipMapping.cs" />
+    <Compile Include="Master\FormulaCalculation.cs" />
+    <Compile Include="Master\FormulaVariables.cs" />
     <Compile Include="Master\Login.cs" />
     <Compile Include="Master\PaySlipHead.cs" />
     <Compile Include="Master\RateMaster.cs" />

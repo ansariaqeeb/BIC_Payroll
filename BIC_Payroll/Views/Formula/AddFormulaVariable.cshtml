@@ -1,0 +1,153 @@
+﻿
+@{
+	Layout = null; ;
+}
+<style type="text/css">
+	.jarviswidget > div {
+		border-style: none !important;
+	}
+</style>
+<form id="frmAddFormulaVariable" class="form-horizontal">
+	<div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
+		<div role="content">
+			<div class="widget-body no-padding">
+				<div class="tab-content padding-10">
+					<div class="tab-pane fade in active" id="hr1">
+						<article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Field Code<span class="red clsStar"><sub>*</sub></span></label>
+									<div class="col-md-8">
+										<input type="hidden" name="IFLAG" value="I" />
+										<input type="hidden" name="HEADID" id="HEADID" value="@ViewBag.Id"> 
+										<input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Field" type="text" name="FIELDID" id="FIELDID">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Amount <span class="red clsStar"><sub>*</sub></span></label>
+									<div class="col-md-8">
+										<input class="form-control text-right" autocomplete="off" placeholder="Enter Test Value" maxlength="20" type="text" name="TESTVALUE" id="TESTVALUE">
+									</div>
+								</div>
+							</fieldset>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button id="btnCancelVar" type="button" class="btn btn-default" data-dismiss="modal">
+			Cancel
+		</button>
+		<button id="btnSave" type="button" class="btn btn-primary">
+			Save
+		</button>
+	</div>
+</form>   
+<link href="~/css/select2.min.css" rel="stylesheet" />
+<script src="~/js/plugin/select2/select2.min.js"></script>
+<script src="~/js/ProjectCommon.js"></script>
+<script type="text/javascript">
+
+	(function ($) { 
+		$("#FIELDID").select2({
+			multiple: false,
+			allowClear: false,
+			ajax: {
+				cache: true,
+				url: "/CommonLibrary/_PayHeads",
+				dataType: 'json',
+				quietMillis: 100,
+				data: function (term) {
+					return {
+						headId: 0,
+						desc: term
+					};
+				},
+				results: function (data) {
+					return { results: data };
+				}
+			}
+		}).on('change', function () { 
+		});
+		 
+
+		$("#btnSave").on('click', function () {
+			FormulaVariableSave('frmAddFormulaVariable', 'Formula', 'AddFormulaVariable');
+		});
+
+		function FormulaVariableSave(FORMID, Controller, Action) {
+
+			//loading for Trans Save button
+			var TransSaveBtnID = "btnSave";
+
+			$('#' + TransSaveBtnID).attr('disabled', true);
+			var validate = true;
+			$('#' + FORMID + ' .clsreq').each(function () {
+				if ($(this).hasClass("select2")) {
+					var message = $(this).siblings('input:hidden').attr('placeholder');
+					var val = $(this).select2("val");
+					if (val == "" || val == null || val == 0) {
+						validate = false;
+						$(this).find('.select2-choice').addClass('clsShowWarning');
+						$(this).select2("focus", "val");
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				} else if ($(this).hasClass("select")) {
+					var message = $(this).attr('data-placeholder');
+					var val = $(this).val();
+					if (val == "" || val == null || val == 0) {
+						validate = false;
+						$(this).addClass('clsShowWarning');
+						$(this).focus();
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				}
+				else {
+					var focus = $(this).attr('data-focus');
+					var message = $(this).attr('placeholder') == undefined || $(this).attr('placeholder') == null ? $(this).attr('data-placeholder') : $(this).attr('placeholder');
+					var val = $(this).hasClass("textarea") ? $(this).text().trim() : $(this).val() == "" || $(this).val() == null ? $(this).val() : $(this).val().trim();
+					if (val == "" || val == 0 || val == null) {
+						validate = false;
+						if (typeof focus === "undefined" || focus === null) {
+							$(this).focus();
+						}
+						$(this).addClass('clsShowWarning');
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				}
+			});
+
+			if (validate) {
+				$('#' + TransSaveBtnID).attr("disabled", true);
+
+				var serializedData = $("#" + FORMID).serialize();
+				var url = "/" + Controller + "/" + Action + "/";
+				$.post(url, serializedData, function (res) {
+					var errid = res.ResultId;
+					var errmsg = res.Message;
+					var TITLE = res.Title;
+					var TYPE = res.Type;
+					if (errid > 0) {
+
+						$.c9Message(errmsg, TITLE, TYPE);
+						loadVariables();
+						$('#btnCancelVar').click();
+					} else {
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(errmsg, TITLE, TYPE);
+					}
+				});
+			}
+		} 
+	}(jQuery));
+
+</script>
+

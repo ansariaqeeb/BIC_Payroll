@@ -1,4 +1,4 @@
-﻿@model DataModel.Master.EmployeePaySlipMapping
+﻿@model DataModel.Master.FormulaVariables
 @{
 	Layout = null; ;
 }
@@ -7,7 +7,7 @@
 		border-style: none !important;
 	}
 </style>
-<form id="frmAddPaySlipMapping" class="form-horizontal">
+<form id="frmAddFormulaVariable" class="form-horizontal">
 	<div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
 		<div role="content">
 			<div class="widget-body no-padding">
@@ -16,47 +16,22 @@
 						<article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
 							<fieldset>
 								<div class="form-group">
-									<label class="col-md-4 control-label text-left">Pay Slip Head Code<span class="red clsStar"><sub>*</sub></span></label>
+									<label class="col-md-4 control-label text-left">Field Code<span class="red clsStar"><sub>*</sub></span></label>
 									<div class="col-md-8">
 										<input type="hidden" name="IFLAG" value="E" />
-										<input type="hidden" name="MID" id="MID" value="@Model.MID">
-										<input type="hidden" name="EMPID" id="EMPID" value="@Model.EMPID">
-										<input type="hidden" name="IsCalculation" id="IsCalculation" value="@Model.IsCalculation">
-										<input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" value="@Model.HEADID" data-desc="@Model.HEADCODE" placeholder="Select Pay Slip" type="text" name="HEADID" id="HEADID">
+										<input type="hidden" name="HEADID" id="HEADID" value="@Model.HEADID">
+										<input type="hidden" name="VARID" id="VARID" value="@Model.VARID">
+										<input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Field" value="@Model.FIELDID" data-desc="@Model.FIELDCODE" type="text" name="FIELDID" id="FIELDID">
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-md-4 control-label text-left">Transaction Type <span class="red clsStar"><sub>*</sub></span></label>
-									<div class="col-md-8">
-										<input class="form-control" readonly="readonly" autocomplete="off" placeholder="Enter Type" value="@Model.STATUSCODE" type="text" name="TRANSACTIONTYPE" id="TRANSACTIONTYPE">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-4 control-label text-left">Calculation Sequence <span class="red clsStar"><sub>*</sub></span></label>
-									<div class="col-md-8">
-										<input class="form-control clsreq" autocomplete="off" placeholder="Enter Calculation Sequence" value="@Model.CALSEQUENCE" maxlength="20" type="text" name="CALSEQUENCE" id="CALSEQUENCE">
-									</div>
-								</div>
-								@*<div class="form-group">
-									<label class="col-md-4 control-label text-left">Is Calculation</label>
-									<div class="col-md-8">
-										<input role="checkbox" type="checkbox" id="IsCalculation" class="cbox" name="IsCalculation" value="@Model.IsCalculation.ToString()" checked="@Model.IsCalculation">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-4 control-label text-left">Formula <span class="red clsStar"><sub>*</sub></span></label>
-									<div class="col-md-8">
-										<input class="form-control" autocomplete="off" placeholder="Enter Formula" value="@Model.FORMULA" maxlength="20" type="text" name="FORMULA" id="FORMULA">
-									</div>
-								</div>*@
 								<div class="form-group">
 									<label class="col-md-4 control-label text-left">Amount <span class="red clsStar"><sub>*</sub></span></label>
 									<div class="col-md-8">
-										<input class="form-control text-right" autocomplete="off" placeholder="Enter Amount" maxlength="20" type="text" value="@Model.AMOUNT" name="AMOUNT" id="AMOUNT">
+										<input class="form-control text-right" autocomplete="off" placeholder="Enter Test Value" maxlength="20" type="text" value="@Model.TESTVALUE" name="TESTVALUE" id="TESTVALUE" onkeypress="return $.c9Validateinput(event, this, '0-9.2');">
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-md-4 control-label text-left">Is Active</label>
+									<label class="col-md-4 control-label text-left">Is Active.</label>
 									<div class="col-md-8">
 										<input role="checkbox" type="checkbox" id="ISACTIVE" class="cbox" name="ISACTIVE" value="@Model.ISACTIVE.ToString()" checked="@Model.ISACTIVE">
 									</div>
@@ -69,7 +44,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button id="btnCancelmaping" type="button" class="btn btn-default" data-dismiss="modal">
+		<button id="btnCancelVar" type="button" class="btn btn-default" data-dismiss="modal">
 			Cancel
 		</button>
 		<button id="btnSave" type="button" class="btn btn-primary">
@@ -83,22 +58,13 @@
 <script type="text/javascript">
 
 	(function ($) {
-		$(".breadcrumb").html('<li id="breadcrumb1">Add Pay slip Head</li>');
-
-		var IsCalculation = $('#IsCalculation').val();
-
-		if (IsCalculation) { 
-			$('#AMOUNT').attr('readonly', true);
-		} else { 
-			$('#AMOUNT').attr('readonly', false);
-		}
 
 		$('#ISACTIVE').on('click', function () {
 			var isvalue = $(this).is(':checked');
 			$(this).val(isvalue);
 		});
-		 
-		$("#HEADID").select2({
+
+		$("#FIELDID").select2({
 			multiple: false,
 			allowClear: false,
 			ajax: {
@@ -117,30 +83,19 @@
 				}
 			},
 			initSelection: function (element, callback) {
-				var id = $("#HEADID").val();
-				var text = $("#HEADID").attr('data-desc');
-
-				$("#HEADID").select2('data', { id: id, text: text });
+				var id = $("#FIELDID").val();
+				var text = $("#FIELDID").attr('data-desc');
+				$("#FIELDID").select2('data', { id: id, text: text });
 			}
 		}).on('change', function () {
-			var data = $("#HEADID").select2('data');
-			$('#TRANSACTIONTYPE').val(data.transType);
-
-			var isCalculation = data.IsCalculation;
-			if (isCalculation) {
-				$('#AMOUNT').val('');
-				$('#AMOUNT').attr('readonly', true);
-			} else {
-				$('#AMOUNT').attr('readonly', false);
-			}
 		});
 
 
 		$("#btnSave").on('click', function () {
-			PaySlipHeadSave('frmAddPaySlipMapping', 'PaySlipEmpMap', 'AddPaySlipMapping');
+			FormulaVariableSave('frmAddFormulaVariable', 'Formula', 'AddFormulaVariable');
 		});
 
-		function PaySlipHeadSave(FORMID, Controller, Action) {
+		function FormulaVariableSave(FORMID, Controller, Action) {
 
 			//loading for Trans Save button
 			var TransSaveBtnID = "btnSave";
@@ -199,11 +154,10 @@
 					var TITLE = res.Title;
 					var TYPE = res.Type;
 					if (errid > 0) {
+
 						$.c9Message(errmsg, TITLE, TYPE);
-						$('#btnCancelmaping').click();
-						
-						loadEmpPayStr(@Model.EMPID);
-						$('.modal-backdrop').remove();
+						loadVariables();
+						$('#btnCancelVar').click();
 					} else {
 						$('#' + TransSaveBtnID).attr('disabled', false);
 						$.c9Message(errmsg, TITLE, TYPE);
@@ -213,7 +167,5 @@
 		}
 	}(jQuery));
 
-
 </script>
-
 

@@ -1,182 +1,182 @@
 ﻿
 @{
-    ViewBag.Title = "Add Pay Slip Head";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Add Pay Slip Head";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <form id="frmAddPaySlipHead" class="form-horizontal">
-    <div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
-        <div role="content">
-            <div class="widget-body no-padding">
-                <div class="tab-content padding-10">
-                    <div class="tab-pane fade in active" id="hr1">
-                        <article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Payroll Transaction Code<span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8">
-                                        <input type="hidden" name="IFLAG" value="I" />
-                                        <input type="hidden" name="HEADID" id="HEADID">
-                                        <input class="form-control clsreq" autocomplete="off" placeholder="Enter Pay Slip Head Code" maxlength="20" type="text" name="HEADCODE" id="HEADCODE">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Description <span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control clsreq" autocomplete="off" placeholder="Enter Description" type="text" name="DESC" id="DESC"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Payroll Transaction Description <span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8">
-                                        <textarea class="form-control" autocomplete="off" placeholder="Enter Payroll Transaction Description" type="text" name="PAYROLLDESC" id="PAYROLLDESC"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Transaction Type <span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8">
-                                        <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Transaction Type" type="hidden" name="TRANSACTIONTYPEID" id="TRANSACTIONTYPEID">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Affect National Pay</label>
-                                    <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="ISAFFECTNATIONALPAY" class="cbox chkbox" name="ISAFFECTNATIONALPAY">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Affect Pay Slip</label>
-                                    <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="ISAFFECTPAYSLIP" class="cbox chkbox" name="ISAFFECTPAYSLIP">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Print on Pay Slip</label>
-                                    <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="PRINTONPS" class="cbox chkbox" name="PRINTONPS">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Is Calculation</label>
-                                    <div class="col-md-8">
-                                        <input role="checkbox" type="checkbox" id="IsCalculation" class="cbox" name="IsCalculation">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Type Of Input <span class="red clsStar"><sub>*</sub></span></label>
-                                    <div class="col-md-8">
-                                        <input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Type Of Input" type="hidden" name="TYPEOFINPUTID" id="TYPEOFINPUTID">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label text-left">Rate </label>
-                                    <div class="col-md-8">
-                                        <input class="width-100 col-md-12 no-padding select2" autocomplete="off" placeholder="Select Rate" type="hidden" name="RATEID" id="RATEID">
-                                    </div>
-                                </div>
-                            </fieldset>
-                        </article>
-                        <article id="Formulasection" class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable hide">
-                            <fieldset>
-                                <div class="form-group">
-                                    <textarea class="col-xs-12 col-sm-12 width-100" placeholder="Formula" rows="11" readonly="readonly" name="FORMULA" id="FORMULA"></textarea>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="width-100 col-md-12 no-padding select2" autocomplete="off" placeholder="Select Payroll Transaction" type="hidden" name="HEADIDFORMULA" id="HEADIDFORMULA">
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-group">
-                                    <table style="width:100%;">
-                                        <tbody>
-                                            <tr class="trdigit">
-                                                <td>
-                                                    <input id="One" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="1">
-                                                </td>
-                                                <td>
-                                                    <input id="Two" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="2">
-                                                </td>
-                                                <td>
-                                                    <input id="Three" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="3">
-                                                </td>
-                                                <td>
-                                                    <input id="Four" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="4">
-                                                </td>
-                                                <td>
-                                                    <input id="Five" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="5">
-                                                </td>
-                                                <td>
-                                                    <input id="Six" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="6">
-                                                </td>
+	<div class="jarviswidget jarviswidget-sortable" id="wid-id-11" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" role="widget">
+		<div role="content">
+			<div class="widget-body no-padding">
+				<div class="tab-content padding-10">
+					<div class="tab-pane fade in active" id="hr1">
+						<article class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable">
+							<fieldset>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Payroll Transaction Code<span class="red clsStar"><sub>*</sub></span></label>
+									<div class="col-md-8">
+										<input type="hidden" name="IFLAG" value="I" />
+										<input type="hidden" name="HEADID" id="HEADID">
+										<input class="form-control clsreq" autocomplete="off" placeholder="Enter Pay Slip Head Code" maxlength="20" type="text" name="HEADCODE" id="HEADCODE">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Description <span class="red clsStar"><sub>*</sub></span></label>
+									<div class="col-md-8">
+										<textarea class="form-control clsreq" autocomplete="off" placeholder="Enter Description" type="text" name="DESC" id="DESC"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Payroll Transaction Description <span class="red clsStar"><sub>*</sub></span></label>
+									<div class="col-md-8">
+										<textarea class="form-control" autocomplete="off" placeholder="Enter Payroll Transaction Description" type="text" name="PAYROLLDESC" id="PAYROLLDESC"></textarea>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Transaction Type <span class="red clsStar"><sub>*</sub></span></label>
+									<div class="col-md-8">
+										<input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Transaction Type" type="hidden" name="TRANSACTIONTYPEID" id="TRANSACTIONTYPEID">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Affect National Pay</label>
+									<div class="col-md-8">
+										<input role="checkbox" type="checkbox" id="ISAFFECTNATIONALPAY" class="cbox chkbox" name="ISAFFECTNATIONALPAY">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Affect Pay Slip</label>
+									<div class="col-md-8">
+										<input role="checkbox" type="checkbox" id="ISAFFECTPAYSLIP" class="cbox chkbox" name="ISAFFECTPAYSLIP">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Print on Pay Slip</label>
+									<div class="col-md-8">
+										<input role="checkbox" type="checkbox" id="PRINTONPS" class="cbox chkbox" name="PRINTONPS">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Is Calculation</label>
+									<div class="col-md-8">
+										<input role="checkbox" type="checkbox" id="IsCalculation" class="cbox" name="IsCalculation">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Type Of Input <span class="red clsStar"><sub>*</sub></span></label>
+									<div class="col-md-8">
+										<input class="width-100 col-md-12 no-padding select2 clsreq" autocomplete="off" placeholder="Select Type Of Input" type="hidden" name="TYPEOFINPUTID" id="TYPEOFINPUTID">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label text-left">Rate </label>
+									<div class="col-md-8">
+										<input class="width-100 col-md-12 no-padding select2" autocomplete="off" placeholder="Select Rate" type="hidden" name="RATEID" id="RATEID">
+									</div>
+								</div>
+							</fieldset>
+						</article>
+						@*<article id="Formulasection" class="col-sm-12 col-md-12 col-lg-6 sortable-grid ui-sortable hide">
+							<fieldset>
+								<div class="form-group">
+									<textarea class="col-xs-12 col-sm-12 width-100" placeholder="Formula" rows="11" readonly="readonly" name="FORMULA" id="FORMULA"></textarea>
+								</div>
+							</fieldset>
+							<fieldset>
+								<div class="form-group">
+									<input class="width-100 col-md-12 no-padding select2" autocomplete="off" placeholder="Select Payroll Transaction" type="hidden" name="HEADIDFORMULA" id="HEADIDFORMULA">
+								</div>
+							</fieldset>
+							<fieldset>
+								<div class="form-group">
+									<table style="width:100%;">
+										<tbody>
+											<tr class="trdigit">
+												<td>
+													<input id="One" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="1">
+												</td>
+												<td>
+													<input id="Two" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="2">
+												</td>
+												<td>
+													<input id="Three" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="3">
+												</td>
+												<td>
+													<input id="Four" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="4">
+												</td>
+												<td>
+													<input id="Five" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="5">
+												</td>
+												<td>
+													<input id="Six" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="6">
+												</td>
 
-                                            </tr>
-                                            <tr>
-                                                <td class="trdigit">
-                                                    <input id="Seven" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="7">
-                                                </td>
-                                                <td class="trdigit">
-                                                    <input id="Eight" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="8">
-                                                </td>
-                                                <td class="trdigit">
-                                                    <input id="Nine" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="9">
-                                                </td>
-                                                <td class="trdigit">
-                                                    <input id="Zero" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="0">
-                                                </td>
-                                                <td>
-                                                    <input id="Openbracket" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="(">
-                                                </td>
-                                                <td>
-                                                    <input id="Closebracket" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value=")">
-                                                </td>
-                                            </tr>
-                                            <tr class="trOrp">
-                                                <td>
-                                                    <input id="Plus" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="+" />
-                                                </td>
-                                                <td>
-                                                    <input id="Minus" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="-" />
-                                                </td>
-                                                <td>
-                                                    <input id="Multiplication" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="*" />
-                                                </td>
-                                                <td>
-                                                    <input id="Division" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="/" />
-                                                </td>
-                                                <td>
-                                                    <input id="Backspace" type="button" class="btn btn-xs btn-inverse calcbtndiv back" style="width: 99%" value="<-" />
-                                                </td>
-                                                <td>
-                                                    <input type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value=".">
-                                                </td>
+											</tr>
+											<tr>
+												<td class="trdigit">
+													<input id="Seven" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="7">
+												</td>
+												<td class="trdigit">
+													<input id="Eight" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="8">
+												</td>
+												<td class="trdigit">
+													<input id="Nine" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="9">
+												</td>
+												<td class="trdigit">
+													<input id="Zero" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="0">
+												</td>
+												<td>
+													<input id="Openbracket" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value="(">
+												</td>
+												<td>
+													<input id="Closebracket" type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value=")">
+												</td>
+											</tr>
+											<tr class="trOrp">
+												<td>
+													<input id="Plus" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="+" />
+												</td>
+												<td>
+													<input id="Minus" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="-" />
+												</td>
+												<td>
+													<input id="Multiplication" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="*" />
+												</td>
+												<td>
+													<input id="Division" type="button" class="btn btn-xs btn-inverse calcbtndiv opr" style="width: 99%" value="/" />
+												</td>
+												<td>
+													<input id="Backspace" type="button" class="btn btn-xs btn-inverse calcbtndiv back" style="width: 99%" value="<-" />
+												</td>
+												<td>
+													<input type="button" class="btn btn-xs btn-inverse calcbtndiv digit" style="width: 99%" value=".">
+												</td>
 
-                                            </tr>
-                                            <tr>
-                                                <td colspan="6">
-                                                    <input id="Equal" type="button" class="btn btn-xs btn-inverse calcbtndiv Clr" style="width: 100%" value="clear" />
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </fieldset> 
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="widget-footer">
-        <a id="btnCancel" class="btn btn-xs btn-default" href="/PaySlipHead/PaySlipHeadDtl">
-            <i class="fa fa-times"></i>
-            Cancel
-        </a>&nbsp;
-        <button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button">
-            <i class="fa fa-save"></i>
-            Submit
-        </button>
-    </div>
+											</tr>
+											<tr>
+												<td colspan="6">
+													<input id="Equal" type="button" class="btn btn-xs btn-inverse calcbtndiv Clr" style="width: 100%" value="clear" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</fieldset> 
+						</article>*@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="widget-footer">
+		<a id="btnCancel" class="btn btn-xs btn-default" href="/PaySlipHead/PaySlipHeadDtl">
+			<i class="fa fa-times"></i>
+			Cancel
+		</a>&nbsp;
+		<button id="btnSave" class="btn btn-primary btn-xs pull-right" type="button">
+			<i class="fa fa-save"></i>
+			Submit
+		</button>
+	</div>
 </form>
 
 
@@ -188,213 +188,213 @@
 <script src="~/js/ProjectCommon.js"></script>
 <script type="text/javascript">
 
-    (function ($) {
-        $(".breadcrumb").html('<li id="breadcrumb1">Add Pay Slip Transaction</li>');
+	(function ($) {
+		$(".breadcrumb").html('<li id="breadcrumb1">Add Pay Slip Transaction</li>');
 
-        $("#TRANSACTIONTYPEID").select2({
-            multiple: false,
-            allowClear: false,
-            ajax: {
-                cache: true,
-                url: "/CommonLibrary/_StatusMaster",
-                dataType: 'json',
-                quietMillis: 100,
-                data: function (term) {
-                    return {
-                        TypeId: 5,
-                        StatusId: 0,
-                        description: term
-                    };
-                },
-                results: function (data) {
-                    return { results: data };
-                }
-            }
-        }).on('change', function () {
+		$("#TRANSACTIONTYPEID").select2({
+			multiple: false,
+			allowClear: false,
+			ajax: {
+				cache: true,
+				url: "/CommonLibrary/_StatusMaster",
+				dataType: 'json',
+				quietMillis: 100,
+				data: function (term) {
+					return {
+						TypeId: 5,
+						StatusId: 0,
+						description: term
+					};
+				},
+				results: function (data) {
+					return { results: data };
+				}
+			}
+		}).on('change', function () {
 
-        });
+		});
 
-        $("#TYPEOFINPUTID").select2({
-            multiple: false,
-            allowClear: false,
-            ajax: {
-                cache: true,
-                url: "/CommonLibrary/_StatusMaster",
-                dataType: 'json',
-                quietMillis: 100,
-                data: function (term) {
-                    return {
-                        TypeId: 7,
-                        StatusId: 0,
-                        description: term
-                    };
-                },
-                results: function (data) {
-                    return { results: data };
-                }
-            }
-        }).on('change', function () {
+		$("#TYPEOFINPUTID").select2({
+			multiple: false,
+			allowClear: false,
+			ajax: {
+				cache: true,
+				url: "/CommonLibrary/_StatusMaster",
+				dataType: 'json',
+				quietMillis: 100,
+				data: function (term) {
+					return {
+						TypeId: 7,
+						StatusId: 0,
+						description: term
+					};
+				},
+				results: function (data) {
+					return { results: data };
+				}
+			}
+		}).on('change', function () {
 
-        });
+		});
 
-        $("#RATEID").select2({
-            multiple: false,
-            allowClear: true,
-            ajax: {
-                cache: true,
-                url: "/CommonLibrary/_RateMaster",
-                dataType: 'json',
-                quietMillis: 100,
-                data: function (term) {
-                    return {
-                        rateid: 0,
-                        desc: term
-                    };
-                },
-                results: function (data) {
-                    return { results: data };
-                }
-            }
-        }).on('change', function () {
+		$("#RATEID").select2({
+			multiple: false,
+			allowClear: true,
+			ajax: {
+				cache: true,
+				url: "/CommonLibrary/_RateMaster",
+				dataType: 'json',
+				quietMillis: 100,
+				data: function (term) {
+					return {
+						rateid: 0,
+						desc: term
+					};
+				},
+				results: function (data) {
+					return { results: data };
+				}
+			}
+		}).on('change', function () {
 
-        });
+		});
 
-        $('.chkbox').on('click', function () {
-            var isvalue = $(this).is(':checked');
-            $(this).val(isvalue);
-        });
+		$('.chkbox').on('click', function () {
+			var isvalue = $(this).is(':checked');
+			$(this).val(isvalue);
+		});
 
-        $("#btnSave").on('click', function () {
-            PaySlipHeadSave('frmAddPaySlipHead', 'PaySlipHead', 'AddPaySlipHead');
-        });
+		$("#btnSave").on('click', function () {
+			PaySlipHeadSave('frmAddPaySlipHead', 'PaySlipHead', 'AddPaySlipHead');
+		});
 
-        function PaySlipHeadSave(FORMID, Controller, Action) {
+		function PaySlipHeadSave(FORMID, Controller, Action) {
 
-            //loading for Trans Save button
-            var TransSaveBtnID = "btnSave";
+			//loading for Trans Save button
+			var TransSaveBtnID = "btnSave";
 
-            $('#' + TransSaveBtnID).attr('disabled', true);
-            var validate = true;
-            $('#' + FORMID + ' .clsreq').each(function () {
-                if ($(this).hasClass("select2")) {
-                    var message = $(this).siblings('input:hidden').attr('placeholder');
-                    var val = $(this).select2("val");
-                    if (val == "" || val == null || val == 0) {
-                        validate = false;
-                        $(this).find('.select2-choice').addClass('clsShowWarning');
-                        $(this).select2("focus", "val");
-                        $('#' + TransSaveBtnID).attr('disabled', false);
-                        $.c9Message(message, "Warning", "W");
-                        return false;
-                    }
-                } else if ($(this).hasClass("select")) {
-                    var message = $(this).attr('data-placeholder');
-                    var val = $(this).val();
-                    if (val == "" || val == null || val == 0) {
-                        validate = false;
-                        $(this).addClass('clsShowWarning');
-                        $(this).focus();
-                        $('#' + TransSaveBtnID).attr('disabled', false);
-                        $.c9Message(message, "Warning", "W");
-                        return false;
-                    }
-                }
-                else {
-                    var focus = $(this).attr('data-focus');
-                    var message = $(this).attr('placeholder') == undefined || $(this).attr('placeholder') == null ? $(this).attr('data-placeholder') : $(this).attr('placeholder');
-                    var val = $(this).hasClass("textarea") ? $(this).text().trim() : $(this).val() == "" || $(this).val() == null ? $(this).val() : $(this).val().trim();
-                    if (val == "" || val == 0 || val == null) {
-                        validate = false;
-                        if (typeof focus === "undefined" || focus === null) {
-                            $(this).focus();
-                        }
-                        $(this).addClass('clsShowWarning');
-                        $('#' + TransSaveBtnID).attr('disabled', false);
-                        $.c9Message(message, "Warning", "W");
-                        return false;
-                    }
-                }
-            });
+			$('#' + TransSaveBtnID).attr('disabled', true);
+			var validate = true;
+			$('#' + FORMID + ' .clsreq').each(function () {
+				if ($(this).hasClass("select2")) {
+					var message = $(this).siblings('input:hidden').attr('placeholder');
+					var val = $(this).select2("val");
+					if (val == "" || val == null || val == 0) {
+						validate = false;
+						$(this).find('.select2-choice').addClass('clsShowWarning');
+						$(this).select2("focus", "val");
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				} else if ($(this).hasClass("select")) {
+					var message = $(this).attr('data-placeholder');
+					var val = $(this).val();
+					if (val == "" || val == null || val == 0) {
+						validate = false;
+						$(this).addClass('clsShowWarning');
+						$(this).focus();
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				}
+				else {
+					var focus = $(this).attr('data-focus');
+					var message = $(this).attr('placeholder') == undefined || $(this).attr('placeholder') == null ? $(this).attr('data-placeholder') : $(this).attr('placeholder');
+					var val = $(this).hasClass("textarea") ? $(this).text().trim() : $(this).val() == "" || $(this).val() == null ? $(this).val() : $(this).val().trim();
+					if (val == "" || val == 0 || val == null) {
+						validate = false;
+						if (typeof focus === "undefined" || focus === null) {
+							$(this).focus();
+						}
+						$(this).addClass('clsShowWarning');
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(message, "Warning", "W");
+						return false;
+					}
+				}
+			});
 
-            if (validate) {
-                $('#' + TransSaveBtnID).attr("disabled", true);
+			if (validate) {
+				$('#' + TransSaveBtnID).attr("disabled", true);
 
-                var serializedData = $("#" + FORMID).serialize();
-                var url = "/" + Controller + "/" + Action + "/";
-                $.post(url, serializedData, function (res) {
-                    var errid = res.ResultId;
-                    var errmsg = res.Message;
-                    var TITLE = res.Title;
-                    var TYPE = res.Type;
-                    if (errid > 0) {
+				var serializedData = $("#" + FORMID).serialize();
+				var url = "/" + Controller + "/" + Action + "/";
+				$.post(url, serializedData, function (res) {
+					var errid = res.ResultId;
+					var errmsg = res.Message;
+					var TITLE = res.Title;
+					var TYPE = res.Type;
+					if (errid > 0) {
 
-                        $.c9Message(errmsg, TITLE, TYPE);
-                        window.location = $('#btnCancel').attr('href');
-                    } else {
-                        $('#' + TransSaveBtnID).attr('disabled', false);
-                        $.c9Message(errmsg, TITLE, TYPE);
-                    }
-                });
-            }
-        }
+						$.c9Message(errmsg, TITLE, TYPE);
+						window.location = $('#btnCancel').attr('href');
+					} else {
+						$('#' + TransSaveBtnID).attr('disabled', false);
+						$.c9Message(errmsg, TITLE, TYPE);
+					}
+				});
+			}
+		}
 
 
-        $("#HEADIDFORMULA").select2({
-            multiple: false,
-            allowClear: false,
-            ajax: {
-                cache: true,
-                url: "/CommonLibrary/_PayHeads",
-                dataType: 'json',
-                quietMillis: 100,
-                data: function (term) {
-                    return {
-                        headId: 0,
-                        desc: term
-                    };
-                },
-                results: function (data) {
-                    return { results: data };
-                }
-            }
-        }).on('change', function () {
-            var data = $("#HEADIDFORMULA").select2('data');
-            var txtFormula = $('#FORMULA').val();
-            $('#FORMULA').val(txtFormula.concat("[" + data.text.trim() + "]"));
-        });
+		$("#HEADIDFORMULA").select2({
+			multiple: false,
+			allowClear: false,
+			ajax: {
+				cache: true,
+				url: "/CommonLibrary/_PayHeads",
+				dataType: 'json',
+				quietMillis: 100,
+				data: function (term) {
+					return {
+						headId: 0,
+						desc: term
+					};
+				},
+				results: function (data) {
+					return { results: data };
+				}
+			}
+		}).on('change', function () {
+			var data = $("#HEADIDFORMULA").select2('data');
+			var txtFormula = $('#FORMULA').val();
+			$('#FORMULA').val(txtFormula.concat("[" + data.text.trim() + "]"));
+		});
 
-        $('#IsCalculation').on('click', function () {
-            var isvalue = $(this).is(':checked');
-            $(this).val(isvalue);
-            $('#FORMULA').val('');
-            if (isvalue) {
-                $('#Formulasection').removeClass('hide');
-            } else {
-                $('#Formulasection').addClass('hide');
-            }
-        });
+		$('#IsCalculation').on('click', function () {
+			var isvalue = $(this).is(':checked');
+			$(this).val(isvalue);
+			//$('#FORMULA').val('');
+			//if (isvalue) {
+			//    $('#Formulasection').removeClass('hide');
+			//} else {
+			//    $('#Formulasection').addClass('hide');
+			//}
+		});
 
-        //Operator Click
-        $('.opr').on('click', function () {
-            var oprator = $(this).val();
-            var txtFormula = $('#FORMULA').val();
-            $('.tblparamcode').show();
-            $('.trdigit').show();
-            $('#FORMULA').val(txtFormula.concat(oprator.trim()))
+		//Operator Click
+		$('.opr').on('click', function () {
+			var oprator = $(this).val();
+			var txtFormula = $('#FORMULA').val();
+			$('.tblparamcode').show();
+			$('.trdigit').show();
+			$('#FORMULA').val(txtFormula.concat(oprator.trim()))
 
-        });
+		});
 
-        //digit Click
-        $('.digit').on('click', function () {
-            var digit = $(this).val();
-            var txtFormula = $('#FORMULA').val();
-            $('#FORMULA').val(txtFormula.concat(digit.trim()));
-        });
-        $('.Clr').on('click', function () {
-            $('#FORMULA').val('');
-            Arr = [];
-        });
-    }(jQuery));
+		//digit Click
+		$('.digit').on('click', function () {
+			var digit = $(this).val();
+			var txtFormula = $('#FORMULA').val();
+			$('#FORMULA').val(txtFormula.concat(digit.trim()));
+		});
+		$('.Clr').on('click', function () {
+			$('#FORMULA').val('');
+			Arr = [];
+		});
+	}(jQuery));
 
 </script>
 

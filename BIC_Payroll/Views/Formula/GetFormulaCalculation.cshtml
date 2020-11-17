@@ -1,0 +1,110 @@
+﻿@model List<DataModel.Master.FormulaCalculation>
+
+@if (Model != null)
+{
+    <span> <b>Calculations :</b><button id="btnAddFormulaCalculation" data-toggle="modal" data-target="#myModal" class="btn btn-default btn-xs"> Add Calculation </button></span>
+    <table id="tableFormulaCalculation" class="table table-striped table-bordered table-hover" width="100%">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Condition</th>
+                <th>Caculation</th>
+                <th>Result</th>
+                <th class="text-right">Test Value</th>
+                <th>Is Exit</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-xs btn-default btneditcal"  data-mid="@item.CALID" data-toggle="modal" data-target="#myModal" data-original-title="Edit Calculation" href="#"><i class="fa fa-pencil"></i></a>
+                        <a class="btn btn-xs btn-default btndelete" data-mid="@item.CALID" title="Delete Calculation" data-original-title="Delete Row" href="#"><i class="fa fa-trash-o"></i></a>
+                    </td>
+                    <td>@item.CONDITION</td>
+                    <td>@item.CALCULATION </td>
+                    <td>@item.RESULT </td>
+                    <td class="text-right">@item.TESTVALUE </td>
+                    <td>
+                        @if (item.ISEXIT)
+                        {
+                            <i class="fa fa-check green" style="color:green"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times" style="color:red"></i>
+                        }
+                    </td>
+                    <td>
+                        @if (item.ISACTIVE)
+                        {
+                            <i class="fa fa-check green" style="color:green"></i>
+                        }
+                        else
+                        {
+                            <i class="fa fa-times" style="color:red"></i>
+                        }
+                    </td>
+                </tr>}
+        </tbody>
+    </table>
+}
+else
+{
+    <span> <b style="color:red">No Calculation Define</b></span>
+}
+<script src="~/js/ProjectCommon.js"></script>
+<script type="text/javascript">
+
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+    $(document).ready(function () {
+
+        $('.btneditcal').on('click', function () {
+            var id=$(this).attr('data-mid');
+
+            var url = '/Formula/EditFormulaCalculation?Id=' + id +'&HeadId=' + @ViewBag.Id;
+            $.get(url, function (data) {
+                $('#myModalLabel').text('Edit Calculation');
+                $('#modelbody').html(data);
+            });
+        });
+
+        $('.btndelete').on('click', function () {
+            var id=$(this).attr('data-mid');
+
+            var result = confirm("Are you sure, you want to delete this calculation?");
+            if (result == true) {
+                $.get('/Formula/FormulaCalculationDelete', { Id: id }, function (res) {
+
+                    var errid = res.ResultId;
+                    var errmsg = res.Message;
+                    var TITLE = res.Title;
+                    var TYPE = res.Type;
+                    if (errid > 0) {
+                        $.c9Message(errmsg, TITLE, TYPE); 
+                        loadCalculations();
+                    } else {
+                        $.c9Message(errmsg, TITLE, TYPE);
+                    }
+                });
+            } else {
+
+            }
+        });
+
+        $('#btnAddFormulaCalculation').on('click', function () {
+            var url = '/Formula/AddFormulaCalculation?Id=' + @ViewBag.Id;
+            $.get(url, function (data) {
+
+                $('#myModalLabel').text('Add Calculation');
+                $('#modelbody').html(data);
+            });
+        });
+    })
+
+</script>
+
+

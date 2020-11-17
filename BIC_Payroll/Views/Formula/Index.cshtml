@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Formula Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="divFormulaVariable" class="col-sm-6">
+</div>
+<div id="divFormulaCalculation" class="col-sm-6">
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body row" id="modelbody">
+            </div> 
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->  
+
+
+<script src="~/js/libs/jquery-2.1.1.min.js"></script>
+<script src="~/js/libs/jquery-ui-1.10.3.min.js"></script> 
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        loadVariables();
+        loadCalculations();
+    });
+
+    function LoadvariableForm() {
+        var url = '/Formula/AddFormulaVariable?Id=' + @ViewBag.Id;
+        $.get(url, function (data) { 
+            $('#myModalLabel').text('Add Formula Variable');
+            $('#modelbody').html(data);
+        });
+    }
+
+    function loadVariables() {
+        var url = '/Formula/GetFormulaVariable?Id=' +@ViewBag.Id;
+        $.get(url, function (data) {
+            $('#divFormulaVariable').html(data);
+        });
+    }
+
+    function loadCalculations() {
+        var url = '/Formula/GetFormulaCalculation?Id=' +@ViewBag.Id;
+        $.get(url, function (data) {
+            $('#divFormulaCalculation').html(data);
+        });
+    }
+</script>

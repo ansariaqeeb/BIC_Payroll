@@ -62,8 +62,7 @@
            
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal --> 
-@*<script src="~/js/libs/jquery-2.1.1.min.js"></script>*@ 
+</div><!-- /.modal -->  
 <script type="text/javascript">
 
     // DO NOT REMOVE : GLOBAL FUNCTIONS!
@@ -115,43 +114,7 @@
                 });
             } else {
                         
-            }
-
-
-            @*bootbox.confirm({
-                title: 'Confirm delete',
-                message: "Are you sure, you want to delete pay slip head?",
-                buttons: {
-                    'confirm': {
-                        label: 'Confirm',
-                        className: 'btn-sm btn-info'
-                    },
-
-                    'cancel': {
-                        label: 'Cancel',
-                        className: 'btn-sm btn-danger'
-                    },
-                },
-                callback: function (result) {
-                    if (result == true) {
-                        $.get('/PaySlipEmpMap/Delete', { Id: id }, function (res) {
-
-                            var errid = res.ResultId;
-                            var errmsg = res.Message;
-                            var TITLE = res.Title;
-                            var TYPE = res.Type;
-                            if (errid > 0) {
-                                $.c9Message(errmsg, TITLE, TYPE); 
-                                loadEmpPayStr(@ViewBag.EMPID);
-                            } else {
-                                $.c9Message(errmsg, TITLE, TYPE); 
-                            } 
-                        });
-                    } else {
-                        
-                    }
-                }
-            });*@
+            } 
         });
      
     })

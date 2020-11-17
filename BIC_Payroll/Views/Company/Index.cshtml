@@ -1,67 +1,31 @@
 ﻿@model List<DataModel.Company.Company>
 @{
-    ViewBag.Title = "Company Details";
-    Layout = "~/Views/Shared/_Layout2.cshtml";
+	ViewBag.Title = "Company Details";
+	Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-
-
-
-<div class="well">
-
-    <div class="btn-group btn-group-justified">
-        <a href="/Company/Add" class="btn btn-default">Add Company</a>
-    </div>
-
-</div>
 <div class="col-sm-12">
-    <div class="well well-light">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <div class="col-xs-12 col-sm-6 col-md-3">
-                    <div class="panel panel-success pricing-big">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                @item.COMPCODE
-                            </h3>
-                        </div>
-                        <div class="panel-body no-padding text-align-center">
-                            <div class="the-price">
-                                <h1>
-                                    <strong>@item.COMPNAME</strong>
-                                </h1>
-                            </div>
-                            @*<div class="price-features">
-                                <ul class="list-unstyled text-left">
-                                    <li><i class="fa fa-check text-success"></i> Primery Contact : <strong> @item.PRIMARYPHONE</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> Secondry Contact : <strong> @item.SECONDARYPHONE</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> Fax : <strong> @item.FAX</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> Email : <strong> @item.EMAILID</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> Website : <strong> @item.WEBSITE</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> Reg No : <strong> @item.REGNO</strong></li>
-                                    <li><i class="fa fa-check text-success"></i> Manpower : <strong> @item.MANPOWERWORKING</strong></li>
-                                </ul>
-                            </div>*@
-                        </div>
-                        <div class="panel-footer text-align-center">
-                            <div>
-                                <a href="/Home/Index?Id=@item.COMPID">Continue With This Company</a>  
-                            </div>
-                            <a href="/Company/Edit/@item.COMPID" class="btn btn-sm btn-primary" data-original-title="Edit Company Details">
-                                 <span class="fa fa-pencil"></span> 
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
+	<div class="well well-light">
+		<div class="row">
+			@foreach (var item in Model)
+			{
+				<div class="col-sm-3">
+					<div class="well well-sm bg-color-teal txt-color-white text-center">
+						<h5>@item.COMPCODE : @item.COMPNAME</h5>
+							<a href="/Home/Index?Id=@item.COMPID" class="btn btn-sm btn-success">Continue with this company</a>
+							<a href="/Company/Edit/@item.COMPID" class="btn btn-sm btn-warning" data-original-title="Edit company details">
+								<span class="fa fa-pencil"> Edit</span>
+							</a>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
 </div>
 <script src="~/js/libs/jquery-2.1.1.min.js"></script>
 <script src="~/js/ProjectCommon.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $(".breadcrumb").html('<li id="breadcrumb1">Company Details</li>');
-    });
+	$(document).ready(function () {
+		$(".breadcrumb").html('<li id="breadcrumb1" class="text-right">Company Details : <a href="/Company/Add" class="btn btn-default btn-xs">Add Company</a></li>');
+	});
 </script>
